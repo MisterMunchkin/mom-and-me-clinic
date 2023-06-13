@@ -23,7 +23,7 @@ export default function NavBar() {
             </ul>
           </div>
           <div className="md:order-3 order-2">
-            <a href="#" className="md:px-4 md:py-2 p-2 hover:bg-indigo-500 rounded-md bg-indigo-600 text-white">Set an Appointment</a>
+            <a href="#" className="md:px-4 md:py-2 p-2 hover:bg-indigo-500 rounded-md text-sm font-semibold bg-indigo-600 text-white">Set an Appointment</a>
           </div>
         </div>
       </div>
