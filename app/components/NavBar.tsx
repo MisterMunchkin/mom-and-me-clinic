@@ -1,6 +1,7 @@
 export default function NavBar() {
-    return (
-      <nav className="bg-gray-200 shadow shadow-gray-300 w-screen px-8 md:px-auto">
+  return (
+    <nav className="bg-gray-200 shadow shadow-gray-300 w-screen md:px-auto px-8 absolute inset-x-0 top-0 z-50">
+      <div className="flex items-center">
         <div className="md:h-16 h-28 mx-auto md:px-4 container flex items-center justify-between flex-wrap md:flex-nowrap">
           {/* Logo */}
           <div className="text-indigo-500 md:order-1">
@@ -15,12 +16,17 @@ export default function NavBar() {
             <ul className="flex font-semibold justify-between">
                       {/* Active Link = text-indigo-500
                       Inactive Link = hover:text-indigo-500 */}
-              <li className="md:px-4 md:py-2 text-indigo-500"><a href="#">Home</a></li>
-              <li className="md:px-4 md:py-2 hover:text-indigo-400"><a href="#">Clinic Location</a></li>
               <li className="md:px-4 md:py-2 hover:text-indigo-400"><a href="#">Know Your Doctors</a></li>
+              <li className="md:px-4 md:py-2 hover:text-indigo-400"><a href="#">Clinic Location</a></li>
+              {/* Move this to the float right */}
+              {/* <li className="md:px-4 md:py-2 hover:bg-indigo-500 rounded-md bg-indigo-600 text-white"><a href="#">Set an Appointment</a></li> */}
             </ul>
           </div>
+          <div className="md:order-3 order-2">
+            <a href="#" className="md:px-4 md:py-2 p-2 hover:bg-indigo-500 rounded-md bg-indigo-600 text-white">Set an Appointment</a>
+          </div>
         </div>
-      </nav>
-    )
+      </div>
+    </nav>
+  )
 }
