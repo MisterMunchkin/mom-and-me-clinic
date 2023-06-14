@@ -1,6 +1,27 @@
+'use client';
+
+import { useEffect, useState } from "react"
+import { debounce } from "../utilities/helpers";
+
 export default function NavBar() {
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = debounce(() => {
+      const currentScrollPos = window.pageYOffset;
+  
+      setVisible((prevScrollPos > currentScrollPos && prevScrollPos - currentScrollPos > 70) || currentScrollPos < 10);
+  
+      setPrevScrollPos(currentScrollPos);
+    }, 100);
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [prevScrollPos, visible]);
+
   return (
-    <nav className="bg-gray-200 shadow shadow-gray-300 w-screen md:px-auto px-8 absolute inset-x-0 top-0 z-50">
+    <nav className={`${visible ? 'top-0' : '-top-60'} transition-top duration-500 ease-in-out bg-gray-200 shadow shadow-gray-300 w-screen fixed md:px-auto px-8 z-50`}>
       <div className="flex items-center">
         <div className="md:h-16 h-28 mx-auto md:px-4 container flex items-center justify-between flex-wrap md:flex-nowrap">
           {/* Logo */}
