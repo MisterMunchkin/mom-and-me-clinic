@@ -4,7 +4,7 @@ export default function NavBar() {
       <div className="flex items-center">
         <div className="h-16 mx-auto md:px-4 container flex items-center justify-between flex-wrap md:flex-nowrap">
           {/* Logo */}
-          <div className="text-indigo-500 md:order-1">
+          <div className="text-primary md:order-1">
             {/* Heroicon - Chip Outline */}
             <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">
@@ -16,14 +16,14 @@ export default function NavBar() {
             <ul className="flex font-semibold justify-between">
                       {/* Active Link = text-indigo-500
                       Inactive Link = hover:text-indigo-500 */}
-              <li className="md:px-4 md:py-2 hover:text-indigo-400"><a href="#">Know Your Doctors</a></li>
-              <li className="md:px-4 md:py-2 hover:text-indigo-400"><a href="#">Clinic Location</a></li>
+              <li className="md:px-4 md:py-2 hover:text-primary"><a href="#">Know Your Doctors</a></li>
+              <li className="md:px-4 md:py-2 hover:text-primary"><a href="#">Clinic Location</a></li>
               {/* Move this to the float right */}
-              {/* <li className="md:px-4 md:py-2 hover:bg-indigo-500 rounded-md bg-indigo-600 text-white"><a href="#">Set an Appointment</a></li> */}
+              {/* <li className="md:px-4 md:py-2 hover:bg-indigo-500 rounded-md bg-primary text-white"><a href="#">Set an Appointment</a></li> */}
             </ul>
           </div>
           <div className="md:order-3 order-2">
-            <a href="#" className="md:px-4 md:py-2 p-2 hover:bg-indigo-500 rounded-md text-sm font-semibold bg-indigo-600 text-white">Set an Appointment</a>
+            <a href="#" className="md:px-4 md:py-2 p-2 hover:bg-primary-hover rounded-md text-sm font-semibold bg-primary text-white">Set an Appointment</a>
           </div>
         </div>
       </div>
