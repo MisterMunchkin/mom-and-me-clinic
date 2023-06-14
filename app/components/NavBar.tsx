@@ -1,29 +1,8 @@
-'use client';
-
-import { useEffect, useState } from "react"
-import { debounce } from "../utilities/helpers";
-
 export default function NavBar() {
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    const handleScroll = debounce(() => {
-      const currentScrollPos = window.pageYOffset;
-  
-      setVisible((prevScrollPos > currentScrollPos && prevScrollPos - currentScrollPos > 70) || currentScrollPos < 10);
-  
-      setPrevScrollPos(currentScrollPos);
-    }, 100);
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [prevScrollPos, visible]);
-
   return (
-    <nav className={`${visible ? 'top-0' : '-top-60'} transition-top duration-500 ease-in-out bg-gray-200 shadow shadow-gray-300 w-screen fixed md:px-auto px-8 z-50`}>
+    <nav className={`frosted-glass top-0 transition-top duration-500 ease-in-out bg-gray-200 shadow shadow-gray-300 w-screen sticky md:px-auto px-8 z-50`}>
       <div className="flex items-center">
-        <div className="md:h-16 h-28 mx-auto md:px-4 container flex items-center justify-between flex-wrap md:flex-nowrap">
+        <div className="h-16 mx-auto md:px-4 container flex items-center justify-between flex-wrap md:flex-nowrap">
           {/* Logo */}
           <div className="text-indigo-500 md:order-1">
             {/* Heroicon - Chip Outline */}
@@ -33,7 +12,7 @@ export default function NavBar() {
                 d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
             </svg>
           </div>
-          <div className="text-gray-500 order-3 w-full md:w-auto md:order-2">
+          <div className="text-gray-500 hidden w-full md:block md:w-auto md:order-2">
             <ul className="flex font-semibold justify-between">
                       {/* Active Link = text-indigo-500
                       Inactive Link = hover:text-indigo-500 */}
