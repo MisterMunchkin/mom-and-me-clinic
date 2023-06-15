@@ -16,8 +16,8 @@ export default function NavBar() {
             <ul className="flex font-semibold justify-between">
                       {/* Active Link = text-indigo-500
                       Inactive Link = hover:text-indigo-500 */}
-              <li className="px-2 md:hidden hover:text-primary"><a href="#">Doctors</a></li>
-              <li className="hidden md:px-4 md:py-2 md:block"><a href="#">Know your Doctors</a></li>
+              <li className="px-2 md:hidden hover:text-primary"><a href="#doctors">Doctors</a></li>
+              <li className="hidden md:px-4 md:py-2 md:block"><a href="#doctors">Know your Doctors</a></li>
               <li className="px-2 md:px-4 md:py-2 hover:text-primary"><a href="#">Services</a></li>
               <li className="px-2 md:px-4 md:py-2 hover:text-primary"><a href="#">Clinic Location</a></li>
               {/* Move this to the float right */}
