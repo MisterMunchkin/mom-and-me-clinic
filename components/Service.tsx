@@ -14,7 +14,7 @@ export default function Service({service}: ServiceProps) {
         {service.name}
       </h3>
 
-      <p className="mt-2 mb-2 hidden text-sm sm:block text-gray-500">
+      <p className="mt-2 mb-2 hidden text-sm sm:block text-gray-500 whitespace-pre-line">
         {service.description}
       </p>
 
