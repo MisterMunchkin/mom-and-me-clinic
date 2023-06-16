@@ -1,0 +1,37 @@
+[
+  {
+    "tags": ["obstetrics", "gynecology"],
+    "name": "Prenatal and Delivery Packages",
+    "description": "(Normal, Cesarean Section)\n (Low risk & High risk pregnancy)"
+  },
+  {
+    "tags": ["obstetrics", "gynecology"],
+    "name": "Preconceptional Counselling"
+  },
+  {
+    "tags": ["obstetrics", "gynecology"],
+    "name": "Vaginal Bleeding & Discharges"
+  },
+  {
+    "tags": ["obstetrics", "gynecology"],
+    "name": "Pap Smear",
+    "description": "Genital warts"
+  },
+  {
+    "tags": ["obstetrics", "gynecology"],
+    "name": "Vulvar and Vaginal Cysts"
+  },
+  {
+    "tags": ["obstetrics", "gynecology"],
+    "name": "Gynecologic Concerns",
+    "description": "(myoma, polyp, uterine and ovarian mass ect.)"
+  },
+  {
+    "tags": ["obstetrics", "gynecology"],
+    "name": "PCOS & Irregular menstruation"
+  },
+  {
+    "tags": ["obstetrics", "gynecology"],
+    "name": "Vaccinations (HPV, Flu)"
+  }
+]

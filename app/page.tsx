@@ -1,7 +1,7 @@
-import Image from 'next/image'
-import NavBar from './components/NavBar'
-import Hero from './components/Hero';
-import Doctors from './components/Doctors';
+import NavBar from '../components/NavBar'
+import Hero from '../components/Hero';
+import Doctors from '../components/Doctors';
+import Services from '../components/Services';
 
 export default function Home() {
   return (
@@ -14,6 +14,10 @@ export default function Home() {
         {/* Main info should be list of doctors where you can book */}
         <section id="doctors" className="pt-24 md:pt-4">
           <Doctors />
+        </section>
+
+        <section id="services" className="pt-24 md:pt-4">
+          <Services />
         </section>
       </main>
     </>
