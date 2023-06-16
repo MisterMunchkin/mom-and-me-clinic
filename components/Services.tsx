@@ -6,8 +6,8 @@
 //we can filter out the doctors that are available for that service & schedule.
 'use client'
 import { ServiceInterface } from "@/interfaces/service";
-import path from "path";
 import useSWR from 'swr';
+import Service from "./Service";
 
 //we should retrieve services through a call.
 //add search feature by name
@@ -20,17 +20,20 @@ const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json())
 export default function Services() {
   //Set up SWR to run the fetcher function when calling "/api/staticdata"
   //There are 3 possible states: (1) loading when data is null (2) ready when the data is returned (3) error when there was an error fetching the data
-  const { data, error } = useSWR<ServiceInterface[], any>('/api/services', fetcher);
-
+  const { data, error, isLoading } = useSWR<ServiceInterface[], any>('/api/services', fetcher);
+  console.log(data);
   //Handle the error state
   if (error) return <div>Failed to load</div>;
   //Handle the loading state
-  if (!data) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
   //Handle the ready state and display the result contained in the data object mapped to the structure of the json file
+  if (!data) return null
 
-  console.log(data);
   return (
-    <>
-    </>
+    <div className="space-y-4">
+      {data.map((service) => (
+        <Service key={service.name} service={service} />
+      ))}
+    </div>
   )
 }
