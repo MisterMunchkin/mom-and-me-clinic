@@ -37,7 +37,7 @@ export default function Doctors() {
           <Image
             alt="Art"
             src="https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-            className="h-80 w-full object-cover sm:h-80 lg:h-96"
+            className="h-96 w-full object-cover"
             width={imageWidth}
             height={imageHeight}
           />
