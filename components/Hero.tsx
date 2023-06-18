@@ -13,7 +13,7 @@ export default function Hero() {
           <div className="mt-10 flex flex-col gap-y-3 md:flex-row md:gap-x-6 items-center justify-center">
             <a href="#" className="rounded-md bg-primary w-60 md:w-40 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Book appoinment</a>
             <a href="#doctors" className="rounded-md bg-primary w-60 md:w-40 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Find a doctor</a>
-            <a href="#" className="text-sm font-semibold w-60 md:w-40 px-3.5 py-2.5 leading-6 text-gray-900 hover:text-primary">All services <span aria-hidden="true">→</span></a>
+            <a href="#services" className="text-sm font-semibold w-60 md:w-40 px-3.5 py-2.5 leading-6 text-gray-900 hover:text-primary">All services <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </div>

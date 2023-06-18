@@ -30,7 +30,7 @@ export default function Services() {
   if (!data) return null
 
   return (
-    <div className="space-y-4">
+    <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
       {data.map((service) => (
         <Service key={service.name} service={service} />
       ))}

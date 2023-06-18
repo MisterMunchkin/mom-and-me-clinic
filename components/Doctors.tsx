@@ -7,11 +7,6 @@ export default function Doctors() {
 
   return (
     <>
-      <div className="mx-auto pb-6 md:pb-12">
-        <div className="text-left">
-          <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">Know your Doctors</h1>
-        </div>
-      </div>
       <div className="flex flex-col space-x-0 space-y-12 md:flex-row md:space-x-12 md:space-y-0">
         <a href="#" className="block">
           <Image
