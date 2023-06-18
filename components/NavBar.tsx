@@ -18,7 +18,7 @@ export default function NavBar() {
                       Inactive Link = hover:text-indigo-500 */}
               <li className="px-2 md:hidden hover:text-primary"><a href="#doctors">Doctors</a></li>
               <li className="hidden md:px-4 md:py-2 md:block"><a href="#doctors">Know your Doctors</a></li>
-              <li className="px-2 md:px-4 md:py-2 hover:text-primary"><a href="#">Services</a></li>
+              <li className="px-2 md:px-4 md:py-2 hover:text-primary"><a href="#services">Services</a></li>
               <li className="px-2 md:px-4 md:py-2 hover:text-primary"><a href="#">Clinic Location</a></li>
               {/* Move this to the float right */}
               {/* <li className="md:px-4 md:py-2 hover:bg-indigo-500 rounded-md bg-primary text-white"><a href="#">Set an Appointment</a></li> */}
