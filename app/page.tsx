@@ -2,6 +2,7 @@ import NavBar from '../components/NavBar'
 import Hero from '../components/Hero';
 import Doctors from '../components/Doctors';
 import Services from '../components/Services';
+import Maps from '@/components/Maps';
 
 export default function Home() {
   return (
@@ -28,6 +29,10 @@ export default function Home() {
             </div>
           </div>
           <Services />
+        </section>
+
+        <section id="location" className="pt-24 md:pt-16">
+          <Maps />
         </section>
       </main>
     </>
