@@ -1,5 +1,6 @@
 import { ServiceInterface } from "@/interfaces/service";
 import { TagToHexColorInterface } from "@/interfaces/tag-to-hex-color";
+import Link from "next/link";
 
 interface ServiceProps {
   service: ServiceInterface;
@@ -18,9 +19,14 @@ const tagToHexColorDict: TagToHexColorInterface = {
 
 export default function Service({service}: ServiceProps) {
   return (
-    <a
+    <Link
       className="relative flex flex-col items-start justify-between rounded-xl border border-gray-200 pt-4 pr-4 pl-4 shadow-lg md:pt-6 md:pr-6 md:pl-6"
-      href="#"
+      href={{
+        pathname: `/appointment`,
+        query: {
+          backNav: `#services`
+        }
+      }}
     >
       <h3 className="text-lg font-bold text-gray-900 sm:text-xl">
         {service.name}
@@ -41,6 +47,6 @@ export default function Service({service}: ServiceProps) {
           </span>
         ))}
       </div>
-    </a>
+    </Link>
   );
 }

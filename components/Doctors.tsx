@@ -1,5 +1,6 @@
 import Image from "next/image";
 import TextHighlight from "../utilities/TextHighlight";
+import Link from "next/link";
 
 export default function Doctors() {
   const imageWidth = 300;
@@ -8,7 +9,14 @@ export default function Doctors() {
   return (
     <>
       <div className="flex flex-col space-x-0 space-y-12 md:flex-row md:space-x-12 md:space-y-0">
-        <a href="#" className="block">
+        <Link   
+          href={{
+            pathname: `/appointment`,
+            query: {
+              backNav: `#doctors`
+            }
+          }} 
+          className="block">
           <Image
             alt="Art"
             src="https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
@@ -26,9 +34,16 @@ export default function Doctors() {
             sequi ipsam incidunt.
           </p>
           {/* add set appointment link that auto populates form. add clinic schedule. */}
-        </a>
+        </Link>
 
-        <a href="#" className="block">
+        <Link 
+          href={{
+            pathname: `/appointment`,
+            query: {
+              backNav: `#doctors`
+            }
+          }} 
+          className="block">
           <Image
             alt="Art"
             src="https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
@@ -45,7 +60,7 @@ export default function Doctors() {
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni reiciendis
             sequi ipsam incidunt.
           </p>
-        </a>
+        </Link>
       </div>
     </>
   );
