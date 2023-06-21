@@ -15,7 +15,7 @@ export default function MapDirectionsLink({destination}: MapDirectionsLinkProps)
           href={googleMapsUrl} 
           target="_blank"
           className="text-primary decoration-primary underline md:no-underline hover:underline">
-          Directions
+          Directions on Google Maps
         </a>
       }
     </>
