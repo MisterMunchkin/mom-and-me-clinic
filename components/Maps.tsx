@@ -2,8 +2,9 @@
 
 import { LocationInterface } from "@/interfaces/locations";
 import useSWR from "swr";
-import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, MarkerF, InfoWindowF } from '@react-google-maps/api';
 import { useState } from "react";
+import MapDirectionsLink from "./MapDirectionsLink";
 
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
@@ -14,20 +15,20 @@ const center = {
 }
 
 const containerStyle = {
-  height: '400px',
-  width: '400px'
+  height: '600px',
+  width: '600px'
 }
 
 // Velez medical arts center: 10.307526405862564, 123.8973729327618
 export default function Maps() {
+  const { data, error, isLoading } = useSWR<LocationInterface[], any>('/api/locations', fetcher);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY ?? ''
   });
 
   const [map, setMap] = useState(null)
-
-  const { data, error, isLoading } = useSWR<LocationInterface[], any>('/api/locations', fetcher);
+  const [selectedPlace, setSelectedPlace] = useState<LocationInterface | undefined>(undefined);
   console.log(data);
   //Handle the error state
   if (error) return <div>Failed to load</div>;
@@ -38,21 +39,50 @@ export default function Maps() {
 
   return (
     // Important! Always set the container height explicitly
-    <div>
+    <>
       {isLoaded &&
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={13}
-        >
-          {data.map((location) => (
-            <MarkerF 
-              key={`${location.address}-${location.name}-${location.lat}-${location.long}`}
-              position={{lat: location.lat, lng: location.long}}
-            />
-          ))}
-        </GoogleMap>
+        <div>
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={13}
+          >
+            {data.map((location) => (
+              <MarkerF 
+                key={`${location.address}-${location.name}-${location.lat}-${location.long}`}
+                position={{lat: location.lat, lng: location.long}}
+                onClick={() => {
+                  location === selectedPlace
+                  ? setSelectedPlace(undefined)
+                  : setSelectedPlace(location)
+                }}
+              />
+            ))}
+            {selectedPlace &&
+              <InfoWindowF
+                position={{
+                  lat: selectedPlace.lat,
+                  lng: selectedPlace.long
+                }}
+                zIndex={1}
+                options={{
+                  pixelOffset: {
+                    width: 0,
+                    height: -40
+                  }
+                }}
+                onCloseClick={() => setSelectedPlace(undefined)}
+              >
+                <div>
+                  <h3 className="mb-1.5">{selectedPlace.name}</h3>
+                  <MapDirectionsLink destination={selectedPlace} />
+                </div>
+              </InfoWindowF>
+            }
+          </GoogleMap>
+          <MapDirectionsLink destination={selectedPlace} />
+        </div>
       }
-    </div>
+    </>
   );
 }
