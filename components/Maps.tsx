@@ -15,8 +15,8 @@ const center = {
 }
 
 const containerStyle = {
-  height: '600px',
-  width: '600px'
+  height: '500px',
+  width: '100%'
 }
 
 // Velez medical arts center: 10.307526405862564, 123.8973729327618
@@ -41,7 +41,7 @@ export default function Maps() {
     // Important! Always set the container height explicitly
     <>
       {isLoaded &&
-        <div>
+        <div className="w-[300px] sm:w-[500px] md:w-[600px] lg:w-[1000px]">
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}
@@ -74,13 +74,12 @@ export default function Maps() {
                 onCloseClick={() => setSelectedPlace(undefined)}
               >
                 <div>
-                  <h3 className="mb-1.5">{selectedPlace.name}</h3>
+                  <h3 className="mb-1.5 font-semibold">{selectedPlace.name}</h3>
                   <MapDirectionsLink destination={selectedPlace} />
                 </div>
               </InfoWindowF>
             }
           </GoogleMap>
-          <MapDirectionsLink destination={selectedPlace} />
         </div>
       }
     </>

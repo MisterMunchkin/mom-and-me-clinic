@@ -31,7 +31,7 @@ export default function Home() {
           <Services />
         </section>
 
-        <section id="location" className="pt-24 md:pt-16">
+        <section id="location" className="pt-24 md:pt-16 pb-24">
           <div className="mx-auto pb-6 md:pb-12">
             <div className="text-left">
               <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">Locations</h1>
