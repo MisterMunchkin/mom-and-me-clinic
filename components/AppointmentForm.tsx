@@ -3,15 +3,32 @@
 import { useCallback } from "react";
 import ServiceSelection from "./ServiceSelection";
 import { ServiceClass } from "@/classes/service";
+import useSWR from "swr";
 
-export default function AppointmentForm() {
+interface AppointmentFormProps {
+  defaultServiceName?: string;
+}
 
+const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
+export default function AppointmentForm({defaultServiceName}: AppointmentFormProps) {
+  const serviceResponse = useSWR<ServiceClass[], any>('/api/services', fetcher);
   const handleServiceChange = useCallback(
     (selectedService: ServiceClass) => {
       console.log(selectedService);
     }, []
   );
+
+  const getDefaultServiceIndex = (serviceList: ServiceClass[], defaultServiceName?: string): number => {
+    if (!defaultServiceName) {
+      return 0;
+    }
+    var index = serviceList.findIndex(service => service.name === defaultServiceName);
+    if (index === -1) { // in the event that it cannot find the service
+      return 0;
+    }
+    return index;
+  }
 
   return (
     <form action="" className="space-y-4">
@@ -48,10 +65,19 @@ export default function AppointmentForm() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-
+        {serviceResponse.error && (
+          <div>error retrieving services</div>
+        )}
+        {serviceResponse.isLoading && (
+          <div>...loading services</div>
+        )}
+        {serviceResponse.data && (
           <ServiceSelection 
-             handleServiceChange={handleServiceChange}
+            services={serviceResponse.data}
+            defaultServiceIndex={getDefaultServiceIndex(serviceResponse.data, defaultServiceName)}
+            handleServiceChange={handleServiceChange}
           />
+        )}
       </div>
 
       <div>

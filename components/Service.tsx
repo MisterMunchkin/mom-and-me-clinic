@@ -1,7 +1,6 @@
 import { ServiceClass } from "@/classes/service";
 import Link from "next/link";
 import ServiceTags from "./ServiceTags";
-
 interface ServiceProps {
   service: ServiceClass;
 }
@@ -13,7 +12,8 @@ export default function Service({service}: ServiceProps) {
       href={{
         pathname: `/appointment`,
         query: {
-          backNav: `#services`
+          backNav: '#services',
+          defaultService: service.name
         }
       }}
     >

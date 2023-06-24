@@ -1,15 +1,15 @@
 import { ServiceInterface } from "@/interfaces/service";
 
 export class ServiceClass implements ServiceInterface {
-  tags: string[] = [];
-  joinedTags: string = '';
-  name: string;
-  description?: string | undefined;
+  readonly tags: string[] = [];
+  readonly joinedTags: string = '';
+  readonly name: string;
+  readonly description?: string | undefined;
 
-  constructor(name: string, tags: string[], joinedTags: string, description?: string) {
+  constructor(name: string, tags?: string[], joinedTags?: string, description?: string) {
     this.name = name;
-    this.tags = tags;
-    this.joinedTags = joinedTags;
+    this.tags = tags ?? [];
+    this.joinedTags = joinedTags ?? '';
     this.description = description;
   }
 
@@ -23,6 +23,6 @@ export class ServiceClass implements ServiceInterface {
   }
 
   public static getJoinedTags(tags: string[]): string {
-    return tags.join(' ');
+    return tags?.join(' ');
   }
 }
