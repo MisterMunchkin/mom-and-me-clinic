@@ -4,6 +4,7 @@ import { Combobox, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import useSWR from "swr";
+import ServiceTags from "./ServiceTags";
 
 interface ServiceSelectionProps {
   defaultService?: ServiceClass;
@@ -39,7 +40,7 @@ export default function ServiceSelection({defaultService, handleServiceChange}: 
     // <div className="fixed top-16 w-72">
       <Combobox value={selectedService} onChange={onChange}>
         <div className="relative mt-1">
-          <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
+          <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-primary-300 sm:text-sm">
             <Combobox.Input
               className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
               displayValue={(service: ServiceClass) => service?.name}
@@ -70,7 +71,7 @@ export default function ServiceSelection({defaultService, handleServiceChange}: 
                     key={service.name}
                     className={({ active }) =>
                       `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                        active ? 'bg-teal-600 text-white' : 'text-gray-900'
+                        active ? 'bg-primary text-white' : 'text-gray-900'
                       }`
                     }
                     value={service}
@@ -83,11 +84,14 @@ export default function ServiceSelection({defaultService, handleServiceChange}: 
                           }`}
                         >
                           {service.name}
+                          <span className="mx-3 space-x-2">
+                            <ServiceTags tags={service.tags} />
+                          </span>
                         </span>
                         {selected ? (
                           <span
                             className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                              active ? 'text-white' : 'text-teal-600'
+                              active ? 'text-white' : 'text-primary'
                             }`}
                           >
                             <CheckIcon className="h-5 w-5" aria-hidden="true" />
