@@ -55,13 +55,13 @@ export default function AppointmentForm() {
       </div>
 
       <div>
-        <label className="sr-only" htmlFor="message">Message</label>
+        <label className="sr-only" htmlFor="medicalConcern">Medical Concern</label>
 
         <textarea
           className="w-full rounded-lg border-gray-200 p-3 text-sm"
-          placeholder="Message"
+          placeholder="Medical Concern"
           rows={8}
-          id="message"
+          id="medicalConcern"
         ></textarea>
       </div>
 
@@ -70,7 +70,7 @@ export default function AppointmentForm() {
           type="submit"
           className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
         >
-          Send Enquiry
+          Request Appointment
         </button>
       </div>
     </form>
