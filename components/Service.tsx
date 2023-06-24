@@ -1,5 +1,4 @@
 import { ServiceClass } from "@/classes/service";
-import { TagToHexColorInterface } from "@/interfaces/tag-to-hex-color";
 import Link from "next/link";
 import ServiceTags from "./ServiceTags";
 
