@@ -1,9 +1,9 @@
-import { ServiceInterface } from "@/interfaces/service";
+import { ServiceClass } from "@/classes/service";
 import { TagToHexColorInterface } from "@/interfaces/tag-to-hex-color";
 import Link from "next/link";
 
 interface ServiceProps {
-  service: ServiceInterface;
+  service: ServiceClass;
 }
 
 const tagToHexColorDict: TagToHexColorInterface = {

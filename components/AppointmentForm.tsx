@@ -1,3 +1,5 @@
+import ServiceSelection from "./ServiceSelection";
+
 export default function AppointmentForm() {
   return (
     <form action="" className="space-y-4">
@@ -13,12 +15,12 @@ export default function AppointmentForm() {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
-          <label className="sr-only" htmlFor="email">Email</label>
+          <label className="sr-only" htmlFor="age">Age</label>
           <input
             className="w-full rounded-lg border-gray-200 p-3 text-sm"
-            placeholder="Email address"
-            type="email"
-            id="email"
+            placeholder="Age"
+            type="number"
+            id="age"
           />
         </div>
 
@@ -31,6 +33,13 @@ export default function AppointmentForm() {
             id="phone"
           />
         </div>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+          <ServiceSelection 
+             
+          />
       </div>
 
       <div>
