@@ -1,3 +1,4 @@
+import AppointmentForm from "@/components/AppointmentForm";
 import Link from "next/link";
 
 interface AppointmentPageParams {
@@ -24,12 +25,15 @@ export default function Page({
   searchParams: AppointmentPageParams
 }) {
   const backNavString = `/${searchParams.backNav ?? ''}`;
+  console.log(searchParams);
   return (
-    <>
-      <Link href={backNavString} scroll={false}>
+    <div className="rounded-lg bg-white shadow-lg pt-4 lg:pt-8">
+      <Link className="px-8 lg:px-12" href={backNavString} scroll={false}>
         <span aria-hidden="true">←</span> Go Back
       </Link>
-      <h1>{searchParams.test}</h1>
-    </>
+      <div className="p-8 lg:col-span-3 lg:p-12">
+        <AppointmentForm />
+      </div>
+    </div>
   )
 }
