@@ -1,7 +1,3 @@
-
-
-'use client'
-
 import { ServiceClass } from "@/classes/service";
 import { filterList } from "@/utilities/helpers";
 import { Combobox, Transition } from "@headlessui/react";
@@ -11,11 +7,12 @@ import useSWR from "swr";
 
 interface ServiceSelectionProps {
   defaultService?: ServiceClass;
+  handleServiceChange: (selectedService: ServiceClass) => void;
 }
 
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
-export default function ServiceSelection({defaultService}: ServiceSelectionProps) {
+export default function ServiceSelection({defaultService, handleServiceChange}: ServiceSelectionProps) {
   const [ selectedService, setSelectedService ] = useState<ServiceClass | null>(defaultService ?? null);
   const [query, setQuery] = useState(defaultService?.name ?? '');
   //Set up SWR to run the fetcher function when calling "/api/staticdata"
@@ -31,11 +28,16 @@ export default function ServiceSelection({defaultService}: ServiceSelectionProps
 
   const filteredServices: ServiceClass[] = query === ''
    ? data
-   : filterList(query, data, ['name', 'joinedTags'])
+   : filterList(query, data, ['name', 'joinedTags']);
+
+  const onChange = (service: ServiceClass) => {
+    setSelectedService(service);
+    handleServiceChange(service);
+  }
 
   return (
     // <div className="fixed top-16 w-72">
-      <Combobox value={selectedService} onChange={setSelectedService}>
+      <Combobox value={selectedService} onChange={onChange}>
         <div className="relative mt-1">
           <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
             <Combobox.Input

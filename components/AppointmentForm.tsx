@@ -1,6 +1,18 @@
+'use client'
+
+import { useCallback } from "react";
 import ServiceSelection from "./ServiceSelection";
+import { ServiceClass } from "@/classes/service";
 
 export default function AppointmentForm() {
+
+
+  const handleServiceChange = useCallback(
+    (selectedService: ServiceClass) => {
+      console.log(selectedService);
+    }, []
+  );
+
   return (
     <form action="" className="space-y-4">
       <div>
@@ -38,7 +50,7 @@ export default function AppointmentForm() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
 
           <ServiceSelection 
-             
+             handleServiceChange={handleServiceChange}
           />
       </div>
 
