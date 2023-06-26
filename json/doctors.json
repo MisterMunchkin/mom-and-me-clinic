@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Dr",
+    "designation": "DPOGS",
+    "name": "Thalia T. Badilles",
+    "serviceTags": ["obstetrics", "gynecology"],
+    "phoneNumber": "09224817436",
+    "specialties": [],
+    "clinicSchedules": [
+      {
+        "clinicLocation": "Mom & Me Clinic - Room 611",
+        "schedules": [
+          {
+            "day": "MON",
+            "start": "9:00 AM",
+            "end": "12:00 PM"
+          },
+          {
+            "day": "FRI",
+            "start": "9:00 AM",
+            "end": "3:00 PM"
+          },
+          {
+            "day": "SAT",
+            "start": "9:00 AM",
+            "end": "12:00 PM"
+          }
+        ]
+      }
+    ]
+  }
+]
