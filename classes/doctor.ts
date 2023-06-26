@@ -1,29 +1,50 @@
 import { ClinicScheduleInterface, DoctorInterface, ScheduleInterface } from "@/interfaces/doctor";
 
 export class DoctorClass implements DoctorInterface {
-  title?: string;
-  designation?: string;
-  name: string;
-  serviceTags: string[];
-  phoneNumber: string;
-  specialties?: string[];
-  clinicSchedules: ClinicScheduleClass[];
+  readonly title?: string;
+  readonly designation?: string;
+  readonly name: string;
+  readonly serviceTags: string[];
+  readonly phoneNumber: string;
+  readonly email: string;
+  readonly specialties?: string[];
+  readonly clinicSchedules: ClinicScheduleClass[];
 
   constructor(
     name: string,
     serviceTags: string[],
     phoneNumber: string,
-    clinicSchedules: ClinicScheduleClass[],
+    email: string,
+    clinicSchedules: ClinicScheduleInterface[],
     specialties?: string[],
     title?: string, 
     designation?: string) {
     this.name = name;
     this.serviceTags = serviceTags;
     this.phoneNumber = phoneNumber;
-    this.clinicSchedules = clinicSchedules;
+    this.email = email;
     this.specialties = specialties;
     this.designation = designation;
-    this.title = title
+    this.title = title;
+
+    this.clinicSchedules = clinicSchedules?.map(clinicSchedule => 
+      new ClinicScheduleClass(
+        clinicSchedule.clinicLocation, 
+        clinicSchedule.schedules)
+    ) ?? []
+  }
+
+  public static fromInterface(doctorInterface: DoctorInterface) {
+    return new DoctorClass (
+      doctorInterface.name,
+      doctorInterface.serviceTags,
+      doctorInterface.phoneNumber,
+      doctorInterface.email,
+      doctorInterface.clinicSchedules,
+      doctorInterface.specialties,
+      doctorInterface.title,
+      doctorInterface.designation
+    )
   }
 }
 
@@ -31,9 +52,15 @@ export class ClinicScheduleClass implements ClinicScheduleInterface {
   clinicLocation: string;
   schedules: ScheduleClass[];
 
-  constructor(clinicLocation: string, schedules: ScheduleClass[]) {
+
+  constructor(clinicLocation: string, schedules: ScheduleInterface[]) {
     this.clinicLocation = clinicLocation;
-    this.schedules = schedules ?? [];
+    this.schedules = schedules?.map(schedule => 
+      new ScheduleClass(
+        Day[schedule.day as keyof typeof Day], 
+        schedule.start, 
+        schedule.end)
+    ) ?? [];
   }
 }
 

@@ -4,6 +4,7 @@ export interface DoctorInterface {
   name: string
   serviceTags: string[]
   phoneNumber: string
+  email: string
   specialties?: string[]
   clinicSchedules: ClinicScheduleInterface[]
 }

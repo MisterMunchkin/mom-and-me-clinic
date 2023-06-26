@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
   //read the json data file
   const fileContents = await fs.readFile(jsonDirectory + '/locations.json', 'utf8');
 
-  const services = JSON.parse(fileContents) as LocationInterface[];
+  const locations = JSON.parse(fileContents) as LocationInterface[];
 
-  return NextResponse.json<LocationInterface[]>(services, {status:200});
+  return NextResponse.json<LocationInterface[]>(locations, {status:200});
 }
