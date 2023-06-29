@@ -1,4 +1,5 @@
 import { ClinicScheduleInterface, DoctorInterface, ScheduleInterface } from "@/interfaces/doctor";
+import { getEnumByValue } from "@/utilities/helpers";
 
 export class DoctorClass implements DoctorInterface {
   readonly title?: string;
@@ -46,6 +47,18 @@ export class DoctorClass implements DoctorInterface {
       doctorInterface.designation
     )
   }
+
+  public getFullTitle(): string {
+    return `${(this.title) ? this.title + '. ' : ''}${this.name}${(this.designation) ? ', ' + this.designation : ''}`;
+  }
+
+  // public getClinicSchedules(): string {
+  //   let clinicScheduleString = 'Clinic Schedules: <br />';
+
+  //   this.clinicSchedules.forEach((clinicSchedule) => {
+  //     clinicScheduleString = clinicSchedule.clinicLocation;
+  //   })
+  // }
 }
 
 export class ClinicScheduleClass implements ClinicScheduleInterface {
@@ -57,7 +70,7 @@ export class ClinicScheduleClass implements ClinicScheduleInterface {
     this.clinicLocation = clinicLocation;
     this.schedules = schedules?.map(schedule => 
       new ScheduleClass(
-        Day[schedule.day as keyof typeof Day], 
+        getEnumByValue(Day, schedule.day),
         schedule.start, 
         schedule.end)
     ) ?? [];
@@ -69,7 +82,7 @@ export class ScheduleClass implements ScheduleInterface {
   start: string;
   end: string;
 
-  constructor(day: Day, start: string, end: string) {
+  constructor(day?: Day, start?: string, end?: string) {
     this.day = day ?? Day.Monday;
     this.start = start ?? "9:00 AM";
     this.end = end ?? "12:00 NN";

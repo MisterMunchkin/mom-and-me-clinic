@@ -14,3 +14,13 @@ export const filterList = (searchString: string, list: any[], keys: string[]) =>
     )
   );
 }
+
+export const getEnumKeyByValue = <T extends string>(enumObj: Record<string, T>, value: T): keyof typeof enumObj | undefined => {
+  return Object.keys(enumObj).find(key => enumObj[key] === value);
+}
+
+export const getEnumByValue = <T extends string, U extends { [key: string]: T }>(enumObj: U, value: T): U[keyof U] | undefined => {
+  const keys = Object.keys(enumObj) as Array<keyof U>;
+  const enumMember = keys.find(key => enumObj[key] === value);
+  return enumMember ? enumObj[enumMember] : undefined;
+}
