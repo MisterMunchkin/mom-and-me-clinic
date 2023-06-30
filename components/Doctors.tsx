@@ -51,7 +51,8 @@ export default function Doctors() {
                 href={{
                   pathname: `/appointment`,
                   query: {
-                    backNav: `#doctors`
+                    backNav: `#doctors`,
+                    defaultDoctor: doctor.name
                   }
                 }} 
                 className="p-1.5 rounded-md bg-primary text-sm font-semibold text-white shadow-sm hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">

@@ -4,6 +4,7 @@ import Link from "next/link";
 interface AppointmentPageParams {
   backNav: string;
   defaultService: string;
+  defaultDoctor: string;
 }
 
 // export async function getServerSideProps(context: any) {
@@ -32,7 +33,10 @@ export default function Page({
         <span aria-hidden="true">←</span> Go Back
       </Link>
       <div className="p-8 lg:col-span-3 lg:p-12">
-        <AppointmentForm defaultServiceName={searchParams.defaultService} />
+        <AppointmentForm 
+          defaultServiceName={searchParams.defaultService} 
+          defaultDoctorName={searchParams.defaultDoctor}
+        />
       </div>
     </div>
   )

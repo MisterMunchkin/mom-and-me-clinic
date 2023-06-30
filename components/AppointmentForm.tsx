@@ -7,17 +7,20 @@ import useSWR from "swr";
 
 interface AppointmentFormProps {
   defaultServiceName?: string;
+  defaultDoctorName?: string;
 }
 
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
-export default function AppointmentForm({defaultServiceName}: AppointmentFormProps) {
+export default function AppointmentForm({defaultServiceName, defaultDoctorName}: AppointmentFormProps) {
   const serviceResponse = useSWR<ServiceClass[], any>('/api/services', fetcher);
   const handleServiceChange = useCallback(
     (selectedService: ServiceClass) => {
       console.log(selectedService);
     }, []
   );
+
+  console.log(defaultDoctorName);
 
   const getDefaultServiceIndex = (serviceList: ServiceClass[], defaultServiceName?: string): number => {
     if (!defaultServiceName) {
