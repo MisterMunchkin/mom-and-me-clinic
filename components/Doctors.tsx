@@ -28,60 +28,38 @@ export default function Doctors() {
         {data.map((doctor: DoctorClass) => (
           <div 
             key={doctor.name}
-            className="block">
+            className="block shadow-lg rounded-lg">
             <Image
               alt="Art"
               src="https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-              className="h-96 w-full object-cover"
+              className="h-96 w-full object-cover rounded-t-lg"
               width={imageWidth}
               height={imageHeight}
             />
+            <div
+              className="pt-2 px-4"
+            >
+              <h3 className="text-lg font-bold text-gray-100 sm:text-xl">
+                <TextHighlight bgColor="bg-primary">{doctor.name}</TextHighlight>
+              </h3>
 
-            <h3 className="mt-4 text-lg font-bold text-gray-100 sm:text-xl">
-              <TextHighlight bgColor="bg-primary">{doctor.name}</TextHighlight>
-            </h3>
-
-            <ClinicSchedules 
-              clinicSchedules={doctor.clinicSchedules}
-            />
-            {/* add set appointment link that auto populates form. add clinic schedule. */}
-            <Link
-              href={{
-                pathname: `/appointment`,
-                query: {
-                  backNav: `#doctors`
-                }
-              }} 
-              className="block rounded-md bg-primary text-sm font-semibold text-white shadow-sm hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-                Request Appointment
-            </Link>
+              <ClinicSchedules 
+                clinicSchedules={doctor.clinicSchedules}
+              />
+              
+              <Link
+                href={{
+                  pathname: `/appointment`,
+                  query: {
+                    backNav: `#doctors`
+                  }
+                }} 
+                className="p-1.5 rounded-md bg-primary text-sm font-semibold text-white shadow-sm hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                  Request Appointment
+              </Link>
+            </div>
           </div>
         ))}
-        {/* <Link 
-          href={{
-            pathname: `/appointment`,
-            query: {
-              backNav: `#doctors`
-            }
-          }} 
-          className="block">
-          <Image
-            alt="Art"
-            src="https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-            className="h-96 w-full object-cover"
-            width={imageWidth}
-            height={imageHeight}
-          />
-
-          <h3 className="mt-4 text-lg font-bold text-gray-100 sm:text-xl">
-            <TextHighlight bgColor="bg-primary">Dr. Kim Espiritu-Veloso, DPOGS</TextHighlight>
-          </h3>
-
-          <p className="mt-2 max-w-sm text-gray-700">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni reiciendis
-            sequi ipsam incidunt.
-          </p>
-        </Link> */}
       </div>
     </>
   );

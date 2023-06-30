@@ -29,5 +29,36 @@
         ]
       }
     ]
+  },
+  {
+    "title": "Dr",
+    "designation": "DPOGS",
+    "name": "Kim Espiritu-Veloso",
+    "serviceTags": ["obstetrics", "gynecology"],
+    "phoneNumber": "09664517388",
+    "email": "kim_test@gmail.com",
+    "specialties": [],
+    "clinicSchedules": [
+      {
+        "clinicLocation": "Mom & Me Clinic - Room 611",
+        "schedules": [
+          {
+            "day": "TUE",
+            "start": "12:00 PM",
+            "end": "5:00 PM"
+          },
+          {
+            "day": "WED",
+            "start": "10:00 AM",
+            "end": "4:00 PM"
+          },
+          {
+            "day": "SAT",
+            "start": "12:00 PM",
+            "end": "5:00 PM"
+          }
+        ]
+      }
+    ]
   }
 ]
