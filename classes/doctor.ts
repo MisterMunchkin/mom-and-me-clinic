@@ -6,6 +6,7 @@ export class DoctorClass implements DoctorInterface {
   readonly designation?: string;
   readonly name: string;
   readonly serviceTags: string[];
+  readonly joinedServiceTags: string = '';
   readonly phoneNumber: string;
   readonly email: string;
   readonly specialties?: string[];
@@ -14,6 +15,7 @@ export class DoctorClass implements DoctorInterface {
   constructor(
     name: string,
     serviceTags: string[],
+    joinedServiceTags: string,
     phoneNumber: string,
     email: string,
     clinicSchedules: ClinicScheduleInterface[],
@@ -21,7 +23,8 @@ export class DoctorClass implements DoctorInterface {
     title?: string, 
     designation?: string) {
     this.name = name;
-    this.serviceTags = serviceTags;
+    this.serviceTags = serviceTags ?? [];
+    this.joinedServiceTags = joinedServiceTags ?? '';
     this.phoneNumber = phoneNumber;
     this.email = email;
     this.specialties = specialties;
@@ -39,6 +42,7 @@ export class DoctorClass implements DoctorInterface {
     return new DoctorClass (
       doctorInterface.name,
       doctorInterface.serviceTags,
+      this.getJoinedTags(doctorInterface.serviceTags),
       doctorInterface.phoneNumber,
       doctorInterface.email,
       doctorInterface.clinicSchedules,
@@ -52,13 +56,9 @@ export class DoctorClass implements DoctorInterface {
     return `${(this.title) ? this.title + '. ' : ''}${this.name}${(this.designation) ? ', ' + this.designation : ''}`;
   }
 
-  // public getClinicSchedules(): string {
-  //   let clinicScheduleString = 'Clinic Schedules: <br />';
-
-  //   this.clinicSchedules.forEach((clinicSchedule) => {
-  //     clinicScheduleString = clinicSchedule.clinicLocation;
-  //   })
-  // }
+  public static getJoinedTags(tags: string[]): string {
+    return tags?.join(' ');
+  }
 }
 
 export class ClinicScheduleClass implements ClinicScheduleInterface {

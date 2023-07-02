@@ -15,6 +15,17 @@ export const filterList = (searchString: string, list: any[], keys: string[]) =>
   );
 }
 
+export const getIndexByName = (list: any[], column: string, name?: string) => {
+  if (!name) {
+    return 0;
+  }
+  var index = list?.findIndex(el => el[column] === name);
+  if (index === -1) {
+    return 0;
+  }
+  return index;
+}
+
 export const getEnumKeyByValue = <T extends string>(enumObj: Record<string, T>, value: T): keyof typeof enumObj | undefined => {
   return Object.keys(enumObj).find(key => enumObj[key] === value);
 }
