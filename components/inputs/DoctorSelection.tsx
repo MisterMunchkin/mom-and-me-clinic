@@ -2,7 +2,7 @@ import { DoctorClass } from "@/classes/doctor";
 import { filterList } from "@/utilities/helpers";
 import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import ServiceTags from "../ServiceTags";
 
 interface DoctorSelectionProps {
@@ -12,8 +12,12 @@ interface DoctorSelectionProps {
 }
 
 export default function DoctorSelection({doctors, defaultDoctorIndex, handleDoctorChange}: DoctorSelectionProps) {
-  const [ selectedDoctor, setSelectedDoctor ] = useState<DoctorClass | null>(doctors[defaultDoctorIndex]);
+  const [ selectedDoctor, setSelectedDoctor ] = useState<DoctorClass>(doctors[defaultDoctorIndex]);
   const [query, setQuery] = useState('');
+
+  useEffect(() => {
+    handleDoctorChange(selectedDoctor);
+  }, [handleDoctorChange, selectedDoctor]);
 
   const filteredDoctors: DoctorClass[] = query === ''
     ? doctors

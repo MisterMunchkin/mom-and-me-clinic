@@ -65,7 +65,6 @@ export class ClinicScheduleClass implements ClinicScheduleInterface {
   clinicLocation: string;
   schedules: ScheduleClass[];
 
-
   constructor(clinicLocation: string, schedules: ScheduleInterface[]) {
     this.clinicLocation = clinicLocation;
     this.schedules = schedules?.map(schedule => 
@@ -87,6 +86,26 @@ export class ScheduleClass implements ScheduleInterface {
     this.start = start ?? "9:00 AM";
     this.end = end ?? "12:00 NN";
   }
+
+  readonly dayToNumberMap: Record<Day, DayNumber> = {
+    [Day.Friday]: DayNumber.Friday,
+    [Day.Monday]: DayNumber.Monday,
+    [Day.Saturday]: DayNumber.Saturday,
+    [Day.Sunday]: DayNumber.Sunday,
+    [Day.Thursday]: DayNumber.Thursday,
+    [Day.Tuesday]: DayNumber.Tuesday,
+    [Day.Wednesday]: DayNumber.Wednesday
+  }
+
+  readonly numberToDayMap: Record<DayNumber, Day> = {
+    [DayNumber.Friday]: Day.Friday,
+    [DayNumber.Monday]: Day.Monday,
+    [DayNumber.Saturday]: Day.Saturday,
+    [DayNumber.Sunday]: Day.Sunday,
+    [DayNumber.Thursday]: Day.Thursday,
+    [DayNumber.Tuesday]: Day.Tuesday,
+    [DayNumber.Wednesday]: Day.Wednesday
+  }
 }
 
 export enum Day {
@@ -97,4 +116,14 @@ export enum Day {
   Friday = "FRI",
   Saturday = "SAT",
   Sunday = "SUN"
+}
+
+export enum DayNumber {
+  Sunday = 0,
+  Monday = 1,
+  Tuesday = 2,
+  Wednesday = 3,
+  Thursday = 4,
+  Friday = 5,
+  Saturday = 6
 }

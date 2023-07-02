@@ -1,12 +1,14 @@
 'use client'
 
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import ServiceSelection from "./inputs/ServiceSelection";
 import { ServiceClass } from "@/classes/service";
 import useSWR from "swr";
-import { DoctorClass } from "@/classes/doctor";
+import { DayNumber, DoctorClass } from "@/classes/doctor";
 import DoctorSelection from "./inputs/DoctorSelection";
 import { getIndexByName } from "@/utilities/helpers";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 interface AppointmentFormProps {
   defaultServiceName?: string;
@@ -18,6 +20,11 @@ const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json())
 export default function AppointmentForm({defaultServiceName, defaultDoctorName}: AppointmentFormProps) {
   const serviceResponse = useSWR<ServiceClass[], any>('/api/services', fetcher);
   const doctorResponse = useSWR<DoctorClass[], any>('/api/doctors', fetcher);
+  const [ preferredDate, setPreferredDate ] = useState<Date>();
+  const [ selectedDoctor, setSelectedDoctor ] = useState<DoctorClass>();
+  const [ selectedLocation, setSelectedLocation ] = useState("Mom & Me Clinic - Room 611");
+  const [ availableDayNumbers, setAvailableDayNumbers ] = useState<number[]>([]);
+
   const handleServiceChange = useCallback(
     (selectedService: ServiceClass) => {
       console.log(selectedService);
@@ -26,9 +33,26 @@ export default function AppointmentForm({defaultServiceName, defaultDoctorName}:
 
   const handleDoctorChange = useCallback(
     (selectedDoctor: DoctorClass) => {
-      console.log(selectedDoctor)
-    }, []
+      setSelectedDoctor(selectedDoctor);
+      setPreferredDate(undefined);
+      //changing doctor will filter the dates are available for that dr in a given week
+      //This in turn should also display the available time blocks for the given day.
+
+      const clinicSchedule = selectedDoctor
+      ?.clinicSchedules
+      .find(clinicSchedule => clinicSchedule.clinicLocation === selectedLocation);
+      
+      if (clinicSchedule) {
+        const availableDays = clinicSchedule.schedules.map(schedule => schedule.dayToNumberMap[schedule.day]);
+        setAvailableDayNumbers(availableDays);
+      }
+    }, [selectedLocation]
   );
+
+  const filterDatesByDoctorSchedule = (date: Date): boolean => {
+    const dateDay = date.getDay();
+    return availableDayNumbers.includes(dateDay as DayNumber);
+  }
 
   return (
     <form action="" className="space-y-4">
@@ -93,7 +117,56 @@ export default function AppointmentForm({defaultServiceName, defaultDoctorName}:
           )}
         </div>
       </div>
+        
+      <div className="flex flex-row items-end space-x-2">
+        <div>
+          <label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="preferredDate">Preferred Appointment Date</label>
+          <DatePicker 
+            id="preferredDate"
+            className="rounded-lg border-gray-200 p-3 text-sm"
+            selected={preferredDate} 
+            filterDate={filterDatesByDoctorSchedule}
+            onChange={(date) => setPreferredDate(date ?? new Date())} 
+            minDate={new Date()}
+          />
+        </div>
 
+        <div>
+          <input
+            className="peer sr-only"
+            id="option1"
+            type="radio"
+            tab-index="-1"
+            name="option"
+          />
+
+          <label
+            htmlFor="option1"
+            className="block w-full cursor-pointer rounded-lg border border-gray-200 p-2.5 text-gray-600 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
+            tab-index="0"
+          >
+            <span className="text-sm">AM</span>
+          </label>
+        </div>
+
+        <div>
+          <input
+            className="peer sr-only"
+            id="option2"
+            type="radio"
+            tab-index="-1"
+            name="option"
+          />
+
+          <label
+            htmlFor="option2"
+            className="block w-full cursor-pointer rounded-lg border border-gray-200 p-2.5 text-gray-600 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
+            tab-index="0"
+          >
+            <span className="text-sm">PM</span>
+          </label>
+        </div>
+      </div>
       <div>
         <label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="medicalConcern">Medical Concern</label>
 
