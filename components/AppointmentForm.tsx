@@ -36,7 +36,7 @@ export default function AppointmentForm({defaultServiceName, defaultDoctorName}:
   return (
     <form action="" className="space-y-4">
       <div>
-        <label className="sr-only" htmlFor="name">Name</label>
+        <label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="name">Name</label>
         <input
           className="w-full rounded-lg border-gray-200 p-3 text-sm"
           placeholder="Name"
@@ -47,7 +47,7 @@ export default function AppointmentForm({defaultServiceName, defaultDoctorName}:
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
-          <label className="sr-only" htmlFor="age">Age</label>
+          <label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="age">Age</label>
           <input
             className="w-full rounded-lg border-gray-200 p-3 text-sm"
             placeholder="Age"
@@ -57,7 +57,7 @@ export default function AppointmentForm({defaultServiceName, defaultDoctorName}:
         </div>
 
         <div>
-          <label className="sr-only" htmlFor="phone">Phone</label>
+          <label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="phone">Phone</label>
           <input
             className="w-full rounded-lg border-gray-200 p-3 text-sm"
             placeholder="Phone Number"
@@ -67,7 +67,7 @@ export default function AppointmentForm({defaultServiceName, defaultDoctorName}:
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-1">
         {serviceResponse.error && (
           <div>error retrieving services</div>
         )}
@@ -84,7 +84,7 @@ export default function AppointmentForm({defaultServiceName, defaultDoctorName}:
       </div>
 
       <div>
-        <label className="sr-only" htmlFor="medicalConcern">Medical Concern</label>
+        <label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="medicalConcern">Medical Concern</label>
 
         <textarea
           className="w-full rounded-lg border-gray-200 p-3 text-sm"
