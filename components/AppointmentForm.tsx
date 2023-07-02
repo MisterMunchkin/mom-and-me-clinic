@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback } from "react";
-import ServiceSelection from "./ServiceSelection";
+import ServiceSelection from "./inputs/ServiceSelection";
 import { ServiceClass } from "@/classes/service";
 import useSWR from "swr";
 
