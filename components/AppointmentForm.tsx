@@ -62,9 +62,6 @@ export default function AppointmentForm({defaultServiceName, defaultDoctorName}:
             id="phone"
           />
         </div>
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-1">
         <div>
           {serviceResponse.error && (
             <div>error retrieving services</div>
