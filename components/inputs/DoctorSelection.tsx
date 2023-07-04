@@ -15,9 +15,9 @@ export default function DoctorSelection({doctors, defaultDoctorIndex, handleDoct
   const [ selectedDoctor, setSelectedDoctor ] = useState<DoctorClass>(doctors[defaultDoctorIndex]);
   const [query, setQuery] = useState('');
 
-  useEffect(() => {
-    handleDoctorChange(selectedDoctor);
-  }, [handleDoctorChange, selectedDoctor]);
+  // handleDoctorChange(selectedDoctor);
+  // useEffect(() => {
+  // }, [handleDoctorChange, selectedDoctor]);
 
   const filteredDoctors: DoctorClass[] = query === ''
     ? doctors
