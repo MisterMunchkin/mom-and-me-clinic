@@ -29,7 +29,7 @@ export default function AppointmentForm({defaultServiceName, defaultDoctorName}:
 
   const [ formData, setFormData ] = useState<AppointmentInterface>({
     preferredTimeBlock: "",
-    doctor: undefined,
+    doctorName: "",
     location: "Mom & Me Clinic - Room 611",
     name: "",
     age: undefined,
@@ -38,6 +38,7 @@ export default function AppointmentForm({defaultServiceName, defaultDoctorName}:
     medicalConcern: ""
   });
 
+  const [ currentSelectedDoctor, setCurrentSelectedDoctor ] = useState<DoctorClass>();
   const [ availableDayNumbers, setAvailableDayNumbers ] = useState<number[]>([]);
   const [ availableTimeBlocks, setAvailableTimeBlocks ] = useState<string[]>([]);
 
@@ -47,29 +48,28 @@ export default function AppointmentForm({defaultServiceName, defaultDoctorName}:
     }, []
   );
 
-  const handleDoctorChange = useCallback(
-    (selectedDoctor: DoctorClass) => {
-      const updatedFormData = {
-        ...formData,
-        doctor: selectedDoctor,
-        preferredDate: undefined,
-        preferredTimeBlock: ""
-      } as AppointmentInterface
+  const handleDoctorChange = (selectedDoctor: DoctorClass) => {
+    const updatedFormData = {
+      ...formData,
+      doctor: selectedDoctor.name,
+      preferredDate: undefined,
+      preferredTimeBlock: ""
+    } as AppointmentInterface
 
-      setFormData(updatedFormData)
-      //changing doctor will filter the dates are available for that dr in a given week
-      //This in turn should also display the available time blocks for the given day.
-      const clinicSchedule = updatedFormData
-      ?.doctor
-      ?.clinicSchedules
-      ?.find(clinicSchedule => clinicSchedule.clinicLocation === formData.location);
-      
-      if (clinicSchedule) {
-        const availableDays = clinicSchedule.schedules.map(schedule => schedule.dayToNumberMap[schedule.day]);
-        setAvailableDayNumbers(availableDays);
-      }
-    }, [formData]
-  );
+    setFormData(updatedFormData);
+    //changing doctor will filter the dates are available for that dr in a given week
+    //This in turn should also display the available time blocks for the given day.
+    const clinicSchedule = selectedDoctor
+    ?.clinicSchedules
+    ?.find(clinicSchedule => clinicSchedule.clinicLocation === formData.location);
+    
+    if (clinicSchedule) {
+      const availableDays = clinicSchedule.schedules.map(schedule => schedule.dayToNumberMap[schedule.day]);
+      setAvailableDayNumbers(availableDays);
+    }
+
+    setCurrentSelectedDoctor(selectedDoctor);
+  }
 
   const handlePreferredDateChange = (date: Date | null) => {
     const updatedFormData = {
@@ -80,8 +80,7 @@ export default function AppointmentForm({defaultServiceName, defaultDoctorName}:
     setFormData(updatedFormData);
 
     const preferredDateNumber = date?.getDay();
-    const schedule = updatedFormData
-      ?.doctor
+    const schedule = currentSelectedDoctor
       ?.clinicSchedules
       .find(clinicSchedule => clinicSchedule.clinicLocation === formData.location)
       ?.schedules.find(schedule => schedule.dayToNumberMap[schedule.day] === preferredDateNumber);
