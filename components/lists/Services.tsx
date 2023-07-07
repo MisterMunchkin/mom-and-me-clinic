@@ -6,7 +6,7 @@
 //we can filter out the doctors that are available for that service & schedule.
 'use client'
 import useSWR from 'swr';
-import Service from "./Service";
+import Service from "../Service";
 import { ServiceClass } from "@/classes/service";
 
 //we should retrieve services through a call.

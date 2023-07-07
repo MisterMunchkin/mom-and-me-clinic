@@ -3,7 +3,7 @@ import { filterList } from "@/utilities/helpers";
 import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { Fragment, useEffect, useState } from "react";
-import ServiceTags from "../ServiceTags";
+import ServiceTags from "../lists/ServiceTags";
 
 interface DoctorSelectionProps {
   doctors: DoctorClass[];

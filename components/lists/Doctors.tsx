@@ -1,7 +1,7 @@
 'use client'
 
 import Image from "next/image";
-import TextHighlight from "../utilities/TextHighlight";
+import TextHighlight from "../../utilities/TextHighlight";
 import Link from "next/link";
 import useSWR from 'swr';
 import { DoctorClass } from "@/classes/doctor";

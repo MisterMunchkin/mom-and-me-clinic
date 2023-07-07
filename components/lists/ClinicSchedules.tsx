@@ -1,5 +1,5 @@
 import { ClinicScheduleClass, Day } from "@/classes/doctor";
-import { ScheduleClass } from '../classes/doctor';
+import { ScheduleClass } from '../../classes/doctor';
 import { getEnumKeyByValue } from "@/utilities/helpers";
 
 interface ClinicScheduleProps {
