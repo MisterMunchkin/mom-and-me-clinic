@@ -36,10 +36,15 @@ export default function Page({
             <span aria-hidden="true">←</span> Go Back
           </Link>
           <div className="p-8 lg:p-12">
-            <AppointmentFormMT 
+            <AppointmentForm
               defaultServiceName={searchParams.defaultService} 
               defaultDoctorName={searchParams.defaultDoctor}
             />
+
+            {/* <AppointmentFormMT
+              defaultServiceName={searchParams.defaultService} 
+              defaultDoctorName={searchParams.defaultDoctor}
+            /> */}
           </div>
         </div>
       </div>
