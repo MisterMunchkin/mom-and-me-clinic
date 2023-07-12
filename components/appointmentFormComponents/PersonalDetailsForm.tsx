@@ -1,8 +1,8 @@
 import { PersonalDetailsMTFormInterface } from "@/interfaces/appointment";
 import * as yup from "yup";
 import "yup-phone-lite";
-import { Button, Input } from "./../material-tailwind-export/MaterialTailwindExport";
-import { FieldError, FieldErrorsImpl, Merge, SubmitHandler, useForm } from "react-hook-form";
+import { Button } from "./../material-tailwind-export/MaterialTailwindExport";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Typography } from "@material-tailwind/react";
 import { InformationCircleIcon } from "@heroicons/react/20/solid";
@@ -11,6 +11,8 @@ import { isDate, differenceInYears } from "date-fns";
 interface PersonalDetailsForm {
   handleFormSubmit: (personalDetails: PersonalDetailsMTFormInterface) => void;
 }
+
+const genders = ['Male', 'Female', 'Others'];
 
 const personalDetailsFormSchema: yup.ObjectSchema<PersonalDetailsMTFormInterface> = yup.object().shape({
   firstName: yup
@@ -69,7 +71,10 @@ const personalDetailsFormSchema: yup.ObjectSchema<PersonalDetailsMTFormInterface
   sex: yup
     .string()
     .required("Gender is required")
-    .oneOf(['Male', 'Female', 'Others']),
+    .oneOf(genders),
+  medicalConcern: yup
+    .string()
+    .required("Medical concern is required"),
   honeyPotEmail: yup
     .string()
 });
@@ -112,7 +117,7 @@ export default function PersonalDetailsForm({handleFormSubmit}: PersonalDetailsF
           className="mt-1 w-full rounded-md border-gray-300 shadow-sm sm:text-sm"
           {...registerPersonalDetails("firstName")}
         />
-        {errorsPersonalDetails && errorsPersonalDetails.firstName && (
+        {errorsPersonalDetails?.firstName?.message && (
           <Typography variant="small" color="red" className="flex items-center gap-1 font-normal mt-2">
             <InformationCircleIcon className="w-4 h-4 -mt-px" />
             {errorsPersonalDetails.firstName.message}
@@ -127,7 +132,7 @@ export default function PersonalDetailsForm({handleFormSubmit}: PersonalDetailsF
           className="mt-1 w-full rounded-md border-gray-300 shadow-sm sm:text-sm"
           {...registerPersonalDetails("middleName")}
         />
-        {errorsPersonalDetails && errorsPersonalDetails.middleName && (
+        {errorsPersonalDetails?.middleName?.message && (
           <Typography variant="small" color="red" className="flex items-center gap-1 font-normal mt-2">
             <InformationCircleIcon className="w-4 h-4 -mt-px" />
             {errorsPersonalDetails.middleName.message}
@@ -142,7 +147,7 @@ export default function PersonalDetailsForm({handleFormSubmit}: PersonalDetailsF
           className="mt-1 w-full rounded-md border-gray-300 shadow-sm sm:text-sm" 
           {...registerPersonalDetails("lastName")}
         />
-        {errorsPersonalDetails && errorsPersonalDetails.lastName && (
+        {errorsPersonalDetails?.lastName?.message && (
           <Typography variant="small" color="red" className="flex items-center gap-1 font-normal mt-2">
             <InformationCircleIcon className="w-4 h-4 -mt-px" />
             {errorsPersonalDetails.lastName.message}
@@ -189,22 +194,73 @@ export default function PersonalDetailsForm({handleFormSubmit}: PersonalDetailsF
         {errorsPersonalDetails?.dateOfBirth?.message && (
           <Typography variant="small" color="red" className="flex items-center gap-1 font-normal mt-2">
             <InformationCircleIcon className="w-4 h-4 -mt-px" />
-            {errorsPersonalDetails?.dateOfBirth?.message}
+            {errorsPersonalDetails.dateOfBirth.message}
           </Typography>
         )}
       </div>
+      
+      <div>
+        <label className="block text-sm font-medium leading-6 text-gray-900">Gender</label>
+        <div className="flex space-x-2">
+          {genders?.map((gender, index) => (
+            <div
+              key={gender}
+              className="w-20"
+            >
+              <input
+                className="peer sr-only"
+                id={gender}
+                type="radio"
+                value={gender}
+                {...registerPersonalDetails("sex")}
+              />
+
+              <label
+                htmlFor={gender}
+                className="block w-full text-center cursor-pointer rounded-lg border border-gray-200 p-2.5 text-gray-600 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
+              >
+                <span className="text-sm">{gender}</span>
+              </label>
+            </div>
+          ))} 
+        </div>
+        {errorsPersonalDetails?.sex?.message && (
+          <Typography variant="small" color="red" className="flex items-center gap-1 font-normal mt-2">
+            <InformationCircleIcon className="w-4 h-4 -mt-px" />
+            {errorsPersonalDetails.sex?.message}
+          </Typography>
+        )}
+      </div>
+
       <div>
         <label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="phoneNumber">Phone Number</label>
         <input 
           type="text"
-          className="mt-1 w-full rounded-md border-gray-300 shadow-sm sm:text-sm" 
+          className="mt-1 w-full max-w-[12rem] rounded-md border-gray-300 shadow-sm sm:text-sm" 
           id="phoneNumber"
           {...registerPersonalDetails("phoneNumber")}
         />
-        {errorsPersonalDetails && errorsPersonalDetails.phoneNumber && (
+        {errorsPersonalDetails?.phoneNumber?.message && (
           <Typography variant="small" color="red" className="flex items-center gap-1 font-normal mt-2">
             <InformationCircleIcon className="w-4 h-4 -mt-px" />
             {errorsPersonalDetails.phoneNumber.message}
+          </Typography>
+        )}
+      </div>
+      <div>
+        <label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="medicalConcern">Medical Concern</label>
+
+        <textarea
+          className="w-full rounded-lg border-gray-300 mt-1 text-sm"
+          placeholder="Medical Concern"
+          rows={5}
+          id="medicalConcern"
+          {...registerPersonalDetails("medicalConcern")}
+        ></textarea>
+        {errorsPersonalDetails?.medicalConcern?.message && (
+          <Typography variant="small" color="red" className="flex items-center gap-1 font-normal mt-2">
+            <InformationCircleIcon className="w-4 h-4 -mt-px" />
+            {errorsPersonalDetails.medicalConcern.message}
           </Typography>
         )}
       </div>

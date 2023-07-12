@@ -22,5 +22,6 @@ export interface PersonalDetailsMTFormInterface {
   };
   phoneNumber: string;
   sex: string;
+  medicalConcern: string;
   honeyPotEmail?: string;
 }
