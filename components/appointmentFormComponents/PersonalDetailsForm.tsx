@@ -92,10 +92,6 @@ export default function PersonalDetailsForm({handleFormSubmit}: PersonalDetailsF
     }
   }
 
-  const getDateOfBirthErrorMessage = (dateOfBirth: Merge<FieldError, FieldErrorsImpl>) => {
-    console.log(dateOfBirth);
-  }
-
   return (
     <form className="flex flex-col space-y-4" onSubmit={handleSubmitPersonalDetails(submit)}>
       {/* This is for the bot */}
@@ -109,8 +105,11 @@ export default function PersonalDetailsForm({handleFormSubmit}: PersonalDetailsF
         />
       </div>
       <div>
-        <Input 
-          label="First Name" 
+        <label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="firstName">First Name</label>
+        <input 
+          type="text"
+          id="firstName"
+          className="mt-1 w-full rounded-md border-gray-300 shadow-sm sm:text-sm"
           {...registerPersonalDetails("firstName")}
         />
         {errorsPersonalDetails && errorsPersonalDetails.firstName && (
@@ -121,8 +120,11 @@ export default function PersonalDetailsForm({handleFormSubmit}: PersonalDetailsF
         )}
       </div>
       <div>
-        <Input 
-          label="Middle Name" 
+        <label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="middleName">Middle Name</label>
+        <input 
+          type="text"
+          id="middleName"
+          className="mt-1 w-full rounded-md border-gray-300 shadow-sm sm:text-sm"
           {...registerPersonalDetails("middleName")}
         />
         {errorsPersonalDetails && errorsPersonalDetails.middleName && (
@@ -133,8 +135,11 @@ export default function PersonalDetailsForm({handleFormSubmit}: PersonalDetailsF
         )}
       </div>
       <div>
-        <Input 
-          label="Last Name" 
+        <label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="lastName">Last Name</label>
+        <input 
+          type="text"
+          id="lastName"
+          className="mt-1 w-full rounded-md border-gray-300 shadow-sm sm:text-sm" 
           {...registerPersonalDetails("lastName")}
         />
         {errorsPersonalDetails && errorsPersonalDetails.lastName && (
@@ -145,45 +150,55 @@ export default function PersonalDetailsForm({handleFormSubmit}: PersonalDetailsF
         )}
       </div>
       <div>
+        <label className="block text-sm font-medium leading-6 text-gray-900">Date of Birth</label>
         <div className="flex space-x-2">
           <div>
-            <Input 
-              label="Day" 
+            <input 
+              className="w-14 mt-1 rounded-md border-gray-300 shadow-sm sm:text-sm"
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              placeholder="DD"
               maxLength={2}
               {...registerPersonalDetails("dateOfBirth.day")}
             />
           </div>
           <div>
-            <Input 
-              label="Month" 
+            <input 
+              className="w-14 mt-1 rounded-md border-gray-300 shadow-sm sm:text-sm"
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              placeholder="MM"
               maxLength={2}
               {...registerPersonalDetails("dateOfBirth.month")}
             />
           </div>
           <div>
-            <Input 
-              label="Year" 
+            <input 
+              className="w-16 mt-1 rounded-md border-gray-300 shadow-sm sm:text-sm"
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              placeholder="YYYY"
               maxLength={4}
               {...registerPersonalDetails("dateOfBirth.year")}
             />
-            {/* {errorsPersonalDetails?.dateOfBirth?.year?.message &&  (
-              <Typography variant="small" color="red" className="flex items-center gap-1 font-normal mt-2">
-                <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                {errorsPersonalDetails?.dateOfBirth?.year?.message}
-              </Typography>
-            )} */}
           </div>
         </div>
         {errorsPersonalDetails?.dateOfBirth?.message && (
           <Typography variant="small" color="red" className="flex items-center gap-1 font-normal mt-2">
             <InformationCircleIcon className="w-4 h-4 -mt-px" />
-            {getDateOfBirthErrorMessage(errorsPersonalDetails?.dateOfBirth)}
+            {errorsPersonalDetails?.dateOfBirth?.message}
           </Typography>
         )}
       </div>
       <div>
-        <Input 
-          label="Phone Number" 
+        <label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="phoneNumber">Phone Number</label>
+        <input 
+          type="text"
+          className="mt-1 w-full rounded-md border-gray-300 shadow-sm sm:text-sm" 
+          id="phoneNumber"
           {...registerPersonalDetails("phoneNumber")}
         />
         {errorsPersonalDetails && errorsPersonalDetails.phoneNumber && (
