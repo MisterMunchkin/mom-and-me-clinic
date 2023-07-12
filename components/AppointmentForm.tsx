@@ -9,7 +9,7 @@ import DoctorSelection from "./inputs/DoctorSelection";
 import { getIndexByName } from "@/utilities/helpers";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { AppointmentInterface } from "@/interfaces/appointment";
+import { AppointmentFormInterface } from "@/interfaces/appointment";
 
 interface AppointmentFormProps {
   defaultServiceName?: string;
@@ -27,7 +27,7 @@ export default function AppointmentForm({defaultServiceName, defaultDoctorName}:
   // //to flesh this out.
   // const [ selectedLocation, setSelectedLocation ] = useState("Mom & Me Clinic - Room 611");
 
-  const [ formData, setFormData ] = useState<AppointmentInterface>({
+  const [ formData, setFormData ] = useState<AppointmentFormInterface>({
     preferredTimeBlock: "",
     doctorName: "",
     location: "Mom & Me Clinic - Room 611",
@@ -54,7 +54,7 @@ export default function AppointmentForm({defaultServiceName, defaultDoctorName}:
       doctor: selectedDoctor.name,
       preferredDate: undefined,
       preferredTimeBlock: ""
-    } as AppointmentInterface
+    } as AppointmentFormInterface
 
     setFormData(updatedFormData);
     //changing doctor will filter the dates are available for that dr in a given week
@@ -75,7 +75,7 @@ export default function AppointmentForm({defaultServiceName, defaultDoctorName}:
     const updatedFormData = {
       ...formData,
       preferredDate: date ?? new Date()
-    } as AppointmentInterface
+    } as AppointmentFormInterface
 
     setFormData(updatedFormData);
 

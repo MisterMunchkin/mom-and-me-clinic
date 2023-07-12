@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Button, Step, Stepper } from "./material-tailwind-export/MaterialTailwindExport";
+import { useState } from "react";
+import { Step, Stepper } from "./material-tailwind-export/MaterialTailwindExport";
+import { PersonalDetailsMTFormInterface } from "@/interfaces/appointment";
+import PersonalDetailsForm from "./appointmentFormComponents/PersonalDetailsForm";
 
 interface AppointmentFormMTProps {
   defaultServiceName?: string;
@@ -15,65 +17,28 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
   const [ isLastStep, setIsLastStep ] = useState(false);
   const [ isFirstStep, setIsFirstStep ] = useState(false);
 
-  // useEffect(() => {
-  //   setActiveStep(0);
-  //   setIsLastStep(false);
-  //   setIsFirstStep(false);
-  // }, [])
-
-  const handleNext = () => !isLastStep && setActiveStep((cur) => cur + 1);
   const handlePrev = () => !isFirstStep && setActiveStep((cur) => cur - 1);
 
+  const handlePersonDetailsSubmit = (personalDetails: PersonalDetailsMTFormInterface) => {
+    console.log(personalDetails);
+    setActiveStep((cur) => cur + 1);
+  }
+
   return (
-    <form className="space-y-12">
+    <div className="space-y-8">
       <Stepper
         activeStep={activeStep}
       >
-        <Step className="h-4 w-4" onClick={() => setActiveStep(0)} />
-        <Step className="h-4 w-4" onClick={() => setActiveStep(1)} />
-        <Step className="h-4 w-4" onClick={() => setActiveStep(2)} />
+        <Step className="h-4 w-4" />
+        <Step className="h-4 w-4" />
+        <Step className="h-4 w-4" />
       </Stepper>
 
       {activeStep === 0 && (
-        <div className="flex flex-col space-y-4">
-          <div>
-            <label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="name">Name</label>
-            <input
-              className="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Name"
-              type="text"
-              id="name"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="age">Age</label>
-            <input
-              className="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Age"
-              type="number"
-              id="age"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="phone">Phone</label>
-            <input
-              className="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Phone Number"
-              type="tel"
-              id="phone"
-            />
-          </div>
-        </div>
+        <PersonalDetailsForm 
+          handleFormSubmit={handlePersonDetailsSubmit}
+        />
       )}
-
-      <div className="flex justify-between">
-        <Button onClick={handlePrev} disabled={isFirstStep}>
-          Prev
-        </Button>
-        <Button onClick={handleNext} disabled={isLastStep}>
-          Next
-        </Button>
-      </div>
-    </form>
+    </div>
   );
 }
