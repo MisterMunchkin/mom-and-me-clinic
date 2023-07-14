@@ -5,11 +5,11 @@ interface ServiceTagsProps {
 }
 
 const tagToHexColorDict: TagToHexColorInterface = {
-  "obstetrics": {
+  "OB-GYN": {
     bgColor: "bg-orange-100",
     textColor: "text-orange-600"
   },
-  "gynecology": {
+  "Pediatric": {
     bgColor: "bg-cyan-100",
     textColor: "text-cyan-600"
   }

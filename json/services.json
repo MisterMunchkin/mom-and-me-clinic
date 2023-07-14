@@ -1,37 +1,75 @@
 [
   {
-    "tags": ["obstetrics", "gynecology"],
+    "tags": ["OB-GYN"],
     "name": "Prenatal and Delivery Packages",
     "description": "(Normal, Cesarean Section) \n (Low risk & High risk pregnancy)"
   },
   {
-    "tags": ["obstetrics", "gynecology"],
+    "tags": ["OB-GYN"],
     "name": "Preconceptional Counselling"
   },
   {
-    "tags": ["obstetrics", "gynecology"],
+    "tags": ["OB-GYN"],
     "name": "Vaginal Bleeding & Discharges"
   },
   {
-    "tags": ["obstetrics", "gynecology"],
+    "tags": ["OB-GYN"],
     "name": "Pap Smear",
     "description": "Genital warts"
   },
   {
-    "tags": ["obstetrics", "gynecology"],
+    "tags": ["OB-GYN"],
     "name": "Vulvar and Vaginal Cysts"
   },
   {
-    "tags": ["obstetrics", "gynecology"],
+    "tags": ["OB-GYN"],
     "name": "Gynecologic Concerns",
     "description": "(myoma, polyp, uterine and ovarian mass ect.)"
   },
   {
-    "tags": ["obstetrics", "gynecology"],
+    "tags": ["OB-GYN"],
     "name": "PCOS & Irregular menstruation"
   },
   {
-    "tags": ["obstetrics", "gynecology"],
+    "tags": ["OB-GYN"],
     "name": "Vaccinations (HPV, Flu)"
+  },
+  {
+    "tags": ["Pediatric"],
+    "name": "Medical Consultation",
+    "description": "(0 - 18 years)"
+  },
+  {
+    "tags": ["Pediatric"],
+    "name": "Well & Sick Child Check Up"
+  },
+  {
+    "tags": ["OB-GYN", "Pediatric"],
+    "name": "Vaccination (Newborns to Teens)"
+  },
+  {
+    "tags": ["Pediatric"],
+    "name": "Ear Piercing"
+  },
+  {
+    "tags": ["Pediatric"],
+    "name": "Breastfeeding Support & Counseling"
+  },
+  {
+    "tags": ["Pediatric"],
+    "name": "Physical & Medical Concerns"
+  },
+  {
+    "tags": ["Pediatric"],
+    "name": "Emotional & Behavioral Issues"
+  },
+  {
+    "tags": ["Pediatric"],
+    "name": "Mental Health Concerns",
+    "description": "Depression & Anxiety"
+  },
+  {
+    "tags": ["OB-GYN", "Pediatric"],
+    "name": "Sexual & Reproductive Health"
   }
 ]

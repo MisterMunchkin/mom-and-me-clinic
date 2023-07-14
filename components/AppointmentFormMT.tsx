@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Step, Stepper } from "./material-tailwind-export/MaterialTailwindExport";
 import { PersonalDetailsMTFormInterface } from "@/interfaces/appointment";
 import PersonalDetailsForm from "./appointmentFormComponents/PersonalDetailsForm";
+import ServiceSelection from "./appointmentFormComponents/ServiceSelection";
+import { ServiceClass } from "@/classes/service";
 
 interface AppointmentFormMTProps {
   defaultServiceName?: string;
@@ -24,6 +26,11 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
     setActiveStep((cur) => cur + 1);
   }
 
+  const handleServiceSelectionSubmit = (serviceSelection: ServiceClass) => {
+    console.log(serviceSelection);
+    setActiveStep((cur) => cur + 1);
+  }
+
   return (
     <div className="space-y-8">
       <Stepper
@@ -35,6 +42,22 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
       </Stepper>
 
       {activeStep === 0 && (
+        <ServiceSelection
+          handleFormSubmit={handleServiceSelectionSubmit}
+        />
+      )}
+
+      {activeStep === 1 && (
+        <p>to be created</p>
+      )}
+      {activeStep === 2 && (
+        <p>to be created</p>
+      )}
+      {activeStep === 3 && (
+        <p>to be created</p>
+      )}
+
+      {activeStep === 4 && (
         <PersonalDetailsForm 
           handleFormSubmit={handlePersonDetailsSubmit}
         />
