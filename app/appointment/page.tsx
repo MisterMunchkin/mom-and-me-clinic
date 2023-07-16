@@ -31,11 +31,11 @@ export default function Page({
   return (
     <main className="h-screen">
       <div className="h-full w-full flex flex-row justify-center p-4">
-        <div className="pt-4 lg:pt-8 rounded-lg bg-white shadow-lg lg:basis-1/2 h-full">
-          <Link className="px-8 lg:px-12" href={backNavString} scroll={false}>
+        <div className="pt-4 rounded-lg bg-white shadow-lg  h-full">
+          <Link className="px-8" href={backNavString} scroll={false}>
             <span aria-hidden="true">←</span> Go Back
           </Link>
-          <div className="p-8 lg:p-12">
+          <div className="p-8">
             {/* <AppointmentForm
               defaultServiceName={searchParams.defaultService} 
               defaultDoctorName={searchParams.defaultDoctor}

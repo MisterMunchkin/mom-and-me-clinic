@@ -34,7 +34,7 @@ export default function ServiceSelection({handleFormSubmit}: ServiceSelectionInt
   
   return (
     <div className="flex flex-col space-y-4">
-      <div className="overflow-auto h-[60vh] p-1 grid gap-4 sm:grid-cols-1 md:grid-cols-2 items-start">
+      <div className="overflow-auto h-[60vh] p-1 grid gap-4 grid-cols-1 md:grid-cols-2 items-start">
         {data.map((service) => (
           <Card 
             className={`${selectedService?.name === service.name ? 'ring-primary ring-4' : ''}
