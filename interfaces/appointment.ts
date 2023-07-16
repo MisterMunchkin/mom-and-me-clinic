@@ -1,3 +1,6 @@
+import { DoctorClass } from "@/classes/doctor";
+import { ServiceClass } from "@/classes/service";
+
 export interface AppointmentFormInterface {
   preferredDate?: Date;
   preferredTimeBlock: string;
@@ -9,6 +12,12 @@ export interface AppointmentFormInterface {
   selectedService: string;
   medicalConcern: string;
   honeyPotEmail?: string;
+}
+
+export interface AppointmentFormMTInterface {
+  personalDetails?: PersonalDetailsMTFormInterface;
+  selectedService?: ServiceClass;
+  selectedDoctor?: DoctorClass;
 }
 
 export interface PersonalDetailsMTFormInterface {

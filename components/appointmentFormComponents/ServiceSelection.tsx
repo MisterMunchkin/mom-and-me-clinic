@@ -8,11 +8,11 @@ import { useState } from "react";
 
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
-interface ServiceSelectionInterface {
+interface ServiceSelectionProps {
   handleFormSubmit: (selectedService: ServiceClass) => void;
 }
 
-export default function ServiceSelection({handleFormSubmit}: ServiceSelectionInterface) {
+export default function ServiceSelection({handleFormSubmit}: ServiceSelectionProps) {
   const { data, error, isLoading } = useSWR<ServiceClass[], any>('/api/services', fetcher);
   const [ selectedService, setSelectedService ] = useState<ServiceClass>();
 
