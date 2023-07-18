@@ -31,7 +31,7 @@ export default function Page({
   return (
     <main className="h-screen">
       <div className="h-full w-full flex flex-row justify-center p-4">
-        <div className="pt-4 rounded-lg bg-white shadow-lg  h-full">
+        <div className="pt-4 rounded-lg bg-white shadow-lg w-full h-full xl:basis-1/2">
           <Link className="px-8" href={backNavString} scroll={false}>
             <span aria-hidden="true">←</span> Go Back
           </Link>

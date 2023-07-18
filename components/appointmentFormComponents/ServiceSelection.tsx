@@ -34,7 +34,7 @@ export default function ServiceSelection({handleFormSubmit}: ServiceSelectionPro
   
   return (
     <div className="flex flex-col space-y-4">
-      <div className="overflow-auto h-[60vh] p-1 grid gap-4 grid-cols-1 md:grid-cols-2 items-start">
+      <div className="overflow-auto max-h-[60vh] p-1 grid gap-4 grid-cols-1 md:grid-cols-2 items-start">
         {data.map((service) => (
           <Card 
             className={`${selectedService?.name === service.name ? 'ring-primary ring-4' : ''}
@@ -43,12 +43,14 @@ export default function ServiceSelection({handleFormSubmit}: ServiceSelectionPro
             onClick={() => setSelectedService(service)}
           >
             <CardBody>
-              <Typography variant="h6" className="mb-2">
+              <Typography variant="h6" color="blue-gray" className="mb-2">
                 {service.name}
               </Typography>
-              <Typography variant="small">
-                {service.description}
-              </Typography>
+              {service.description && (
+                <Typography variant="small" color="blue-gray">
+                  {service.description}
+                </Typography>
+              )}
             </CardBody>
             <CardFooter className="pt-0">
               <ServiceTags tags={service.tags} />

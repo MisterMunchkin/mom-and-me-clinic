@@ -59,6 +59,10 @@ export class DoctorClass implements DoctorInterface {
   public static getJoinedTags(tags: string[]): string {
     return tags?.join(' ');
   }
+
+  public static getSplittedTags(tags: string): string[] {
+    return tags?.split(' ');
+  }
 }
 
 export class ClinicScheduleClass implements ClinicScheduleInterface {
