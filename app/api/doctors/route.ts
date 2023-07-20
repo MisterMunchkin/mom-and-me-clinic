@@ -5,7 +5,6 @@ import { DoctorInterface } from "@/interfaces/doctor";
 import { DoctorClass } from "@/classes/doctor";
 
 export async function GET(request: NextRequest) {
-  debugger
   const { searchParams } = request.nextUrl;
   const serviceTags = searchParams.get("serviceTags");
 

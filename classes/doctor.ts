@@ -11,11 +11,11 @@ export class DoctorClass implements DoctorInterface {
   readonly email: string;
   readonly specialties?: string[];
   readonly clinicSchedules: ClinicScheduleClass[];
+  readonly fullTitle: string;
 
   constructor(
     name: string,
     serviceTags: string[],
-    joinedServiceTags: string,
     phoneNumber: string,
     email: string,
     clinicSchedules: ClinicScheduleInterface[],
@@ -24,12 +24,14 @@ export class DoctorClass implements DoctorInterface {
     designation?: string) {
     this.name = name;
     this.serviceTags = serviceTags ?? [];
-    this.joinedServiceTags = joinedServiceTags ?? '';
+    this.joinedServiceTags = serviceTags?.join(' ') ?? '';
     this.phoneNumber = phoneNumber;
     this.email = email;
     this.specialties = specialties;
     this.designation = designation;
     this.title = title;
+
+    this.fullTitle = `${(this.title) ? this.title + '. ' : ''}${this.name}${(this.designation) ? ', ' + this.designation : ''}`;
 
     this.clinicSchedules = clinicSchedules?.map(clinicSchedule => 
       new ClinicScheduleClass(
@@ -42,7 +44,6 @@ export class DoctorClass implements DoctorInterface {
     return new DoctorClass (
       doctorInterface.name,
       doctorInterface.serviceTags,
-      this.getJoinedTags(doctorInterface.serviceTags),
       doctorInterface.phoneNumber,
       doctorInterface.email,
       doctorInterface.clinicSchedules,
@@ -50,14 +51,6 @@ export class DoctorClass implements DoctorInterface {
       doctorInterface.title,
       doctorInterface.designation
     )
-  }
-
-  public getFullTitle(): string {
-    return `${(this.title) ? this.title + '. ' : ''}${this.name}${(this.designation) ? ', ' + this.designation : ''}`;
-  }
-
-  public static getJoinedTags(tags: string[]): string {
-    return tags?.join(' ');
   }
 
   public static getSplittedTags(tags: string): string[] {

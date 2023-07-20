@@ -10,6 +10,7 @@ import { isDate, differenceInYears } from "date-fns";
 
 interface PersonalDetailsForm {
   handleFormSubmit: (personalDetails: PersonalDetailsMTFormInterface) => void;
+  handleBack: () => void;
 }
 
 const genders = ['Male', 'Female', 'Others'];
@@ -79,7 +80,7 @@ const personalDetailsFormSchema: yup.ObjectSchema<PersonalDetailsMTFormInterface
     .string()
 });
 
-export default function PersonalDetailsForm({handleFormSubmit}: PersonalDetailsForm) {
+export default function PersonalDetailsForm({handleFormSubmit, handleBack}: PersonalDetailsForm) {
 
   const {
     register: registerPersonalDetails,
@@ -264,9 +265,19 @@ export default function PersonalDetailsForm({handleFormSubmit}: PersonalDetailsF
           </Typography>
         )}
       </div>
-      <div className="flex justify-between">
-        <Button type="submit">
+      <div className="w-full grid grid-cols-4 gap-y-4">
+        <Button 
+          type="submit"
+          className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2"
+        >
           Next
+        </Button>
+        <Button
+          className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2"
+          type="button"
+          onClick={() => handleBack()}
+        >
+          Back
         </Button>
       </div>
     </form>

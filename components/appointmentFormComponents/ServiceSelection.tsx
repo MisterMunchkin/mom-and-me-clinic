@@ -58,13 +58,15 @@ export default function ServiceSelection({handleFormSubmit}: ServiceSelectionPro
           </Card>
         ))}
       </div>
-      <Button
-        type="button"
-        disabled={!selectedService}
-        onClick={() => handleNext()}
-      >
-        Next
-      </Button>
+      <div className="w-full grid grid-cols-4 gap-y-4">
+        <Button
+          type="button"
+          className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2"
+          onClick={() => handleNext()}
+        >
+          Next
+        </Button>
+      </div>
     </div>
   )
 }

@@ -13,9 +13,10 @@ const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json())
 interface DoctorSelectionProps {
   selectedService: ServiceClass;
   handleFormSubmit: (selectedDoctor: DoctorClass) => void;
+  handleBack: () => void;
 }
 
-export default function DoctorSelection({selectedService , handleFormSubmit}: DoctorSelectionProps) {
+export default function DoctorSelection({selectedService , handleFormSubmit, handleBack}: DoctorSelectionProps) {
   const { data, error, isLoading } = useSWR<DoctorClass[], any>(() => '/api/doctors?serviceTags=' + selectedService.joinedTags, fetcher);
   const [selectedDoctor, setSelectedDoctor] = useState<DoctorClass>();
 
@@ -95,14 +96,23 @@ export default function DoctorSelection({selectedService , handleFormSubmit}: Do
           </Card>
         ))}
       </div>
-
-      <Button
-        type="button"
-        disabled={!selectedDoctor}
-        onClick={() => handleNext()}
-      >
-        Next
-      </Button>
+      
+      <div className="w-full grid grid-cols-4 gap-y-4">
+        <Button
+          className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2"
+          type="button"
+          onClick={() => handleNext()}
+        >
+          Next
+        </Button>
+        <Button
+          className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2"
+          type="button"
+          onClick={() => handleBack()}
+        >
+          Back
+        </Button>
+      </div>
     </div>
   );
 }

@@ -18,6 +18,7 @@ export interface AppointmentFormMTInterface {
   personalDetails?: PersonalDetailsMTFormInterface;
   selectedService?: ServiceClass;
   selectedDoctor?: DoctorClass;
+  visitSchedule?: VisitScheduleMTInterface;
 }
 
 export interface PersonalDetailsMTFormInterface {
@@ -33,4 +34,9 @@ export interface PersonalDetailsMTFormInterface {
   sex: string;
   medicalConcern: string;
   honeyPotEmail?: string;
+}
+
+export interface VisitScheduleMTInterface {
+  preferredDate?: Date;
+  preferredTimeBlock?: string;
 }
