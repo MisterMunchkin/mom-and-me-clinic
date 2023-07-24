@@ -70,7 +70,6 @@ export default function VisitScheduleSelection({selectedDoctor, handleFormSubmit
     handleFormSubmit(visitSchedule);
   }
 
-
   return (
     <div 
       className="flex flex-col space-y-12"
@@ -108,6 +107,7 @@ export default function VisitScheduleSelection({selectedDoctor, handleFormSubmit
             <DatePicker 
               id="preferredDate"
               className="rounded-lg border-gray-200 p-3 text-sm"
+              selected={""}
               filterDate={filterDatesByDoctorSchedule}
               onChange={handleDateChange} 
               minDate={new Date()}
