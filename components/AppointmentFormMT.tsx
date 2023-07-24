@@ -9,6 +9,7 @@ import { ServiceClass } from "@/classes/service";
 import DoctorSelection from "./appointmentFormComponents/DoctorSelection";
 import { DoctorClass } from "@/classes/doctor";
 import VisitScheduleSelection from "./appointmentFormComponents/VisitScheduleSelection";
+import { defaultLocation } from "@/utilities/constants";
 
 interface AppointmentFormMTProps {
   defaultServiceName?: string;
@@ -30,6 +31,24 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
   });
 
   const handlePrev = () => !isFirstStep && setActiveStep((cur) => cur - 1);
+
+  const getAvailableTimeBlocks = (date?: Date, doctor?: DoctorClass): string[] => {
+    const clinicSchedule = doctor?.clinicSchedules
+      .find(clinicSchedule => clinicSchedule.clinicLocation === defaultLocation);
+
+    if (!date || !clinicSchedule) {
+      return [];
+    }
+
+    const dateDay = date?.getDay();
+    //currently only retrieving one time but, but in the future we will
+    //enable multiple timeblocks in a given day
+    const timeBlocksInAGivenDay = clinicSchedule
+      .schedules
+      .find(schedule => schedule.dayToNumberMap[schedule.day] === dateDay);
+
+    return [`${timeBlocksInAGivenDay?.start} - ${timeBlocksInAGivenDay?.end}`];
+  }
 
   return (
     <div className="space-y-8">
@@ -74,6 +93,8 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
       )}
       {activeStep === 2 && appointmentForm.selectedDoctor && (
         <VisitScheduleSelection 
+          defaultAvailableTimeBlocks={getAvailableTimeBlocks(appointmentForm.visitSchedule?.preferredDate, appointmentForm.selectedDoctor)}
+          defaultSelected={appointmentForm.visitSchedule}
           selectedDoctor={appointmentForm.selectedDoctor}
           handleFormSubmit={(visitSchedule: VisitScheduleMTInterface) => {
             setAppointmentForm(form => ({

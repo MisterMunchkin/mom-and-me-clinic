@@ -1,24 +1,27 @@
 import { ClinicScheduleClass, DayNumber, DoctorClass } from "@/classes/doctor";
 import { VisitScheduleMTInterface } from "@/interfaces/appointment";
-import { Avatar, Button, Card, CardHeader, Typography } from "@material-tailwind/react";
+import { defaultLocation } from "@/utilities/constants";
+import { Avatar, Button, Card, CardBody, CardHeader, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
 interface VisitScheduleSelectionProps {
+  defaultAvailableTimeBlocks: string[];
+  defaultSelected?: VisitScheduleMTInterface;
   selectedDoctor: DoctorClass;
   handleFormSubmit: (selectedVisitSchedule: VisitScheduleMTInterface) => void;
   handleBack: () => void;
 }
 
-export default function VisitScheduleSelection({selectedDoctor, handleFormSubmit, handleBack}: VisitScheduleSelectionProps) {
-  const [ visitSchedule, setVisitSchedule ] = useState<VisitScheduleMTInterface>();
+export default function VisitScheduleSelection({defaultAvailableTimeBlocks, defaultSelected, selectedDoctor, handleFormSubmit, handleBack}: VisitScheduleSelectionProps) {
+  const [ visitSchedule, setVisitSchedule ] = useState<VisitScheduleMTInterface | undefined>(defaultSelected);
   // Set as constant for now, but in the future it should allow changing locations
-  const location: string = "Mom & Me Clinic - Room 611";
+  const location: string = defaultLocation;
   const doctorClinicSchedule: ClinicScheduleClass | undefined = selectedDoctor
     .clinicSchedules
     .find(clinicSchedule => clinicSchedule.clinicLocation === location);
-  const [ availableTimeBlocks, setAvailableTimeBlocks ] = useState<string[]>([])
+  const [ availableTimeBlocks, setAvailableTimeBlocks ] = useState<string[]>(defaultAvailableTimeBlocks)
 
   if (!doctorClinicSchedule) {
     return ( 
@@ -46,19 +49,25 @@ export default function VisitScheduleSelection({selectedDoctor, handleFormSubmit
       return;
     }
 
-    const dateDay = date?.getDay()
+    const availableTimeBlocks = getAvailableTimeBlocks(date, doctorClinicSchedule);
+    setAvailableTimeBlocks(availableTimeBlocks);
+
+    //should select the first timeblock in available
+    setVisitSchedule(form => ({
+      preferredTimeBlock: availableTimeBlocks[0],
+      preferredDate: date
+    }));
+  }
+
+  const getAvailableTimeBlocks = (date: Date, clinicSchedule: ClinicScheduleClass): string[] => {
+    const dateDay = date?.getDay();
     //currently only retrieving one time but, but in the future we will
     //enable multiple timeblocks in a given day
     const timeBlocksInAGivenDay = doctorClinicSchedule
       .schedules
       .find(schedule => schedule.dayToNumberMap[schedule.day] === dateDay);
 
-    setAvailableTimeBlocks([`${timeBlocksInAGivenDay?.start} - ${timeBlocksInAGivenDay?.end}`]);
-
-    setVisitSchedule(form => ({
-      preferredTimeBlock: form?.preferredTimeBlock ?? '',
-      preferredDate: date
-    }));
+    return [`${timeBlocksInAGivenDay?.start} - ${timeBlocksInAGivenDay?.end}`];
   }
 
   const handleNext = () => {
@@ -107,7 +116,7 @@ export default function VisitScheduleSelection({selectedDoctor, handleFormSubmit
             <DatePicker 
               id="preferredDate"
               className="rounded-lg border-gray-200 p-3 text-sm"
-              selected={""}
+              selected={visitSchedule?.preferredDate}
               filterDate={filterDatesByDoctorSchedule}
               onChange={handleDateChange} 
               minDate={new Date()}
@@ -118,28 +127,21 @@ export default function VisitScheduleSelection({selectedDoctor, handleFormSubmit
             <Typography variant="h5" color="blue-gray" className="mb-3">Preferred Time</Typography>
             <div className="flex md:flex-col md:items-center">
               {availableTimeBlocks?.map((timeBlock) => (
-                <div
+                <Card
                   key={timeBlock}
+                  className={`${visitSchedule?.preferredTimeBlock === timeBlock ? 'ring-primary ring-4' : ''}
+                  hover:cursor-pointer block w-full`}
+                  onClick={() => setVisitSchedule(form => ({
+                    preferredDate: form?.preferredDate,
+                    preferredTimeBlock: timeBlock
+                  }))}
                 >
-                  <input 
-                    className="peer sr-only"
-                    id={timeBlock}
-                    type="radio"
-                    tab-index="-1"
-                    name="timeBlockOption"
-                    onClick={() => setVisitSchedule(form => ({
-                      preferredDate: form?.preferredDate,
-                      preferredTimeBlock: timeBlock
-                    }))}
-                  />
-                  <label
-                    htmlFor={timeBlock}
-                    className="block w-full cursor-pointer rounded-lg border border-gray-200 p-2.5 text-gray-600 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
-                    tab-index="0"
+                  <CardBody
+                    className="p-3"
                   >
-                    <span className="text-sm">{timeBlock}</span>
-                  </label>
-                </div>
+                    <Typography variant="h6" color="blue-gray">{timeBlock}</Typography>
+                  </CardBody>
+                </Card>
               ))}
             </div>
           </div>
