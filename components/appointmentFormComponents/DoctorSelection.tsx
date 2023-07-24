@@ -11,14 +11,15 @@ import ClinicSchedules from "../lists/ClinicSchedules";
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
 interface DoctorSelectionProps {
+  defaultSelected?: DoctorClass;
   selectedService: ServiceClass;
   handleFormSubmit: (selectedDoctor: DoctorClass) => void;
   handleBack: () => void;
 }
 
-export default function DoctorSelection({selectedService , handleFormSubmit, handleBack}: DoctorSelectionProps) {
+export default function DoctorSelection({defaultSelected, selectedService , handleFormSubmit, handleBack}: DoctorSelectionProps) {
   const { data, error, isLoading } = useSWR<DoctorClass[], any>(() => '/api/doctors?serviceTags=' + selectedService.joinedTags, fetcher);
-  const [selectedDoctor, setSelectedDoctor] = useState<DoctorClass>();
+  const [selectedDoctor, setSelectedDoctor] = useState<DoctorClass | undefined>(defaultSelected);
 
   //Handle the error state
   if (error) return <div>Failed to load</div>;

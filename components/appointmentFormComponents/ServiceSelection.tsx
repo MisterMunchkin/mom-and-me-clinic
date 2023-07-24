@@ -9,12 +9,13 @@ import { useState } from "react";
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
 interface ServiceSelectionProps {
+  defaultSelected?: ServiceClass;
   handleFormSubmit: (selectedService: ServiceClass) => void;
 }
 
-export default function ServiceSelection({handleFormSubmit}: ServiceSelectionProps) {
+export default function ServiceSelection({defaultSelected, handleFormSubmit}: ServiceSelectionProps) {
   const { data, error, isLoading } = useSWR<ServiceClass[], any>('/api/services', fetcher);
-  const [ selectedService, setSelectedService ] = useState<ServiceClass>();
+  const [ selectedService, setSelectedService ] = useState<ServiceClass | undefined>(defaultSelected);
 
   //Handle the error state
   if (error) return <div>Failed to load</div>;

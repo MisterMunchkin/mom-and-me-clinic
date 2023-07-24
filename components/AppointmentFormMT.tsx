@@ -45,6 +45,7 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
 
       {activeStep === 0 && (
         <ServiceSelection
+          defaultSelected={appointmentForm.selectedService}
           handleFormSubmit={(serviceSelection: ServiceClass) => {
             setAppointmentForm(form => ({
               ...form,
@@ -57,6 +58,7 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
 
       {activeStep === 1 && appointmentForm.selectedService && (
         <DoctorSelection 
+          defaultSelected={appointmentForm.selectedDoctor}
           selectedService={appointmentForm.selectedService}
           handleFormSubmit={(doctorSelection: DoctorClass) => {
             setAppointmentForm(form => ({
