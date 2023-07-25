@@ -12,6 +12,15 @@ module.exports = withMT({
       colors: {
         primary: '#e3ab68',
         'primary-hover': '#ebc393',
+        gray: {
+          650: '#5B5B5B'
+        },
+        white: {
+          'ivory': '#FBF6F6',
+          'coffee': '#EDDDD9'
+        },
+        'pastel-pink': '#E2A5A6',
+        'melon': '#F7BFB0'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
