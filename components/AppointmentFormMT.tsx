@@ -87,6 +87,10 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
             setActiveStep((cur) => cur + 1);
           }}
           handleBack={() => {
+            setAppointmentForm(form => ({
+              ...form,
+              selectedDoctor: undefined
+            }))
             setActiveStep((cur) => cur - 1);
           }}
         />
@@ -105,6 +109,10 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
             setActiveStep((cur) => cur + 1);
           }}
           handleBack={() => {
+            setAppointmentForm(form => ({
+              ...form,
+              visitSchedule: undefined
+            }));
             setActiveStep((cur) => cur - 1)
           }}
         />
