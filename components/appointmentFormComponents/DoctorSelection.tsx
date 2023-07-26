@@ -78,7 +78,7 @@ export default function DoctorSelection({defaultSelected, selectedService , hand
             shadow={false} 
             onClick={() => setSelectedDoctor(doctor)}
             className={`${selectedDoctor?.name === doctor.name ? 'bg-melon' : 'bg-white-ivory'}
-            border-gray-300 border`}>
+            border-melon border hover:cursor-pointer`}>
             <CardHeader
               color="transparent"
               floated={false}
