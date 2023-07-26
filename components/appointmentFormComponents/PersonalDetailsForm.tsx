@@ -148,7 +148,7 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack}: Pers
           <input 
             type="text"
             id="firstName"
-            className="mt-1 w-full rounded-md border-gray-300 shadow-sm sm:text-sm"
+            className="mt-1 w-full input-theme sm:text-sm"
             {...registerPersonalDetails("firstName")}
           />
         </div>
@@ -167,7 +167,7 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack}: Pers
           <input 
             type="text"
             id="middleName"
-            className="mt-1 w-full rounded-md border-gray-300 shadow-sm sm:text-sm"
+            className="mt-1 w-full input-theme sm:text-sm"
             {...registerPersonalDetails("middleName")}
           />
         </div>
@@ -186,7 +186,7 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack}: Pers
           <input 
             type="text"
             id="lastName"
-            className="mt-1 w-full rounded-md border-gray-300 shadow-sm sm:text-sm" 
+            className="mt-1 w-full input-theme sm:text-sm" 
             {...registerPersonalDetails("lastName")}
           />
         </div>
@@ -205,7 +205,7 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack}: Pers
           <div className="flex space-x-2">
             <div>
               <input 
-                className="w-14 mt-1 rounded-md border-gray-300 shadow-sm sm:text-sm"
+                className="w-14 mt-1 input-theme sm:text-sm"
                 type="text"
                 inputMode="numeric"
                 pattern="[0-9]*"
@@ -216,7 +216,7 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack}: Pers
             </div>
             <div>
               <input 
-                className="w-14 mt-1 rounded-md border-gray-300 shadow-sm sm:text-sm"
+                className="w-14 mt-1 input-theme sm:text-sm"
                 type="text"
                 inputMode="numeric"
                 pattern="[0-9]*"
@@ -227,7 +227,7 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack}: Pers
             </div>
             <div>
               <input 
-                className="w-16 mt-1 rounded-md border-gray-300 shadow-sm sm:text-sm"
+                className="w-16 mt-1 input-theme sm:text-sm"
                 type="text"
                 inputMode="numeric"
                 pattern="[0-9]*"
@@ -251,7 +251,7 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack}: Pers
               )}
             </span>
           </label>
-          <div className="flex space-x-2">
+          <div className="flex space-x-2 mt-1">
             {genders?.map((gender, index) => (
               <div
                 key={gender}
@@ -267,7 +267,7 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack}: Pers
 
                 <label
                   htmlFor={gender}
-                  className="block w-full text-center cursor-pointer rounded-lg bg-white-coffee p-2.5 text-gray-600 hover:border-melon peer-checked:border-melon peer-checked:bg-melon"
+                  className="block w-full text-center cursor-pointer rounded-lg bg-white-coffee p-2 text-gray-650 hover:outline hover:outline-melon peer-checked:outline peer-checked:outline-melon peer-checked:bg-melon"
                 >
                   <span className="text-sm">{gender}</span>
                 </label>
@@ -290,7 +290,7 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack}: Pers
           </label>
           <input 
             type="text"
-            className="mt-1 w-full max-w-[12rem] rounded-md border-gray-300 shadow-sm sm:text-sm" 
+            className="mt-1 w-full max-w-[12rem] input-theme sm:text-sm" 
             id="phoneNumber"
             {...registerPersonalDetails("phoneNumber")}
           />
@@ -309,7 +309,7 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack}: Pers
           </label>
 
           <textarea
-            className="w-full rounded-lg border-gray-300 mt-1 text-sm"
+            className="w-full input-theme mt-1 text-sm"
             placeholder="Medical Concern"
             rows={5}
             id="medicalConcern"

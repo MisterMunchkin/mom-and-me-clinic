@@ -21,3 +21,11 @@ body {
   backdrop-filter: blur(6.9px);
   -webkit-backdrop-filter: blur(6.9px);
 }
+
+.input-theme {
+  @apply rounded-md bg-white-coffee border-none text-gray-650;
+}
+
+.input-theme:focus {
+  @apply ring-melon border border-melon
+}
