@@ -312,20 +312,21 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack}: Pers
             className="w-full input-theme mt-1 text-sm"
             placeholder="Medical Concern"
             rows={5}
+            minLength={2}
             id="medicalConcern"
             {...registerPersonalDetails("medicalConcern")}
           ></textarea>
         </div>
         <div className="w-full grid grid-cols-4 gap-y-2">
           <Button
-            className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2 rounded-full bg-pastel-pink shadow-none hover:shadow-lg hover:shadow-pastel-pink/50"
+            className="col-span-4 md:col-start-2 md:col-span-2 rounded-full bg-pastel-pink shadow-none hover:shadow-lg hover:shadow-pastel-pink/50"
             type="submit"
           >
             Go to next step <span aria-hidden="true">→</span>
           </Button>
           <Button
             variant="text"
-            className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2 text-gray-650 hover:bg-white-ivory"
+            className="col-span-4 md:col-start-2 md:col-span-2 text-gray-650 hover:bg-white-ivory"
             type="button"
             onClick={() => handleBack()}
           >

@@ -35,11 +35,11 @@ export default function ServiceSelection({defaultSelected, handleFormSubmit}: Se
   
   return (
     <div className="flex flex-col space-y-4">
-      <div className="overflow-auto max-h-[75vh] p-1 grid gap-4 grid-cols-1 md:max-h-[70vh] md:grid-cols-2 items-start">
+      <div className="overflow-auto max-h-[75vh] p-1 grid gap-4 grid-cols-1 md:max-h-[70vh] sm:grid-cols-2 items-start">
         {data.map((service) => (
           <Card 
             className={`${selectedService?.name === service.name ? 'ring-melon ring-4' : ''}
-            w-64 hover:cursor-pointer`}
+            w-full hover:cursor-pointer`}
             key={service.name}
             onClick={() => setSelectedService(service)}
           >
@@ -61,7 +61,7 @@ export default function ServiceSelection({defaultSelected, handleFormSubmit}: Se
       </div>
       <div className="w-full grid grid-cols-4 gap-y-4 pt-4">
         <Button
-          className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2 rounded-full bg-pastel-pink shadow-none hover:shadow-lg hover:shadow-pastel-pink/50"
+          className="col-span-4 md:col-start-2 md:col-span-2 rounded-full bg-pastel-pink shadow-none hover:shadow-lg hover:shadow-pastel-pink/50"
           type="button"
           onClick={() => handleNext()}
         >
