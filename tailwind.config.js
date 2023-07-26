@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const withMT = require("@material-tailwind/react/utils/withMT");
+const colors = require("tailwindcss/colors");
 
 module.exports = withMT({
   content: [
@@ -17,7 +18,8 @@ module.exports = withMT({
         },
         white: {
           'ivory': '#FBF6F6',
-          'coffee': '#EDDDD9'
+          'coffee': '#EDDDD9',
+          DEFAULT: colors.white
         },
         'pastel-pink': '#E2A5A6',
         'melon': '#F7BFB0'

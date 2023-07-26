@@ -42,10 +42,10 @@ export default function DoctorSelection({defaultSelected, selectedService , hand
       {/* timeline */}
       <Timeline className="w-full">
         <TimelineItem>
-          <TimelineConnector />
+          <TimelineConnector className="" />
           <TimelineHeader className="h-3">
-            <TimelineIcon />
-            <Typography variant="h6" color="blue-gray" className="leading-none">
+            <TimelineIcon className="bg-pastel-pink" />
+            <Typography variant="h6" className="leading-none text-gray-650">
               Service
             </Typography>
           </TimelineHeader>
@@ -53,28 +53,28 @@ export default function DoctorSelection({defaultSelected, selectedService , hand
             <Typography
                 variant="small"
                 color="gray"
-                className="font-normal text-gray-600"
+                className="font-normal text-gray-650"
               >
               {selectedService.name}
             </Typography>
           </TimelineBody>
         </TimelineItem>
         <TimelineItem>
-          <TimelineConnector />
+          <TimelineConnector className="" />
           <TimelineHeader className="h-3">
-            <TimelineIcon />
-            <Typography variant="h6" color="blue-gray" className="leading-none">
+            <TimelineIcon className="bg-pastel-pink" />
+            <Typography variant="h6" className="leading-none text-gray-650">
               Choose a doctor
             </Typography>
           </TimelineHeader>
         </TimelineItem>
       </Timeline>
 
-      <div className="overflow-auto max-h-[60vh] p-1 flex flex-col space-y-4">
+      <div className="overflow-auto max-h-[75vh] md:max-h-[70vh] p-1 flex flex-col space-y-4">
         {data.map((doctor) => (
           <Card
             key={doctor.name} 
-            className={`${selectedDoctor?.name === doctor.name ? 'ring-primary ring-4' : ''}
+            className={`${selectedDoctor?.name === doctor.name ? 'ring-melon ring-4' : ''}
             flex-row col-span-1 max-h-[10rem] hover:cursor-pointer`}
             onClick={() => setSelectedDoctor(doctor)}>
             <CardHeader shadow={false} floated={false} className="w-2/5 shrink-0 m-0 rounded-r-none">
@@ -100,14 +100,15 @@ export default function DoctorSelection({defaultSelected, selectedService , hand
       
       <div className="w-full grid grid-cols-4 gap-y-4">
         <Button
-          className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2"
+          className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2 rounded-full bg-pastel-pink"
           type="button"
           onClick={() => handleNext()}
         >
-          Next
+          Go to next step <span aria-hidden="true">→</span>
         </Button>
         <Button
-          className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2"
+          variant="text"
+          className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2 text-gray-650"
           type="button"
           onClick={() => handleBack()}
         >

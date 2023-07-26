@@ -99,12 +99,12 @@ export default function VisitScheduleSelection({defaultAvailableTimeBlocks, defa
             />
             <div className="flex w-full flex-col gap-0.5">
               <div className="flex items-center justify-between">
-                <Typography variant="h5" color="blue-gray">
+                <Typography variant="h6" className="text-gray-650">
                   {selectedDoctor.fullTitle}
                 </Typography>
               </div>
 
-              <Typography color="blue-gray">{selectedDoctor.joinedServiceTags}</Typography>
+              <Typography variant="small" className="text-gray-650">{selectedDoctor.joinedServiceTags}</Typography>
             </div>
           </CardHeader>
         </Card>
@@ -112,10 +112,10 @@ export default function VisitScheduleSelection({defaultAvailableTimeBlocks, defa
           className="flex flex-col space-y-4 items-center md:items-start md:flex-row md:space-y-0 md:justify-around md:w-full"
         >
           <div className="flex flex-col items-center">
-            <Typography variant="h5" color="blue-gray" className="mb-3">Choose Visit Schedule</Typography>
+            <Typography variant="h6" className="mb-3 text-gray-650">Choose Visit Schedule</Typography>
             <DatePicker 
               id="preferredDate"
-              className="rounded-lg border-gray-200 p-3 text-sm"
+              className="rounded-lg border-gray-650 p-3 text-sm"
               selected={visitSchedule?.preferredDate}
               filterDate={filterDatesByDoctorSchedule}
               onChange={handleDateChange} 
@@ -124,12 +124,12 @@ export default function VisitScheduleSelection({defaultAvailableTimeBlocks, defa
             />
           </div>
           <div className="flex flex-col items-center">
-            <Typography variant="h5" color="blue-gray" className="mb-3">Preferred Time</Typography>
+            <Typography variant="h6" className="mb-3 text-gray-650">Preferred Time Slot</Typography>
             <div className="flex md:flex-col md:items-center">
               {availableTimeBlocks?.map((timeBlock) => (
                 <Card
                   key={timeBlock}
-                  className={`${visitSchedule?.preferredTimeBlock === timeBlock ? 'ring-primary ring-4' : ''}
+                  className={`${visitSchedule?.preferredTimeBlock === timeBlock ? 'bg-melon' : 'bg-white-coffee'}
                   hover:cursor-pointer block w-full`}
                   onClick={() => setVisitSchedule(form => ({
                     preferredDate: form?.preferredDate,
@@ -139,7 +139,7 @@ export default function VisitScheduleSelection({defaultAvailableTimeBlocks, defa
                   <CardBody
                     className="p-3"
                   >
-                    <Typography variant="h6" color="blue-gray">{timeBlock}</Typography>
+                    <Typography variant="lead" className="text-sm text-gray-650">{timeBlock}</Typography>
                   </CardBody>
                 </Card>
               ))}
@@ -149,14 +149,15 @@ export default function VisitScheduleSelection({defaultAvailableTimeBlocks, defa
       </div>
       <div className="w-full grid grid-cols-4 gap-y-4">
         <Button
-          className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2"
+          className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2 rounded-full bg-pastel-pink"
           type="button"
           onClick={() => handleNext()}
         >
-          Next
+          Go to next step <span aria-hidden="true">→</span>
         </Button>
         <Button
-          className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2"
+          variant="text"
+          className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2 text-gray-650"
           type="button"
           onClick={() => handleBack()}
         >
