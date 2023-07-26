@@ -110,7 +110,7 @@ export default function DoctorSelection({defaultSelected, selectedService , hand
         ))}
       </div>
       
-      <div className="w-full grid grid-cols-4 gap-y-4">
+      <div className="w-full grid grid-cols-4 gap-y- pt-4">
         <Button
           className="max-w-[24rem] col-span-4 md:col-start-2 md:col-span-2 rounded-full bg-pastel-pink shadow-none hover:shadow-lg hover:shadow-pastel-pink/50"
           type="button"
