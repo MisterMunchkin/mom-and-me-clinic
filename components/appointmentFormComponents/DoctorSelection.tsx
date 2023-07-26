@@ -2,7 +2,7 @@
 
 import { DoctorClass } from "@/classes/doctor";
 import { ServiceClass } from "@/classes/service";
-import { Button, Card, CardBody, CardHeader, Timeline, TimelineBody, TimelineConnector, TimelineHeader, TimelineIcon, TimelineItem, Typography } from "@material-tailwind/react";
+import { Avatar, Button, Card, CardBody, CardHeader, Timeline, TimelineBody, TimelineConnector, TimelineHeader, TimelineIcon, TimelineItem, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import useSWR from 'swr';
 import Image from "next/image";
@@ -72,24 +72,36 @@ export default function DoctorSelection({defaultSelected, selectedService , hand
 
       <div className="overflow-auto max-h-[75vh] md:max-h-[70vh] p-1 flex flex-col space-y-4">
         {data.map((doctor) => (
-          <Card
-            key={doctor.name} 
-            className={`${selectedDoctor?.name === doctor.name ? 'ring-melon ring-4' : ''}
-            flex-row col-span-1 max-h-[10rem] hover:cursor-pointer`}
-            onClick={() => setSelectedDoctor(doctor)}>
-            <CardHeader shadow={false} floated={false} className="w-2/5 shrink-0 m-0 rounded-r-none">
-              <Image
-                alt="Art"
-                src="https://picsum.photos/200"
-                className="h-full w-full object-cover"
-                width={200}
-                height={200}
+          <Card 
+            key={doctor.name}
+            
+            shadow={false} 
+            onClick={() => setSelectedDoctor(doctor)}
+            className={`${selectedDoctor?.name === doctor.name ? 'bg-melon' : 'bg-white-ivory'}
+            border-gray-300 border`}>
+            <CardHeader
+              color="transparent"
+              floated={false}
+              shadow={false}
+              className="ml-4 mr-8 flex items-center gap-4 my-4"
+            >
+              <Avatar
+                size="lg"
+                variant="circular"
+                src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+                alt={doctor.name}
               />
+              <div className="flex w-full flex-col gap-0.5">
+                <div className="flex items-center justify-between">
+                  <Typography variant="h6" className="text-gray-650">
+                    {doctor.fullTitle}
+                  </Typography>
+                </div>
+
+                <Typography variant="small" className="text-gray-650">{doctor.joinedServiceTags}</Typography>
+              </div>
             </CardHeader>
-            <CardBody>
-              <Typography variant="h5" color="blue-gray" className="mb-2">
-                {doctor.name}
-              </Typography>
+            <CardBody className="pt-0">
               <ClinicSchedules 
                 clinicSchedules={doctor.clinicSchedules}
               />
