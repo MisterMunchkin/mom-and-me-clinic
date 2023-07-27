@@ -54,48 +54,49 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
 
   return (
     <div className="space-y-8">
-      <Stepper
-        lineClassName="bg-white-coffee"
-        activeLineClassName="bg-pastel-pink"
-        activeStep={activeStep}
-      >
-        <Step 
-          className="w-6 h-6"
-          activeClassName="bg-pastel-pink text-white"
-          completedClassName="bg-pastel-pink text-white"
+      <div className="px-4 sm:px-0">
+        <Stepper
+          lineClassName="bg-white-coffee"
+          activeLineClassName="bg-pastel-pink"
+          activeStep={activeStep}
         >
-          <Typography variant="small" color="inherit">1</Typography>
-        </Step>
-        <Step 
-          className="w-6 h-6 bg-white-coffee text-gray-650"
-          activeClassName="bg-pastel-pink text-white"
-          completedClassName="bg-pastel-pink text-white"
-        >
-          <Typography variant="small" color="inherit">2</Typography>
-        </Step>
-        <Step 
-          className="w-6 h-6 bg-white-coffee text-gray-650"
-          activeClassName="bg-pastel-pink text-white"
-          completedClassName="bg-pastel-pink text-white"
-        >
-          <Typography variant="small" color="inherit">3</Typography>
-        </Step>
-        <Step 
-          className="w-6 h-6 bg-white-coffee text-gray-650"
-          activeClassName="bg-pastel-pink text-white"
-          completedClassName="bg-pastel-pink text-white"
-        >
-          <Typography variant="small" color="inherit">4</Typography>
-        </Step>
-        <Step 
-          className="w-6 h-6 bg-white-coffee text-gray-650"
-          activeClassName="bg-pastel-pink text-white"
-          completedClassName="bg-pastel-pink text-white"
-        >
-          <Typography variant="small" color="inherit">5</Typography>
-        </Step>
-      </Stepper>
-
+          <Step 
+            className="w-6 h-6"
+            activeClassName="bg-pastel-pink text-white"
+            completedClassName="bg-pastel-pink text-white"
+          >
+            <Typography variant="small" color="inherit">1</Typography>
+          </Step>
+          <Step 
+            className="w-6 h-6 bg-white-coffee text-gray-650"
+            activeClassName="bg-pastel-pink text-white"
+            completedClassName="bg-pastel-pink text-white"
+          >
+            <Typography variant="small" color="inherit">2</Typography>
+          </Step>
+          <Step 
+            className="w-6 h-6 bg-white-coffee text-gray-650"
+            activeClassName="bg-pastel-pink text-white"
+            completedClassName="bg-pastel-pink text-white"
+          >
+            <Typography variant="small" color="inherit">3</Typography>
+          </Step>
+          <Step 
+            className="w-6 h-6 bg-white-coffee text-gray-650"
+            activeClassName="bg-pastel-pink text-white"
+            completedClassName="bg-pastel-pink text-white"
+          >
+            <Typography variant="small" color="inherit">4</Typography>
+          </Step>
+          <Step 
+            className="w-6 h-6 bg-white-coffee text-gray-650"
+            activeClassName="bg-pastel-pink text-white"
+            completedClassName="bg-pastel-pink text-white"
+          >
+            <Typography variant="small" color="inherit">5</Typography>
+          </Step>
+        </Stepper>
+      </div>
       <div className="col-span-3">
         {activeStep === 0 && (
           // <ServiceSelection

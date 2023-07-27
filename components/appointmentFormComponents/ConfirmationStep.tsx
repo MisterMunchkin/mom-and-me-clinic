@@ -5,6 +5,8 @@ import { ServiceClass } from "@/classes/service";
 import { AppointmentFormMTInterface, VisitScheduleMTInterface } from "@/interfaces/appointment";
 import { Avatar, Button, Card, CardHeader, Typography } from "@material-tailwind/react";
 import { CheckBadgeIcon } from "@heroicons/react/20/solid";
+import Image from 'next/image';
+import lifeSaverImage from '../../public/lifesavers_consulting.png';
 
 interface ConfirmationStepProps {
   form: AppointmentFormMTInterface;
@@ -18,14 +20,14 @@ export default function ConfirmationStep({form}: ConfirmationStepProps) {
   // if (!form.visitSchedule) return <div>Visit schedule has not been added</div>
 
   return (
-    <div className="flex flex-col items-center space-y-4 w-full">
-      <Typography variant="small" className="font-normal text-gray-650">
+    <div className="flex flex-col items-center w-full">
+      <Typography variant="small" className="font-normal text-gray-650 mb-2">
         Please check if all details are correct
       </Typography>
 
       <div className="rounded-xl border-white-coffee border-2 bg-white-ivory max-w-md pt-8 pb-6 px-2 sm:px-8 flex flex-col items-center">
 
-        <div className="flex flex-col items-center p-3">
+        <div className="flex flex-col items-center px-3 pt-3 pb-1">
           <Typography variant="small" className="leading-none text-gray-650">
             Booking for
           </Typography>
@@ -50,7 +52,7 @@ export default function ConfirmationStep({form}: ConfirmationStepProps) {
 
         <div className="h-[50px] w-[2px] bg-white-coffee my-3"></div>
 
-        <div className="flex flex-col items-center p-3">
+        <div className="flex flex-col items-center px-3 pb-3 pt-1">
           <Typography variant="small" className="leading-none text-gray-650 pb-3">
             Your Doctor
           </Typography>
@@ -82,13 +84,20 @@ export default function ConfirmationStep({form}: ConfirmationStepProps) {
       </div>
 
       <Button
-        className="inline-flex justify-center py-3.5 rounded-full text-gray-650 bg-pastel-green shadow-none hover:shadow-lg hover:shadow-pastel-green/50 min-w-[18rem]"
+        className="inline-flex justify-center py-3.5 mt-16 rounded-full text-gray-650 bg-pastel-green shadow-none hover:shadow-lg hover:shadow-pastel-green/50 min-w-[18rem]"
         type="button"
         // onClick={() => handleNext()}
       >
         <CheckBadgeIcon className="w-4 h-4 display-inline mr-3" /> 
         Confirm 
       </Button>
+
+      <Image 
+        className="pt-12"
+        src={lifeSaverImage}
+        alt='lifesaver consulting image'
+        width={500}
+      />
     </div>
   );
 }
