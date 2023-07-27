@@ -22,7 +22,11 @@ module.exports = withMT({
           DEFAULT: colors.white
         },
         'pastel-pink': '#E2A5A6',
-        'melon': '#F7BFB0'
+        'melon': '#F7BFB0',
+        'pastel-green': {
+          DEFAULT: '#d0ebc8',
+          '600': '#d9efd3'
+        }
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

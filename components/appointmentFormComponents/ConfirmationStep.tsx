@@ -3,7 +3,8 @@
 import { DoctorClass } from "@/classes/doctor";
 import { ServiceClass } from "@/classes/service";
 import { AppointmentFormMTInterface, VisitScheduleMTInterface } from "@/interfaces/appointment";
-import { Avatar, Card, CardHeader, Timeline, TimelineBody, TimelineConnector, TimelineHeader, TimelineIcon, TimelineItem, Typography } from "@material-tailwind/react";
+import { Avatar, Button, Card, CardHeader, Typography } from "@material-tailwind/react";
+import { CheckBadgeIcon } from "@heroicons/react/20/solid";
 
 interface ConfirmationStepProps {
   form: AppointmentFormMTInterface;
@@ -17,12 +18,12 @@ export default function ConfirmationStep({form}: ConfirmationStepProps) {
   // if (!form.visitSchedule) return <div>Visit schedule has not been added</div>
 
   return (
-    <div className="flex flex-col space-y-4 w-full">
+    <div className="flex flex-col items-center space-y-4 w-full">
       <Typography variant="small" className="font-normal text-gray-650">
         Please check if all details are correct
       </Typography>
 
-      <div className="rounded-xl border-white-coffee border-2 bg-white-ivory max-w-md pt-8 pb-6 px-8 flex flex-col items-center">
+      <div className="rounded-xl border-white-coffee border-2 bg-white-ivory max-w-md pt-8 pb-6 px-2 sm:px-8 flex flex-col items-center">
 
         <div className="flex flex-col items-center p-3">
           <Typography variant="small" className="leading-none text-gray-650">
@@ -59,7 +60,7 @@ export default function ConfirmationStep({form}: ConfirmationStepProps) {
               color="transparent"
               floated={false}
               shadow={false}
-              className="ml-4 mr-8 flex items-center gap-4 my-4"
+              className="ml-4 mr-4 flex items-center gap-4 my-4"
             >
               <Avatar
                 size="lg"
@@ -68,8 +69,8 @@ export default function ConfirmationStep({form}: ConfirmationStepProps) {
                 alt="Test"
               />
               <div className="flex w-full flex-col gap-0.5">
-                <Typography variant="h6" className="text-gray-650 leading-tight">
-                  Dr. Thalia Tubungbanua-Badilles MD, DPOGS
+                <Typography className="text-sm sm:text-base font-bold text-gray-650 leading-tight">
+                  Dr. Thalia Tubungbanua MD, DPOGS
                 </Typography>
 
                 <Typography variant="small" className="text-gray-650">OBGYN</Typography>
@@ -79,6 +80,15 @@ export default function ConfirmationStep({form}: ConfirmationStepProps) {
         </div>
 
       </div>
+
+      <Button
+        className="inline-flex justify-center py-3.5 rounded-full text-gray-650 bg-pastel-green shadow-none hover:shadow-lg hover:shadow-pastel-green/50 min-w-[18rem]"
+        type="button"
+        // onClick={() => handleNext()}
+      >
+        <CheckBadgeIcon className="w-4 h-4 display-inline mr-3" /> 
+        Confirm 
+      </Button>
     </div>
   );
 }

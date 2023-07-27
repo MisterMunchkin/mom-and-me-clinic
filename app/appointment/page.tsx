@@ -34,7 +34,7 @@ export default function Page({
           <Link className="px-8 text-gray-650" href={backNavString} scroll={false}>
             <span aria-hidden="true">←</span> Cancel Booking
           </Link>
-          <div className="p-8">
+          <div className="py-8 px-0 sm:px-8">
             {/* <AppointmentForm
               defaultServiceName={searchParams.defaultService} 
               defaultDoctorName={searchParams.defaultDoctor}

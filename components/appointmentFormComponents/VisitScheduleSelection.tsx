@@ -149,7 +149,7 @@ export default function VisitScheduleSelection({defaultAvailableTimeBlocks, defa
       </div>
       <div className="w-full grid grid-cols-4 gap-y-2">
         <Button
-          className="col-span-4 md:col-start-2 md:col-span-2 rounded-full bg-pastel-pink shadow-none hover:shadow-lg hover:shadow-pastel-pink/50"
+          className="col-span-4 md:col-start-2 md:col-span-2 rounded-full text-gray-650 bg-pastel-pink shadow-none hover:shadow-lg hover:shadow-pastel-pink/50"
           type="button"
           onClick={() => handleNext()}
         >
