@@ -99,18 +99,15 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
       </div>
       <div className="col-span-3">
         {activeStep === 0 && (
-          // <ServiceSelection
-          //   defaultSelected={appointmentForm.selectedService}
-          //   handleFormSubmit={(serviceSelection: ServiceClass) => {
-          //     setAppointmentForm(form => ({
-          //       ...form,
-          //       selectedService: serviceSelection
-          //     }));
-          //     setActiveStep((cur) => cur + 1);
-          //   }}
-          // />
-          <ConfirmationStep
-            form={appointmentForm}
+          <ServiceSelection
+            defaultSelected={appointmentForm.selectedService}
+            handleFormSubmit={(serviceSelection: ServiceClass) => {
+              setAppointmentForm(form => ({
+                ...form,
+                selectedService: serviceSelection
+              }));
+              setActiveStep((cur) => cur + 1);
+            }}
           />
         )}
 
