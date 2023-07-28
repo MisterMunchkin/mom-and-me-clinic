@@ -170,6 +170,9 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
 
         {activeStep === 4 && (
           <ConfirmationStep
+            handleBack={() => {
+              setActiveStep((cur) => cur - 1)
+            }}
             form={appointmentForm}
           />
         )}

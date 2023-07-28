@@ -29,3 +29,7 @@ body {
 .input-theme:focus {
   @apply ring-melon border border-melon
 }
+
+.button-text {
+  @apply normal-case font-medium text-base tracking-wide
+}

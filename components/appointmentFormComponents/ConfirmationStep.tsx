@@ -9,9 +9,10 @@ import { monthNames } from "@/utilities/constants";
 
 interface ConfirmationStepProps {
   form: AppointmentFormMTInterface;
+  handleBack: () => void;
 }
 
-export default function ConfirmationStep({form: {personalDetails, selectedDoctor, selectedService, visitSchedule}}: ConfirmationStepProps) {
+export default function ConfirmationStep({form: {personalDetails, selectedDoctor, selectedService, visitSchedule}, handleBack}: ConfirmationStepProps) {
   
   if (!personalDetails) return <div>Personal details has not been added</div>
   if (!selectedDoctor) return <div>Doctor has not been selected</div>
@@ -88,12 +89,23 @@ export default function ConfirmationStep({form: {personalDetails, selectedDoctor
       </div>
 
       <Button
-        className="inline-flex justify-center py-3.5 mt-16 rounded-full text-gray-650 bg-pastel-green shadow-none hover:shadow-lg hover:shadow-pastel-green/50 min-w-[18rem]"
+        className="py-3.5 mt-16 rounded-full text-gray-650 bg-pastel-green shadow-none hover:shadow-lg hover:shadow-pastel-green/50 min-w-[18rem]"
         type="button"
         onClick={() => handleSubmit()}
       >
-        <CheckBadgeIcon className="w-4 h-4 display-inline mr-3" /> 
-        Confirm 
+        <span className="button-text inline-flex items-center">
+          <CheckBadgeIcon className="w-5 h-5 display-inline mr-3" /> 
+
+          Confirm 
+        </span>
+      </Button>
+      <Button
+        variant="text"
+        className="text-gray-650 hover:bg-white-ivory underline underline-offset-4"
+        type="button"
+        onClick={() => handleBack()}
+      >
+        <span className="button-text underline underline-offset-4">Back</span>
       </Button>
 
       <Image 
