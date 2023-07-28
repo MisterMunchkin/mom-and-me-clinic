@@ -1,26 +1,21 @@
-import { ServiceInterface } from "@/interfaces/service";
-import { TagToHexColorInterface } from "@/interfaces/tag-to-hex-color";
-
+import { ServiceClass } from "@/classes/service";
+import Link from "next/link";
+import ServiceTags from "./lists/ServiceTags";
 interface ServiceProps {
-  service: ServiceInterface;
-}
-
-const tagToHexColorDict: TagToHexColorInterface = {
-  "obstetrics": {
-    bgColor: "bg-orange-100",
-    textColor: "text-orange-600"
-  },
-  "gynecology": {
-    bgColor: "bg-cyan-100",
-    textColor: "text-cyan-600"
-  }
+  service: ServiceClass;
 }
 
 export default function Service({service}: ServiceProps) {
   return (
-    <a
+    <Link
       className="relative flex flex-col items-start justify-between rounded-xl border border-gray-200 pt-4 pr-4 pl-4 shadow-lg md:pt-6 md:pr-6 md:pl-6"
-      href="#"
+      href={{
+        pathname: `/appointment`,
+        query: {
+          backNav: '#services',
+          defaultService: service.name
+        }
+      }}
     >
       <h3 className="text-lg font-bold text-gray-900 sm:text-xl">
         {service.name}
@@ -30,17 +25,9 @@ export default function Service({service}: ServiceProps) {
         {service.description}
       </p>
 
-      <div className="px-3 py-1.5 space-x-2">
-        {service.tags.map(tag => (
-          <span 
-            key={tag}
-            className={`${tagToHexColorDict[tag as keyof TagToHexColorInterface].bgColor} 
-            ${tagToHexColorDict[tag as keyof TagToHexColorInterface].textColor}
-            rounded-full px-1.5 py-1 text-xs font-medium`}>
-            {tag}
-          </span>
-        ))}
+      <div className="py-1.5 space-x-2">
+        <ServiceTags tags={service.tags} />
       </div>
-    </a>
+    </Link>
   );
 }

@@ -1,7 +1,7 @@
 import NavBar from '../components/NavBar'
 import Hero from '../components/Hero';
-import Doctors from '../components/Doctors';
-import Services from '../components/Services';
+import Doctors from '../components/lists/Doctors';
+import Services from '../components/lists/Services';
 import Maps from '@/components/Maps';
 
 export default function Home() {

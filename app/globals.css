@@ -6,16 +6,12 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --background-hex: #FBF6F6
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: var(--background-hex);
 }
 
 .frosted-glass {
@@ -24,4 +20,16 @@ body {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(6.9px);
   -webkit-backdrop-filter: blur(6.9px);
+}
+
+.input-theme {
+  @apply rounded-md bg-white-coffee border-none text-gray-650;
+}
+
+.input-theme:focus {
+  @apply ring-melon border border-melon
+}
+
+.button-text {
+  @apply normal-case font-medium text-base tracking-wide
 }

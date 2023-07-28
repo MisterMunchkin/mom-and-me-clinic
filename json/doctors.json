@@ -1,0 +1,64 @@
+[
+  {
+    "title": "Dr",
+    "designation": "DPOGS",
+    "name": "Thalia T. Badilles",
+    "serviceTags": ["OB-GYN"],
+    "phoneNumber": "09224817436",
+    "email": "thaltubs@gmail.com",
+    "specialties": [],
+    "clinicSchedules": [
+      {
+        "clinicLocation": "Mom & Me Clinic - Room 611",
+        "schedules": [
+          {
+            "day": "MON",
+            "start": "9:00 AM",
+            "end": "12:00 PM"
+          },
+          {
+            "day": "FRI",
+            "start": "9:00 AM",
+            "end": "3:00 PM"
+          },
+          {
+            "day": "SAT",
+            "start": "9:00 AM",
+            "end": "12:00 PM"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Dr",
+    "designation": "DPOGS",
+    "name": "Kim Espiritu-Veloso",
+    "serviceTags": ["OB-GYN"],
+    "phoneNumber": "09664517388",
+    "email": "kim_test@gmail.com",
+    "specialties": [],
+    "clinicSchedules": [
+      {
+        "clinicLocation": "Mom & Me Clinic - Room 611",
+        "schedules": [
+          {
+            "day": "TUE",
+            "start": "12:00 PM",
+            "end": "5:00 PM"
+          },
+          {
+            "day": "WED",
+            "start": "10:00 AM",
+            "end": "4:00 PM"
+          },
+          {
+            "day": "SAT",
+            "start": "12:00 PM",
+            "end": "5:00 PM"
+          }
+        ]
+      }
+    ]
+  }
+]

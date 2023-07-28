@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const withMT = require("@material-tailwind/react/utils/withMT");
+const colors = require("tailwindcss/colors");
+
+module.exports = withMT({
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -10,6 +13,20 @@ module.exports = {
       colors: {
         primary: '#e3ab68',
         'primary-hover': '#ebc393',
+        gray: {
+          650: '#5B5B5B'
+        },
+        white: {
+          'ivory': '#FBF6F6',
+          'coffee': '#EDDDD9',
+          DEFAULT: colors.white
+        },
+        'pastel-pink': '#E2A5A6',
+        'melon': '#F7BFB0',
+        'pastel-green': {
+          DEFAULT: '#d0ebc8',
+          '600': '#d9efd3'
+        }
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -21,5 +38,7 @@ module.exports = {
       }
     },
   },
-  plugins: [],
-}
+  plugins: [
+    require('@tailwindcss/forms')
+  ],
+});

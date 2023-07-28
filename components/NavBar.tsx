@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function NavBar() {
   return (
     <nav className={`frosted-glass top-0 transition-top duration-500 ease-in-out bg-gray-200 shadow shadow-gray-300 w-screen sticky md:px-8 px-4 z-50`}>
@@ -25,7 +27,13 @@ export default function NavBar() {
             </ul>
           </div>
           <div className="hidden md:block md:order-3 order-2">
-            <a href="#" className="md:px-4 md:py-2 p-2 hover:bg-primary-hover rounded-md text-sm font-semibold bg-primary text-white">Set an Appointment</a>
+            <Link 
+              href={{
+                pathname: `/appointment`
+              }}  
+              className="md:px-4 md:py-2 p-2 hover:bg-primary-hover rounded-md text-sm font-semibold bg-primary text-white">
+              Set an Appointment
+            </Link>
           </div>
         </div>
       </div>
