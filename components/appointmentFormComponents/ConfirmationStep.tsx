@@ -6,13 +6,15 @@ import { CheckBadgeIcon } from "@heroicons/react/20/solid";
 import Image from 'next/image';
 import lifeSaverImage from '../../public/lifesavers_consulting.png';
 import { monthNames } from "@/utilities/constants";
+import { submitAppointmentRequest } from "@/services/submitAppointmentRequest";
 
 interface ConfirmationStepProps {
   form: AppointmentFormMTInterface;
   handleBack: () => void;
 }
 
-export default function ConfirmationStep({form: {personalDetails, selectedDoctor, selectedService, visitSchedule}, handleBack}: ConfirmationStepProps) {
+export default function ConfirmationStep({form, handleBack}: ConfirmationStepProps) {
+  const {personalDetails, selectedDoctor, selectedService, visitSchedule} = form;
   
   if (!personalDetails) return <div>Personal details has not been added</div>
   if (!selectedDoctor) return <div>Doctor has not been selected</div>
@@ -21,7 +23,7 @@ export default function ConfirmationStep({form: {personalDetails, selectedDoctor
 
   const { preferredDate, preferredTimeBlock } = visitSchedule;
   const handleSubmit = () => {
-
+    submitAppointmentRequest(form);
   }
 
   return (
@@ -51,7 +53,7 @@ export default function ConfirmationStep({form: {personalDetails, selectedDoctor
             {`${monthNames[preferredDate.getMonth()]} ${preferredDate.getDate()}, ${preferredDate.getFullYear()}`}
           </Typography>
           <Typography variant="h5" className="text-white font-bold">
-            {visitSchedule.preferredTimeBlock}
+            {preferredTimeBlock}
           </Typography>
         </div>
 
