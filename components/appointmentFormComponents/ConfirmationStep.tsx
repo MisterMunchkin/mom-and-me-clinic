@@ -6,7 +6,7 @@ import { CheckBadgeIcon } from "@heroicons/react/20/solid";
 import Image from 'next/image';
 import lifeSaverImage from '../../public/lifesavers_consulting.png';
 import { monthNames } from "@/utilities/constants";
-import { submitAppointmentRequest } from "@/services/submitAppointmentRequest";
+import { AppointmentSubmitRequest } from "@/classes/appointment-submit-request";
 
 interface ConfirmationStepProps {
   form: AppointmentFormMTInterface;
@@ -22,8 +22,33 @@ export default function ConfirmationStep({form, handleBack}: ConfirmationStepPro
   if (!visitSchedule || !visitSchedule.preferredDate || !visitSchedule.preferredTimeBlock) return <div>Visit schedule has not been added</div>
 
   const { preferredDate, preferredTimeBlock } = visitSchedule;
-  const handleSubmit = () => {
-    submitAppointmentRequest(form);
+  const handleSubmit = async () => {
+    try {
+      const appointmentSubmitRequest = new AppointmentSubmitRequest(
+        personalDetails,
+        selectedService,
+        selectedDoctor,
+        visitSchedule
+      );
+      
+      const response = await fetch('/api/submit-appointment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(appointmentSubmitRequest)
+      });
+
+      if (response.status !== 200) {
+        let body = await response.json();
+        console.error(body);
+        throw new Error(body);
+      }
+
+      // display success
+    } catch (error: any) {
+      // display failure
+    } finally {
+      // finally logic
+    }
   }
 
   return (
