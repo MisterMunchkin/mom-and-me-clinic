@@ -1,7 +1,7 @@
 import { PersonalDetailsMTFormInterface, VisitScheduleMTInterface } from "@/interfaces/appointment";
 import { ServiceClass } from "./service";
 import { DoctorClass } from "./doctor";
-import { monthNames } from "@/utilities/constants";
+import { getFullDateString, getMonthName } from "@/utilities/helpers";
 
 export class AppointmentSubmitRequest {
   patientFullName: string;
@@ -16,7 +16,7 @@ export class AppointmentSubmitRequest {
   preferredSchedule: string;
   location: string;
 
-  static readonly numOfRequiredProps: number = 9; 
+  static readonly numOfRequiredProps: number = 10; 
 
   constructor(
     personalDetails: PersonalDetailsMTFormInterface,
@@ -26,7 +26,7 @@ export class AppointmentSubmitRequest {
   ) {
     this.patientFullName = `${personalDetails.firstName}${(personalDetails.middleName) ? ' ' + personalDetails.middleName : ''} ${personalDetails.lastName}`.trim();
     const { month, day, year } = personalDetails.dateOfBirth;
-    this.patientDateOfBirth = `${monthNames[month]} ${day}, ${year}`;
+    this.patientDateOfBirth = `${getMonthName(month)} ${day}, ${year}`;
     this.patientPhoneNumber = personalDetails.phoneNumber.trim();
     this.patientSex = personalDetails.sex;
     this.patientMedicalConcern = personalDetails.medicalConcern.trim();
@@ -34,7 +34,7 @@ export class AppointmentSubmitRequest {
     this.doctorFullName = selectedDoctor.name
     this.doctorEmail = selectedDoctor.email;
     this.selectedService = selectedService.name;
-    this.preferredSchedule = `${visitSchedule.preferredDate} ${visitSchedule.preferredTimeBlock}`;
+    this.preferredSchedule = `${getFullDateString(visitSchedule.preferredDate)} ${visitSchedule.preferredTimeBlock}`;
     this.location = 'Mom & Me Clinic - Room 611, Velez Medical Arts Building, 8V4W+WXR, Cebu City, Cebu';
   }
 }
