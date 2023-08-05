@@ -33,7 +33,9 @@ export default function ConfirmationStep({form, handleBack}: ConfirmationStepPro
       
       const response = await fetch('/api/submit-appointment', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(appointmentSubmitRequest)
       });
 

@@ -1,10 +1,7 @@
 import { AppointmentRequestTemplate } from "@/emails/appointment-request";
-import { AppointmentFormMTInterface } from "@/interfaces/appointment";
 import { render } from "@react-email/render";
 import { NextRequest, NextResponse } from "next/server";
-import { monthNames } from "@/utilities/constants";
 import nodemailer from 'nodemailer';
-import { request } from "http";
 import { AppointmentSubmitRequest } from "@/classes/appointment-submit-request";
 
 // https://www.kirandev.com/next-js-react-email-sending
@@ -16,10 +13,9 @@ import { AppointmentSubmitRequest } from "@/classes/appointment-submit-request";
 export const smtpOptions = {
   host: process.env.SMTP_HOST || "smtp.mailtrap.io",
   port: parseInt(process.env.SMTP_PORT || "2525"),
-  secure: false,
   auth: {
     user: process.env.SMTP_USER || "user",
-    pass: process.env.SMTP_PASSWORD || "password",
+    pass: process.env.SMTP_PASS || "password",
   },
 }
 
@@ -40,21 +36,21 @@ export async function POST(request: NextRequest) {
   }
 
   //submit email
-  // await transporter.sendMail({
-  //   from: process.env.SMTP_FROM_EMAIL,
-  //   to: process.env.SMTP_TO_EMAIL,
-  //   subject: `Appointment Request for ${requestForm.patientFullName}`,
-  //   html: render(AppointmentRequestTemplate({
-  //     patientFullName: requestForm.patientFullName,
-  //     patientDateOfBirth: requestForm.patientDateOfBirth,
-  //     patientPhoneNumber: requestForm.patientPhoneNumber,
-  //     patientSex: requestForm.patientSex,
-  //     patientMedicalConcern: requestForm.patientMedicalConcern,
-  //     doctorFullName: requestForm.doctorFullName,
-  //     selectedService: requestForm.selectedService,
-  //     preferredSchedule: requestForm.preferredSchedule
-  //   }))
-  // })
+  await transporter.sendMail({
+    to: requestForm.doctorEmail,
+    subject: `Appointment Request for ${requestForm.patientFullName}`,
+    html: render(AppointmentRequestTemplate({
+      patientFullName: requestForm.patientFullName,
+      patientDateOfBirth: requestForm.patientDateOfBirth,
+      patientPhoneNumber: requestForm.patientPhoneNumber,
+      patientSex: requestForm.patientSex,
+      patientMedicalConcern: requestForm.patientMedicalConcern,
+      doctorFullName: requestForm.doctorFullName,
+      selectedService: requestForm.selectedService,
+      preferredSchedule: requestForm.preferredSchedule,
+      location: requestForm.location
+    }))
+  });
 
   return NextResponse.json('Appointment request submitted!', {status: 200, statusText: 'Submitted successfully'});
 }
