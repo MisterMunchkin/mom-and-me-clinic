@@ -10,7 +10,7 @@ import { AppointmentSubmitRequest } from "@/classes/appointment-submit-request";
 // https://forwardemail.net/en
 
 // Replace with your SMTP credentials
-export const smtpOptions = {
+const smtpOptions = {
   host: process.env.SMTP_HOST || "smtp.mailtrap.io",
   port: parseInt(process.env.SMTP_PORT || "2525"),
   auth: {
