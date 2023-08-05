@@ -1,3 +1,5 @@
+import { monthNames } from "./constants";
+
 export const debounce = (fn: Function, ms = 300) => {
   let timeoutId: ReturnType<typeof setTimeout>;
   return function (this: any, ...args: any[]) {
@@ -34,4 +36,16 @@ export const getEnumByValue = <T extends string, U extends { [key: string]: T }>
   const keys = Object.keys(enumObj) as Array<keyof U>;
   const enumMember = keys.find(key => enumObj[key] === value);
   return enumMember ? enumObj[enumMember] : undefined;
+}
+
+export const getMonthName = (monthNumber: number): string => {
+  return monthNames[monthNumber - 1];
+}
+
+export const getFullDateString = (date: Date | undefined): string => {
+  if (!date) {
+    return '';
+  }
+  
+  return date.toLocaleDateString(undefined, {year: 'numeric', month: 'long', day: 'numeric'});
 }

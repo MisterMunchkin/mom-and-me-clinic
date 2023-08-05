@@ -6,13 +6,15 @@ import { CheckBadgeIcon } from "@heroicons/react/20/solid";
 import Image from 'next/image';
 import lifeSaverImage from '../../public/lifesavers_consulting.png';
 import { monthNames } from "@/utilities/constants";
+import { AppointmentSubmitRequest } from "@/classes/appointment-submit-request";
 
 interface ConfirmationStepProps {
   form: AppointmentFormMTInterface;
   handleBack: () => void;
 }
 
-export default function ConfirmationStep({form: {personalDetails, selectedDoctor, selectedService, visitSchedule}, handleBack}: ConfirmationStepProps) {
+export default function ConfirmationStep({form, handleBack}: ConfirmationStepProps) {
+  const {personalDetails, selectedDoctor, selectedService, visitSchedule} = form;
   
   if (!personalDetails) return <div>Personal details has not been added</div>
   if (!selectedDoctor) return <div>Doctor has not been selected</div>
@@ -20,8 +22,35 @@ export default function ConfirmationStep({form: {personalDetails, selectedDoctor
   if (!visitSchedule || !visitSchedule.preferredDate || !visitSchedule.preferredTimeBlock) return <div>Visit schedule has not been added</div>
 
   const { preferredDate, preferredTimeBlock } = visitSchedule;
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    try {
+      const appointmentSubmitRequest = new AppointmentSubmitRequest(
+        personalDetails,
+        selectedService,
+        selectedDoctor,
+        visitSchedule
+      );
+      
+      const response = await fetch('/api/submit-appointment', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(appointmentSubmitRequest)
+      });
 
+      if (response.status !== 200) {
+        let body = await response.json();
+        console.error(body);
+        throw new Error(body);
+      }
+
+      // display success
+    } catch (error: any) {
+      // display failure
+    } finally {
+      // finally logic
+    }
   }
 
   return (
@@ -51,7 +80,7 @@ export default function ConfirmationStep({form: {personalDetails, selectedDoctor
             {`${monthNames[preferredDate.getMonth()]} ${preferredDate.getDate()}, ${preferredDate.getFullYear()}`}
           </Typography>
           <Typography variant="h5" className="text-white font-bold">
-            {visitSchedule.preferredTimeBlock}
+            {preferredTimeBlock}
           </Typography>
         </div>
 
