@@ -155,6 +155,7 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
         )}
         {activeStep === 3 && (
           <PersonalDetailsForm 
+            defaultPersonalDetails={appointmentForm.personalDetails}
             handleFormSubmit={(personalDetails: PersonalDetailsMTFormInterface) => {
               setAppointmentForm(form => ({
                 ...form,

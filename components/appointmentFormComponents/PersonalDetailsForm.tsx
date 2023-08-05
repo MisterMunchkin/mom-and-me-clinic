@@ -11,6 +11,7 @@ import { isDate, differenceInYears } from "date-fns";
 interface PersonalDetailsForm {
   handleFormSubmit: (personalDetails: PersonalDetailsMTFormInterface) => void;
   handleBack: () => void;
+  defaultPersonalDetails: PersonalDetailsMTFormInterface | undefined
 }
 
 const genders = ['Female', 'Male', 'Others'];
@@ -101,7 +102,7 @@ const personalDetailsFormSchema: yup.ObjectSchema<PersonalDetailsMTFormInterface
     .string()
 });
 
-export default function PersonalDetailsForm({handleFormSubmit, handleBack}: PersonalDetailsForm) {
+export default function PersonalDetailsForm({handleFormSubmit, handleBack, defaultPersonalDetails}: PersonalDetailsForm) {
 
   const {
     register: registerPersonalDetails,
@@ -110,6 +111,7 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack}: Pers
     reset: resetPersonalDetails
   } = useForm<PersonalDetailsMTFormInterface>({
     resolver: yupResolver(personalDetailsFormSchema),
+    defaultValues: defaultPersonalDetails
   });
 
   const submit: SubmitHandler<PersonalDetailsMTFormInterface> = async (personalDetails) => {
