@@ -15,6 +15,8 @@ export class AppointmentSubmitRequest {
   selectedService: string;
   preferredSchedule: string;
 
+  static readonly numOfRequiredProps: number = 9; 
+
   constructor(
     personalDetails: PersonalDetailsMTFormInterface,
     selectedService: ServiceClass,
@@ -24,9 +26,9 @@ export class AppointmentSubmitRequest {
     this.patientFullName = `${personalDetails.firstName}${(personalDetails.middleName) ? ' ' + personalDetails.middleName : ''} ${personalDetails.lastName}`.trim();
     const { month, day, year } = personalDetails.dateOfBirth;
     this.patientDateOfBirth = `${monthNames[month]} ${day}, ${year}`;
-    this.patientPhoneNumber = personalDetails.phoneNumber;
+    this.patientPhoneNumber = personalDetails.phoneNumber.trim();
     this.patientSex = personalDetails.sex;
-    this.patientMedicalConcern = personalDetails.medicalConcern;
+    this.patientMedicalConcern = personalDetails.medicalConcern.trim();
     this.honeyPotEmail = personalDetails.honeyPotEmail;
     this.doctorFullName = selectedDoctor.name
     this.doctorEmail = selectedDoctor.email;

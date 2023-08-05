@@ -28,8 +28,6 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function POST(request: NextRequest) {
-  debugger
-
   const invalidResponse = isInvalidRequest(request);
   if (invalidResponse) {
     return invalidResponse;
@@ -80,6 +78,22 @@ function isInvalidRequest(request: NextRequest): NextResponse | null {
 function isInvalidForm(requestForm: AppointmentSubmitRequest): NextResponse | null {
   if (requestForm.honeyPotEmail) { // caught a bot
     return NextResponse.json(null, {status: 200});
+  }
+
+  const requiredProperties = Object.keys(requestForm).filter((key) => key !== 'honeyPotEmail');
+
+  //checks if the correct number of required props are declared on the request
+  if (requiredProperties.length !== AppointmentSubmitRequest.numOfRequiredProps) {
+    return NextResponse.json(requestForm, {status: 500, statusText: `There are missing properties in the request object`});
+  } 
+
+  //checks if any required properties are empty
+  const emptyProperties = requiredProperties
+    .filter(key => !requestForm[key as keyof AppointmentSubmitRequest]);
+
+  if (emptyProperties && emptyProperties.length > 0) {
+    const joinedEmptyProperties = emptyProperties.join(', ');
+    return NextResponse.json(requestForm, {status: 500, statusText: `${joinedEmptyProperties} cannot be empty`});
   }
 
   return null;
