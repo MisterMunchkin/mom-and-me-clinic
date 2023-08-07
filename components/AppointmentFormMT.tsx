@@ -1,16 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Step, Stepper } from "./material-tailwind-export/MaterialTailwindExport";
+import { Step, Stepper } from "../utilities/material-tailwind-export";
 import { AppointmentFormMTInterface, PersonalDetailsMTFormInterface, VisitScheduleMTInterface } from "@/interfaces/appointment";
-import PersonalDetailsForm from "./appointmentFormComponents/PersonalDetailsForm";
-import ServiceSelection from "./appointmentFormComponents/ServiceSelection";
+import PersonalDetailsForm from "./appointment-form-components/PersonalDetailsForm";
+import ServiceSelection from "./appointment-form-components/ServiceSelection";
 import { ServiceClass } from "@/classes/service";
-import DoctorSelection from "./appointmentFormComponents/DoctorSelection";
+import DoctorSelection from "./appointment-form-components/DoctorSelection";
 import { DoctorClass } from "@/classes/doctor";
-import VisitScheduleSelection from "./appointmentFormComponents/VisitScheduleSelection";
+import VisitScheduleSelection from "./appointment-form-components/VisitScheduleSelection";
 import { defaultLocation } from "@/utilities/constants";
-import ConfirmationStep from "./appointmentFormComponents/ConfirmationStep";
+import ConfirmationStep from "./appointment-form-components/ConfirmationStep";
 import { Typography } from "@material-tailwind/react";
 
 interface AppointmentFormMTProps {
