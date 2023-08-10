@@ -6,8 +6,7 @@ import useSWR from "swr";
 import ServiceTags from "@/components/lists/ServiceTags";
 import { useState } from "react";
 import { CustomAlert } from "@/components/utilities/CustomAlert";
-
-const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
+import { fetcher } from "@/services/swr-service";
 
 interface ServiceSelectionProps {
   defaultSelected?: ServiceClass;
