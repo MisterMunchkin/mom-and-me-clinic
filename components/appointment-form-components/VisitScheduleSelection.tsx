@@ -84,12 +84,6 @@ export default function VisitScheduleSelection({defaultAvailableTimeBlocks, defa
 
   return (
     <>
-      <CustomAlert
-        className="bg-amber-500 text-gray-650"
-        message="Select a date and time block schedule to request an appointment"
-        open={openWarning}
-        onClose={() => setOpenWarning(false)}       
-      />
       <div 
         className="flex flex-col space-y-12"
       > 

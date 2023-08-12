@@ -40,12 +40,6 @@ export default function DoctorSelection({defaultSelected, selectedService , hand
 
   return (
     <>
-      <CustomAlert
-        className="bg-amber-500 text-gray-650"
-        message="Select a doctor to request an appointment"
-        open={openWarning}
-        onClose={() => setOpenWarning(false)}
-      />
       <div className="flex flex-col space-y-4">
         {/* timeline */}
         <Timeline className="w-full">

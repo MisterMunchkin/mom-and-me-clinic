@@ -7,6 +7,7 @@ import ServiceTags from "@/components/lists/ServiceTags";
 import { useState } from "react";
 import { CustomAlert } from "@/components/utilities/CustomAlert";
 import { fetcher } from "@/services/swr-service";
+import { alertService } from "@/services/alert-service";
 
 interface ServiceSelectionProps {
   defaultSelected?: ServiceClass;
@@ -28,7 +29,8 @@ export default function ServiceSelection({defaultSelected, handleFormSubmit}: Se
   const handleNext = () => {
     if (!selectedService) {
       //display message or error: needs to select a service
-      setOpenWarning(true);
+      // setOpenWarning(true);
+      alertService.warning('Select a service to request an appointment');
       return;
     }
 
@@ -37,12 +39,6 @@ export default function ServiceSelection({defaultSelected, handleFormSubmit}: Se
   
   return (
     <>
-      <CustomAlert 
-        className="bg-amber-500 text-gray-650"
-        message="Select a service to request an appointment"
-        open={openWarning}
-        onClose={() => setOpenWarning(false)}
-      />
       <div className="flex flex-col space-y-4">
         <div className="overflow-auto max-h-[75vh] p-1 grid gap-4 grid-cols-1 md:max-h-[70vh] sm:grid-cols-2 items-start">
           {data.map((service) => (
