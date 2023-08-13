@@ -6,6 +6,7 @@ import useSWR from "swr";
 import ServiceTags from "@/components/lists/ServiceTags";
 import { useState } from "react";
 import { fetcher } from "@/services/swr-service";
+import { toastNotifyService } from "@/services/toast-notify-service";
 
 interface ServiceSelectionProps {
   defaultSelected?: ServiceClass;
@@ -26,6 +27,7 @@ export default function ServiceSelection({defaultSelected, handleFormSubmit}: Se
   const handleNext = () => {
     if (!selectedService) {
       //display message or error: needs to select a service
+      toastNotifyService.notifyWarning('service-invalid', 'Please select a service to request an appointment');
       return;
     }
 

@@ -7,6 +7,7 @@ import { useState } from "react";
 import useSWR from 'swr';
 import ClinicSchedules from "../lists/ClinicSchedules";
 import { fetcher } from "@/services/swr-service";
+import { toastNotifyService } from "@/services/toast-notify-service";
 
 interface DoctorSelectionProps {
   defaultSelected?: DoctorClass;
@@ -29,6 +30,7 @@ export default function DoctorSelection({defaultSelected, selectedService , hand
   const handleNext = () => {
     if (!selectedDoctor) {
       //display message or error: needs to select a doctor
+      toastNotifyService.notifyWarning('doctor-invalid', 'Please select a doctor to request an appointment');
       return;
     }
 
