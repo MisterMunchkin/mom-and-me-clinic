@@ -1,5 +1,3 @@
-'use client'
-
 import { ServiceClass } from "@/classes/service";
 import { Button, Card, CardBody, CardFooter, Typography } from "@material-tailwind/react";
 import useSWR from "swr";
@@ -7,6 +5,7 @@ import ServiceTags from "@/components/lists/ServiceTags";
 import { useState } from "react";
 import { fetcher } from "@/services/swr-service";
 import { toastNotifyService } from "@/services/toast-notify-service";
+import { toastConstants } from "@/utilities/toast-constants";
 
 interface ServiceSelectionProps {
   defaultSelected?: ServiceClass;
@@ -16,6 +15,10 @@ interface ServiceSelectionProps {
 export default function ServiceSelection({defaultSelected, handleFormSubmit}: ServiceSelectionProps) {
   const { data, error, isLoading } = useSWR<ServiceClass[], any>('/api/services', fetcher);
   const [ selectedService, setSelectedService ] = useState<ServiceClass | undefined>(defaultSelected);
+  const {
+    toastId, 
+    message
+  } = toastConstants.serviceSelection.noSelectedService;
 
   //Handle the error state
   if (error) return <div>Failed to load</div>;
@@ -27,10 +30,10 @@ export default function ServiceSelection({defaultSelected, handleFormSubmit}: Se
   const handleNext = () => {
     if (!selectedService) {
       //display message or error: needs to select a service
-      toastNotifyService.notifyWarning('service-invalid', 'Please select a service to request an appointment');
+      toastNotifyService.notifyWarning(toastId, message);
       return;
     }
-
+    toastNotifyService.dismiss(toastId);
     handleFormSubmit(selectedService);
   }
   

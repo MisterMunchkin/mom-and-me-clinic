@@ -1,6 +1,8 @@
 import { ClinicScheduleClass, DayNumber, DoctorClass } from "@/classes/doctor";
 import { VisitScheduleMTInterface } from "@/interfaces/appointment";
+import { toastNotifyService } from "@/services/toast-notify-service";
 import { defaultLocation } from "@/utilities/constants";
+import { toastConstants } from "@/utilities/toast-constants";
 import { Avatar, Button, Card, CardBody, CardHeader, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import DatePicker from 'react-datepicker';
@@ -22,6 +24,10 @@ export default function VisitScheduleSelection({defaultAvailableTimeBlocks, defa
     .clinicSchedules
     .find(clinicSchedule => clinicSchedule.clinicLocation === location);
   const [ availableTimeBlocks, setAvailableTimeBlocks ] = useState<string[]>(defaultAvailableTimeBlocks);
+  const { 
+    toastId,
+    message
+  } = toastConstants.visisScheduleSelection.noSelectedVisit
 
   if (!doctorClinicSchedule) {
     return ( 
@@ -73,9 +79,11 @@ export default function VisitScheduleSelection({defaultAvailableTimeBlocks, defa
   const handleNext = () => {
     if (!visitSchedule || !visitSchedule.preferredDate || !visitSchedule.preferredTimeBlock) {
       //should display alert message to user
+      toastNotifyService.notifyWarning(toastId, message);
       return;
     }
 
+    toastNotifyService.dismiss(toastId);
     handleFormSubmit(visitSchedule);
   }
 

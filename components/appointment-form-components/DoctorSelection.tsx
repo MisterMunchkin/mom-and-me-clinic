@@ -1,5 +1,3 @@
-'use client'
-
 import { DoctorClass } from "@/classes/doctor";
 import { ServiceClass } from "@/classes/service";
 import { Avatar, Button, Card, CardBody, CardHeader, Timeline, TimelineBody, TimelineConnector, TimelineHeader, TimelineIcon, TimelineItem, Typography } from "@material-tailwind/react";
@@ -8,6 +6,7 @@ import useSWR from 'swr';
 import ClinicSchedules from "../lists/ClinicSchedules";
 import { fetcher } from "@/services/swr-service";
 import { toastNotifyService } from "@/services/toast-notify-service";
+import { toastConstants } from "@/utilities/toast-constants";
 
 interface DoctorSelectionProps {
   defaultSelected?: DoctorClass;
@@ -19,6 +18,10 @@ interface DoctorSelectionProps {
 export default function DoctorSelection({defaultSelected, selectedService , handleFormSubmit, handleBack}: DoctorSelectionProps) {
   const { data, error, isLoading } = useSWR<DoctorClass[], any>(() => '/api/doctors?serviceTags=' + selectedService.joinedTags, fetcher);
   const [selectedDoctor, setSelectedDoctor] = useState<DoctorClass | undefined>(defaultSelected);
+  const { 
+    toastId,
+    message
+  } = toastConstants.doctorSelection.noSelectedDoctor
 
   //Handle the error state
   if (error) return <div>Failed to load</div>;
@@ -30,10 +33,11 @@ export default function DoctorSelection({defaultSelected, selectedService , hand
   const handleNext = () => {
     if (!selectedDoctor) {
       //display message or error: needs to select a doctor
-      toastNotifyService.notifyWarning('doctor-invalid', 'Please select a doctor to request an appointment');
+      toastNotifyService.notifyWarning(toastId, message);
       return;
     }
 
+    toastNotifyService.dismiss(toastId);
     handleFormSubmit(selectedDoctor);
   }
 

@@ -1,5 +1,3 @@
-'use client';
-
 import { AppointmentFormMTInterface } from "@/interfaces/appointment";
 import { Avatar, Button, Card, CardHeader, Typography } from "@material-tailwind/react";
 import { CheckBadgeIcon } from "@heroicons/react/20/solid";
@@ -7,7 +5,8 @@ import Image from 'next/image';
 import lifeSaverImage from '../../public/lifesavers_consulting.png';
 import { monthNames } from "@/utilities/constants";
 import { AppointmentSubmitRequest } from "@/classes/appointment-submit-request";
-import { useState } from "react";
+import { toastNotifyService } from "@/services/toast-notify-service";
+import { toastConstants } from "@/utilities/toast-constants";
 
 interface ConfirmationStepProps {
   form: AppointmentFormMTInterface;
@@ -16,11 +15,10 @@ interface ConfirmationStepProps {
 
 export default function ConfirmationStep({form, handleBack}: ConfirmationStepProps) {
   const {personalDetails, selectedDoctor, selectedService, visitSchedule} = form;
-  const [ openError, setOpenError ] = useState<{
-    open: boolean,
-    message?: string,
-    className?: string
-  }>({open: false});
+  const { 
+    toastId,
+    message
+  } = toastConstants.confirmationStep.submitError
 
   if (!personalDetails) return <div>Personal details has not been added</div>
   if (!selectedDoctor) return <div>Doctor has not been selected</div>
@@ -52,14 +50,11 @@ export default function ConfirmationStep({form, handleBack}: ConfirmationStepPro
       }
 
       // display success
+      toastNotifyService.dismiss(toastId);
     } catch (error: any) {
       // display failure
-      setOpenError({
-        open: true,
-        message: error,
-        className: 'bg-red-500'
-      });
-      return
+      toastNotifyService
+        .notifyError(toastId, message);
     }
   }
 
