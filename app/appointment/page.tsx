@@ -1,6 +1,8 @@
-import AppointmentForm from "@/components/AppointmentForm";
 import AppointmentFormMT from "@/components/AppointmentFormMT";
 import Link from "next/link";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface AppointmentPageParams {
   backNav: string;
@@ -28,25 +30,28 @@ export default function Page({
 }) {
   const backNavString = `/${searchParams.backNav ?? ''}`;
   return (
-    <main className="h-screen">
-      <div className="h-full w-full flex flex-row justify-center p-4">
-        <div className="pt-4 rounded-lg bg-white-ivory  w-full h-full xl:basis-1/2">
-          <Link className="px-0 sm:px-8 text-gray-650" href={backNavString} scroll={false}>
-            <span aria-hidden="true">←</span> Cancel Booking
-          </Link>
-          <div className="py-8 px-0 sm:px-8">
-            {/* <AppointmentForm
-              defaultServiceName={searchParams.defaultService} 
-              defaultDoctorName={searchParams.defaultDoctor}
-            /> */}
+    <>
+      <ToastContainer />
+      <main className="h-screen">
+        <div className="h-full w-full flex flex-row justify-center p-4">
+          <div className="pt-4 rounded-lg bg-white-ivory  w-full h-full xl:basis-1/2">
+            <Link className="px-0 sm:px-8 text-gray-650" href={backNavString} scroll={false}>
+              <span aria-hidden="true">←</span> Cancel Booking
+            </Link>
+            <div className="py-8 px-0 sm:px-8">
+              {/* <AppointmentForm
+                defaultServiceName={searchParams.defaultService} 
+                defaultDoctorName={searchParams.defaultDoctor}
+              /> */}
 
-            <AppointmentFormMT
-              defaultServiceName={searchParams.defaultService} 
-              defaultDoctorName={searchParams.defaultDoctor}
-            />
+              <AppointmentFormMT
+                defaultServiceName={searchParams.defaultService} 
+                defaultDoctorName={searchParams.defaultDoctor}
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   )
 }

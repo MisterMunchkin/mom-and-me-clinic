@@ -6,7 +6,8 @@ import {
   Step,
   Textarea,
   List,
-  Input
+  Input,
+  Alert
 } from "@material-tailwind/react";
 
 export {
@@ -15,5 +16,6 @@ export {
   Step,
   Textarea,
   List,
-  Input
+  Input,
+  Alert
 }

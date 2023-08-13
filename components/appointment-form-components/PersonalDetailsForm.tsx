@@ -1,7 +1,7 @@
 import { PersonalDetailsMTFormInterface } from "@/interfaces/appointment";
 import * as yup from "yup";
 import "yup-phone-lite";
-import { Button } from "./../material-tailwind-export/MaterialTailwindExport";
+import { Button } from "../../utilities/material-tailwind-export";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Typography } from "@material-tailwind/react";
