@@ -12,7 +12,6 @@ import VisitScheduleSelection from "./appointment-form-components/VisitScheduleS
 import { defaultLocation } from "@/utilities/constants";
 import ConfirmationStep from "./appointment-form-components/ConfirmationStep";
 import { Typography } from "@material-tailwind/react";
-import { CustomAlert } from "./utilities/CustomAlert";
 
 interface AppointmentFormMTProps {
   defaultServiceName?: string;
@@ -55,7 +54,6 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
 
   return (
     <>
-      <CustomAlert />
       <div className="space-y-8">
         <div className="px-4 sm:px-0">
           <Stepper
