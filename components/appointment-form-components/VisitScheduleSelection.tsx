@@ -5,7 +5,6 @@ import { Avatar, Button, Card, CardBody, CardHeader, Typography } from "@materia
 import { useState } from "react";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { CustomAlert } from '@/components/utilities/CustomAlert';
 
 interface VisitScheduleSelectionProps {
   defaultAvailableTimeBlocks: string[];
@@ -23,7 +22,6 @@ export default function VisitScheduleSelection({defaultAvailableTimeBlocks, defa
     .clinicSchedules
     .find(clinicSchedule => clinicSchedule.clinicLocation === location);
   const [ availableTimeBlocks, setAvailableTimeBlocks ] = useState<string[]>(defaultAvailableTimeBlocks);
-  const [ openWarning, setOpenWarning ] = useState<boolean>(false);
 
   if (!doctorClinicSchedule) {
     return ( 
@@ -75,7 +73,6 @@ export default function VisitScheduleSelection({defaultAvailableTimeBlocks, defa
   const handleNext = () => {
     if (!visitSchedule || !visitSchedule.preferredDate || !visitSchedule.preferredTimeBlock) {
       //should display alert message to user
-      setOpenWarning(true);
       return;
     }
 

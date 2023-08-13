@@ -7,7 +7,6 @@ import { useState } from "react";
 import useSWR from 'swr';
 import ClinicSchedules from "../lists/ClinicSchedules";
 import { fetcher } from "@/services/swr-service";
-import { CustomAlert } from '@/components/utilities/CustomAlert';
 
 interface DoctorSelectionProps {
   defaultSelected?: DoctorClass;
@@ -19,7 +18,6 @@ interface DoctorSelectionProps {
 export default function DoctorSelection({defaultSelected, selectedService , handleFormSubmit, handleBack}: DoctorSelectionProps) {
   const { data, error, isLoading } = useSWR<DoctorClass[], any>(() => '/api/doctors?serviceTags=' + selectedService.joinedTags, fetcher);
   const [selectedDoctor, setSelectedDoctor] = useState<DoctorClass | undefined>(defaultSelected);
-  const [ openWarning, setOpenWarning ] = useState<boolean>(false);
 
   //Handle the error state
   if (error) return <div>Failed to load</div>;
@@ -31,7 +29,6 @@ export default function DoctorSelection({defaultSelected, selectedService , hand
   const handleNext = () => {
     if (!selectedDoctor) {
       //display message or error: needs to select a doctor
-      setOpenWarning(true);
       return;
     }
 

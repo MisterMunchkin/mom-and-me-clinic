@@ -8,7 +8,6 @@ import lifeSaverImage from '../../public/lifesavers_consulting.png';
 import { monthNames } from "@/utilities/constants";
 import { AppointmentSubmitRequest } from "@/classes/appointment-submit-request";
 import { useState } from "react";
-import { CustomAlert } from '@/components/utilities/CustomAlert';
 
 interface ConfirmationStepProps {
   form: AppointmentFormMTInterface;

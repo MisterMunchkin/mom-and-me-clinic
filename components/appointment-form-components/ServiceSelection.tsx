@@ -5,9 +5,7 @@ import { Button, Card, CardBody, CardFooter, Typography } from "@material-tailwi
 import useSWR from "swr";
 import ServiceTags from "@/components/lists/ServiceTags";
 import { useState } from "react";
-import { CustomAlert } from "@/components/utilities/CustomAlert";
 import { fetcher } from "@/services/swr-service";
-import { alertService } from "@/services/alert-service";
 
 interface ServiceSelectionProps {
   defaultSelected?: ServiceClass;
@@ -17,7 +15,6 @@ interface ServiceSelectionProps {
 export default function ServiceSelection({defaultSelected, handleFormSubmit}: ServiceSelectionProps) {
   const { data, error, isLoading } = useSWR<ServiceClass[], any>('/api/services', fetcher);
   const [ selectedService, setSelectedService ] = useState<ServiceClass | undefined>(defaultSelected);
-  const [ openWarning, setOpenWarning ] = useState<boolean>(false);
 
   //Handle the error state
   if (error) return <div>Failed to load</div>;
@@ -29,8 +26,6 @@ export default function ServiceSelection({defaultSelected, handleFormSubmit}: Se
   const handleNext = () => {
     if (!selectedService) {
       //display message or error: needs to select a service
-      // setOpenWarning(true);
-      alertService.warning('Select a service to request an appointment');
       return;
     }
 
