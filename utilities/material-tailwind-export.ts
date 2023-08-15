@@ -7,7 +7,8 @@ import {
   Textarea,
   List,
   Input,
-  Alert
+  Alert,
+  Typography
 } from "@material-tailwind/react";
 
 export {
@@ -17,5 +18,6 @@ export {
   Textarea,
   List,
   Input,
-  Alert
+  Alert,
+  Typography
 }

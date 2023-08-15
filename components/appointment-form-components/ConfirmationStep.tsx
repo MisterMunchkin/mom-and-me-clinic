@@ -7,6 +7,7 @@ import { monthNames } from "@/utilities/constants";
 import { AppointmentSubmitRequest } from "@/classes/appointment-submit-request";
 import { toastNotifyService } from "@/services/toast-notify-service";
 import { toastConstants } from "@/utilities/toast-constants";
+import { useRouter } from 'next/navigation';
 
 interface ConfirmationStepProps {
   form: AppointmentFormMTInterface;
@@ -18,7 +19,8 @@ export default function ConfirmationStep({form, handleBack}: ConfirmationStepPro
   const { 
     toastId,
     message
-  } = toastConstants.confirmationStep.submitError
+  } = toastConstants.confirmationStep.submitError;
+  const router = useRouter();
 
   if (!personalDetails) return <div>Personal details has not been added</div>
   if (!selectedDoctor) return <div>Doctor has not been selected</div>
@@ -51,6 +53,9 @@ export default function ConfirmationStep({form, handleBack}: ConfirmationStepPro
 
       // display success
       toastNotifyService.dismiss(toastId);
+      setTimeout(() => {
+        router.push(`appointment/booking-confirmed?patientFirstName=${personalDetails.firstName}`);
+      }, 250);
     } catch (error: any) {
       // display failure
       toastNotifyService
