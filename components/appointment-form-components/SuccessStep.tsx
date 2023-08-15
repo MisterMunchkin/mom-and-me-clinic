@@ -46,6 +46,7 @@ export default function SuccessStep({name}: SuccessStepProps) {
         </div>
 
         <Image
+          className="pb-24"
           src={lifeSaverImage}
           alt='lifesaver waiting image'
           width={500}
