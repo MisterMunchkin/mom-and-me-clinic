@@ -3,13 +3,12 @@ import Image from "next/image";
 import logo from "@/public/logo.png";
 import { Bars3Icon } from "@heroicons/react/20/solid";
 import { IconButton } from "@/utilities/material-tailwind-export";
-import BurgerMenu from "./BurgerMenu";
 
 interface NavBarProps {
-  openDrawer: () => void;
+  setShowDrawer: (show: boolean) => void;
 }
 
-export default function NavBar() {
+export default function NavBar({setShowDrawer}: NavBarProps) {
   return (
     <nav className={`frosted-glass top-0 sticky md:px-8 px-4 z-50`}>
       <div className="flex items-center">
@@ -31,7 +30,15 @@ export default function NavBar() {
             </ul>
           </div>
           <div className="block order-1 md:hidden">
-            <BurgerMenu />
+          <IconButton
+            variant="text"
+            className="text-gray-650"
+          >
+            <Bars3Icon 
+              className="h-8 w-8"
+              onClick={() => setShowDrawer(true)}
+            />
+          </IconButton>
           </div>
           <div className="hidden md:block md:order-3">
             <Link 
