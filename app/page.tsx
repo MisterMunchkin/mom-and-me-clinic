@@ -1,13 +1,15 @@
-import NavBar from '../components/NavBar'
-import Hero from '../components/Hero';
-import Doctors from '../components/lists/Doctors';
-import Services from '../components/lists/Services';
+import NavBar from '@/components/nav-layout/NavBar'
+import Hero from '@/components/Hero';
+import Doctors from '@/components/lists/Doctors';
+import Services from '@/components/lists/Services';
 import Maps from '@/components/Maps';
+import BurgerMenu from '@/components/nav-layout/BurgerMenu';
+import NavLayout from '@/components/nav-layout/NavLayout';
 
 export default function Home() {
   return (
     <>
-      <NavBar />
+      <NavLayout />
       <div className="min-h-screen pt-24 md:px-24 md:pt-8">
         <Hero />
       </div>
