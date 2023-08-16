@@ -1,6 +1,7 @@
-import { Drawer, IconButton, List, ListItem } from "@/utilities/material-tailwind-export";
+import { Drawer, IconButton, List, ListItem, ListItemPrefix } from "@/utilities/material-tailwind-export";
 import React from "react";
-import { XMarkIcon } from "@heroicons/react/20/solid";
+import { XMarkIcon, Square3Stack3DIcon } from "@heroicons/react/20/solid";
+import { useRouter } from "next/navigation";
 
 interface BurgerMenuProps {
   showDrawer: boolean;
@@ -8,9 +9,17 @@ interface BurgerMenuProps {
 }
 
 export default function BurgerMenu({showDrawer, setShowDrawer}: BurgerMenuProps) {
+  const router = useRouter();
+
+  const navigate = (nav: string): void => {
+    router.push(nav);
+    setShowDrawer(false);
+  } 
+
   return (
     <React.Fragment>
       <Drawer
+        overlay={false}
         className="h-screen"
         open={showDrawer}
         onClose={() => setShowDrawer(false)}
@@ -29,8 +38,45 @@ export default function BurgerMenu({showDrawer, setShowDrawer}: BurgerMenuProps)
           </IconButton>
         </div>
         <List>
-          <ListItem>
-            Test
+          <ListItem
+            onClick={() => navigate('#hero')}
+          >
+            <ListItemPrefix>
+              <Square3Stack3DIcon 
+                className="text-gray-650"
+              />
+            </ListItemPrefix>
+            Home
+          </ListItem>
+          <ListItem
+            onClick={() => navigate('#services')}
+          >
+            <ListItemPrefix>
+              <Square3Stack3DIcon 
+                className="text-gray-650"
+              />
+            </ListItemPrefix>
+            Browse Services
+          </ListItem>
+          <ListItem
+            onClick={() => navigate('#doctors')}
+          >
+            <ListItemPrefix>
+              <Square3Stack3DIcon 
+                className="text-gray-650"
+              />
+            </ListItemPrefix>
+            Our Doctors
+          </ListItem>
+          <ListItem
+            onClick={() => navigate('#location')}
+          >
+            <ListItemPrefix>
+              <Square3Stack3DIcon 
+                className="text-gray-650"
+              />
+            </ListItemPrefix>
+            Location
           </ListItem>
         </List>
       </Drawer>
