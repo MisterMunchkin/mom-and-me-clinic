@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <NavLayout />
-      <section id="hero" className="min-h-screen pt-24 md:px-24 md:pt-8">
+      <section id="hero" className="min-h-screen py-6 md:px-24 md:py-24">
         <Hero />
       </section>
       <main id="main-content" className="flex flex-col items-baseline justify-center px-12 md:px-24">

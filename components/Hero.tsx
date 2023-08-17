@@ -1,27 +1,50 @@
+import { Typography } from "@/utilities/material-tailwind-export";
 import Link from "next/link";
+import Image from "next/image";
+import PlantIcon from "@/public/lifesavers_plant_5.png"
 
 export default function Hero() {
   return (
     <div className="relative isolate px-6 lg:px-8">
-      <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-        {/* <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-          <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-            Announcing our next round of funding. <a href="#" className="font-semibold text-primary"><span className="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
-          </div>
-        </div> */}
+      <div className="mx-auto max-w-2xl flex flex-col items-center space-y-6">
+        <Image
+          src={PlantIcon}
+          alt='Plant 5'
+          width={70}
+        />
+
         <div className="text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">How can we help you today?</h1>
-          <p className="mt-6 text-lg leading-8 text-gray-600">With over 30 years of experience between </p>
-          <div className="mt-10 flex flex-col gap-y-3 md:flex-row md:gap-x-6 items-center justify-center">
+          <Typography
+            variant="h1"
+            className="font-extrabold text-gray-650"
+          >
+            How are you feeling today?
+          </Typography>
+          <div className="mt-10 flex space-x-4 md:space-x-16 items-center justify-center">
             <Link 
               href={{
                 pathname: `/appointment`
               }} 
-              className="rounded-md bg-primary w-60 md:w-40 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-              Book appoinment
+              className="py-2 px-6 rounded-full bg-pastel-pink text-white-ivory ">
+              <span
+                className="button-text inline-flex items-center"
+              >
+                <Typography
+                  variant="small"
+                  className="font-semibold tracking-wider"
+                >
+                  Book Appoinment
+                </Typography>
+              </span>
             </Link>
-            <a href="#doctors" className="rounded-md bg-primary w-60 md:w-40 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Find a doctor</a>
-            <a href="#services" className="text-sm font-semibold w-60 md:w-40 px-3.5 py-2.5 leading-6 text-gray-900 hover:text-primary">All services <span aria-hidden="true">→</span></a>
+            <Link href="#services" className="underline underline-offset-4">
+              <Typography
+                variant="small"
+                className="font-normal tracking-wider"
+              >
+                Browse Services <span aria-hidden="true">→</span>
+              </Typography>
+            </Link>
           </div>
         </div>
       </div>
