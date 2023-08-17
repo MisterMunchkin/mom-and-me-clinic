@@ -13,39 +13,38 @@ export default function Hero() {
           width={70}
         />
 
-        <div className="text-center">
-          <Typography
-            variant="h1"
-            className="font-extrabold text-gray-650"
-          >
-            How are you feeling today?
-          </Typography>
-          <div className="mt-10 flex space-x-4 md:space-x-16 items-center justify-center">
-            <Link 
-              href={{
-                pathname: `/appointment`
-              }} 
-              className="py-2 px-6 rounded-full bg-pastel-pink text-white-ivory ">
-              <span
-                className="button-text inline-flex items-center"
-              >
-                <Typography
-                  variant="small"
-                  className="font-semibold tracking-wider"
-                >
-                  Book Appoinment
-                </Typography>
-              </span>
-            </Link>
-            <Link href="#services" className="underline underline-offset-4">
+        <Typography
+          variant="h1"
+          className="font-extrabold text-gray-650 text-center"
+        >
+          How are you feeling today?
+        </Typography>
+
+        <div className="mt-10 flex space-x-4 md:space-x-16 items-center justify-center pt-6">
+          <Link 
+            href={{
+              pathname: `/appointment`
+            }} 
+            className="py-2 px-6 rounded-full bg-pastel-pink text-white-ivory ">
+            <span
+              className="button-text inline-flex items-center"
+            >
               <Typography
                 variant="small"
-                className="font-normal tracking-wider"
+                className="font-semibold tracking-wider"
               >
-                Browse Services <span aria-hidden="true">→</span>
+                Book Appoinment
               </Typography>
-            </Link>
-          </div>
+            </span>
+          </Link>
+          <Link href="#services" className="underline underline-offset-4">
+            <Typography
+              variant="small"
+              className="font-normal tracking-wider"
+            >
+              Browse Services <span aria-hidden="true">→</span>
+            </Typography>
+          </Link>
         </div>
       </div>
     </div>
