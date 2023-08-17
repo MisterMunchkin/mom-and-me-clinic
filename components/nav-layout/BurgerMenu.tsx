@@ -43,7 +43,7 @@ export default function BurgerMenu({showDrawer, setShowDrawer}: BurgerMenuProps)
           >
             <ListItemPrefix>
               <Square3Stack3DIcon 
-                className="text-gray-650"
+                className="text-gray-650 h-6 w-6"
               />
             </ListItemPrefix>
             Home
@@ -53,7 +53,7 @@ export default function BurgerMenu({showDrawer, setShowDrawer}: BurgerMenuProps)
           >
             <ListItemPrefix>
               <Square3Stack3DIcon 
-                className="text-gray-650"
+                className="text-gray-650 h-6 w-6"
               />
             </ListItemPrefix>
             Book Appointment
@@ -63,7 +63,7 @@ export default function BurgerMenu({showDrawer, setShowDrawer}: BurgerMenuProps)
           >
             <ListItemPrefix>
               <Square3Stack3DIcon 
-                className="text-gray-650"
+                className="text-gray-650 h-6 w-6"
               />
             </ListItemPrefix>
             Browse Services
@@ -73,7 +73,7 @@ export default function BurgerMenu({showDrawer, setShowDrawer}: BurgerMenuProps)
           >
             <ListItemPrefix>
               <Square3Stack3DIcon 
-                className="text-gray-650"
+                className="text-gray-650 h-6 w-6"
               />
             </ListItemPrefix>
             Our Doctors
@@ -83,7 +83,7 @@ export default function BurgerMenu({showDrawer, setShowDrawer}: BurgerMenuProps)
           >
             <ListItemPrefix>
               <Square3Stack3DIcon 
-                className="text-gray-650"
+                className="text-gray-650 h-6 w-6"
               />
             </ListItemPrefix>
             Location
