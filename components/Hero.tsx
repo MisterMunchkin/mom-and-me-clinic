@@ -2,6 +2,7 @@ import { Typography } from "@/utilities/material-tailwind-export";
 import Link from "next/link";
 import Image from "next/image";
 import PlantIcon from "@/public/lifesavers_plant_5.png"
+import EventIcon from "@mui/icons-material/Event";
 
 export default function Hero() {
   return (
@@ -25,16 +26,12 @@ export default function Hero() {
             href={{
               pathname: `/appointment`
             }} 
-            className="py-2 px-6 rounded-full bg-pastel-pink text-white-ivory ">
+            className="py-2 px-6 rounded-full bg-pastel-pink text-white-ivory hover:shadow-lg hover:shadow-pastel-pink/50">
             <span
-              className="button-text inline-flex items-center"
+              className="button-text items-center"
             >
-              <Typography
-                variant="small"
-                className="font-semibold tracking-wider"
-              >
-                Book Appoinment
-              </Typography>
+              <EventIcon className="w-5 h-5 display-inline mr-3" />
+              <span className="font-semibold tracking-wider text-sm">Book Appointment</span>
             </span>
           </Link>
           <Link href="#services" className="underline underline-offset-4">
