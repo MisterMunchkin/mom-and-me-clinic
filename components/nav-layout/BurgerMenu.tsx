@@ -49,6 +49,16 @@ export default function BurgerMenu({showDrawer, setShowDrawer}: BurgerMenuProps)
             Home
           </ListItem>
           <ListItem
+            onClick={() => navigate('/appointment')}
+          >
+            <ListItemPrefix>
+              <Square3Stack3DIcon 
+                className="text-gray-650"
+              />
+            </ListItemPrefix>
+            Book Appointment
+          </ListItem>
+          <ListItem
             onClick={() => navigate('#services')}
           >
             <ListItemPrefix>
