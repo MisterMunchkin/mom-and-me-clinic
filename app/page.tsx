@@ -1,4 +1,5 @@
-import Hero from '@/components/Hero';
+import Hero from '@/components/hero/Hero';
+import HeroCarousel from '@/components/hero/HeroCarousel';
 import Doctors from '@/components/lists/Doctors';
 import Services from '@/components/lists/Services';
 import Maps from '@/components/Maps';
@@ -8,8 +9,9 @@ export default function Home() {
   return (
     <>
       <NavLayout />
-      <section id="hero" className="min-h-screen py-6 md:px-24 md:py-24">
+      <section id="hero" className="min-h-screen py-6 md:px-24 md:py-24 flex flex-col items-center space-y-6">
         <Hero />
+        <HeroCarousel />
       </section>
       <main id="main-content" className="flex flex-col items-baseline justify-center px-12 md:px-24">
         {/* Main info should be list of doctors where you can book */}

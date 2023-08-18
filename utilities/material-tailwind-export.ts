@@ -12,7 +12,8 @@ import {
   Input,
   Alert,
   Typography,
-  Drawer
+  Drawer,
+  Carousel
 } from "@material-tailwind/react";
 
 export {
@@ -27,5 +28,6 @@ export {
   Input,
   Alert,
   Typography,
-  Drawer
+  Drawer,
+  Carousel
 }
