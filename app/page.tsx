@@ -1,5 +1,5 @@
-import Hero from '@/components/hero/Hero';
-import HeroCarousel from '@/components/hero/HeroCarousel';
+import Hero from '@/components/hero-section/Hero';
+import HeroCarousel from '@/components/hero-section/HeroCarousel';
 import Doctors from '@/components/lists/Doctors';
 import Services from '@/components/lists/Services';
 import Maps from '@/components/Maps';
@@ -18,7 +18,7 @@ export default function Home() {
         <section id="doctors" className="pt-24 md:pt-16">
           <div className="mx-auto pb-6 md:pb-12">
             <div className="text-left">
-              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">Know your Doctors</h1>
+              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our Doctors</h1>
             </div>
           </div>
           <Doctors />
