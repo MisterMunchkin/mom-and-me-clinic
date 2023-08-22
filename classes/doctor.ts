@@ -12,6 +12,7 @@ export class DoctorClass implements DoctorInterface {
   readonly specialties?: string[];
   readonly clinicSchedules: ClinicScheduleClass[];
   readonly fullTitle: string;
+  readonly picture: string;
 
   constructor(
     name: string,
@@ -19,6 +20,7 @@ export class DoctorClass implements DoctorInterface {
     phoneNumber: string,
     email: string,
     clinicSchedules: ClinicScheduleInterface[],
+    picture: string,
     specialties?: string[],
     title?: string, 
     designation?: string) {
@@ -38,6 +40,8 @@ export class DoctorClass implements DoctorInterface {
         clinicSchedule.clinicLocation, 
         clinicSchedule.schedules)
     ) ?? []
+
+    this.picture = picture;
   }
 
   public static fromInterface(doctorInterface: DoctorInterface) {
@@ -47,9 +51,11 @@ export class DoctorClass implements DoctorInterface {
       doctorInterface.phoneNumber,
       doctorInterface.email,
       doctorInterface.clinicSchedules,
+      doctorInterface.picture,
       doctorInterface.specialties,
       doctorInterface.title,
       doctorInterface.designation
+
     )
   }
 

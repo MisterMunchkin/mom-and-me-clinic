@@ -1,6 +1,6 @@
 import Hero from '@/components/hero-section/Hero';
 import HeroCarousel from '@/components/hero-section/HeroCarousel';
-import Doctors from '@/components/lists/Doctors';
+import Doctors from '@/components/doctors-section/Doctors';
 import Services from '@/components/lists/Services';
 import Maps from '@/components/Maps';
 import NavLayout from '@/components/nav-layout/NavLayout';
@@ -18,7 +18,7 @@ export default function Home() {
         <section id="doctors" className="pt-24 md:pt-16">
           <div className="mx-auto pb-6 md:pb-12">
             <div className="text-left">
-              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our Doctors</h1>
+              <h1 className="text-2xl font-bold tracking-tight text-gray-650 sm:text-4xl">Our Doctors</h1>
             </div>
           </div>
           <Doctors />
@@ -27,7 +27,7 @@ export default function Home() {
         <section id="services" className="pt-24 md:pt-16">
           <div className="mx-auto pb-6 md:pb-12">
             <div className="text-left">
-              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">Services</h1>
+              <h1 className="text-2xl font-bold tracking-tight text-gray-650 sm:text-4xl">Services</h1>
             </div>
           </div>
           <Services />

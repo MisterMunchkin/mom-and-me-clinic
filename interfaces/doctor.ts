@@ -6,6 +6,7 @@ export interface DoctorInterface {
   phoneNumber: string
   email: string
   specialties?: string[]
+  picture: string
   clinicSchedules: ClinicScheduleInterface[]
 }
 
