@@ -21,26 +21,26 @@ export default function Doctors() {
   const imageHeight = 600;
 
   return (
-    <>
-      <div className="flex flex-col space-x-0 space-y-12 md:flex-row md:space-x-12 md:space-y-0">
+    <div>
+      <div className="flex flex-row overflow-x-auto whitespace-nowrap w-screen">
         {data.map((doctor: DoctorClass) => (
           <Card
             key={doctor.name}
             shadow={false}
-            className="bg-white-coffee border-white-coffee hover:cursor-pointer min-h-[8rem]"
+            className="bg-white-coffee border-white-coffee hover:cursor-pointer min-h-[8rem] min-w-[20rem] mx-4 md:mx-6"
           >
             <CardHeader
               color="transparent"
               floated={false}
               shadow={false}
-              className="ml-4 mr-8 flex items-center gap-4 my-4"
+              className="mx-2 md:mx-4 flex items-center gap-2 md:gap-4 md:my-4"
             >
               <Image 
                 className='rounded-full'
                 src={doctor.picture} 
                 alt={doctor.name}
-                width={120}
-                height={120}                
+                width={100}
+                height={100}                
               />
               <div
                 className="flex w-full flex-col gap-0.5"
@@ -50,7 +50,7 @@ export default function Doctors() {
                 >
                   <Typography
                     variant="h6"
-                    className="text-gray-650"
+                    className="text-gray-650 break-words"
                   >
                     {doctor.fullTitle}
                   </Typography>
@@ -68,6 +68,6 @@ export default function Doctors() {
           </Card>
         ))}
       </div>
-    </>
+    </div>
   );
 }

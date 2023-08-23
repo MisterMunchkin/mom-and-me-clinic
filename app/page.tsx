@@ -13,10 +13,10 @@ export default function Home() {
         <Hero />
         <HeroCarousel />
       </section>
-      <main id="main-content" className="flex flex-col items-baseline justify-center px-12 md:px-24">
+      <main id="main-content" className="flex flex-col items-baseline justify-center md:px-24">
         {/* Main info should be list of doctors where you can book */}
-        <section id="doctors" className="pt-24 md:pt-16">
-          <div className="mx-auto pb-6 md:pb-12">
+        <section id="doctors">
+          <div className="mx-auto pb-6 px-6 md:pb-12">
             <div className="text-left">
               <h1 className="text-2xl font-bold tracking-tight text-gray-650 sm:text-4xl">Our Doctors</h1>
             </div>
@@ -27,7 +27,7 @@ export default function Home() {
         <section id="services" className="pt-24 md:pt-16">
           <div className="mx-auto pb-6 md:pb-12">
             <div className="text-left">
-              <h1 className="text-2xl font-bold tracking-tight text-gray-650 sm:text-4xl">Services</h1>
+              <h1 className="text-2xl font-bold tracking-tight text-gray-650 sm:text-4xl">Our Services</h1>
             </div>
           </div>
           <Services />
@@ -36,7 +36,7 @@ export default function Home() {
         <section id="location" className="pt-24 md:pt-16 pb-24">
           <div className="mx-auto pb-6 md:pb-12">
             <div className="text-left">
-              <h1 className="text-2xl font-bold tracking-tight text-gray-650 sm:text-4xl">Locations</h1>
+              <h1 className="text-2xl font-bold tracking-tight text-gray-650 sm:text-4xl">Our Location</h1>
             </div>
           </div>
           <Maps />
