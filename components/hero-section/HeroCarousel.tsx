@@ -21,6 +21,7 @@ export default function HeroCarousel() {
       //   dynamicBullets: true,
       //   clickable: true,
       // }}
+      grabCursor={true}
       autoplay={{
         delay: 5000
       }}
