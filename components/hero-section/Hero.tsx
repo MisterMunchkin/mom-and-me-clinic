@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import PlantIcon from "@/public/lifesavers_plant_5.png"
 import EventIcon from "@mui/icons-material/Event";
-import HeroCarousel from "./HeroCarousel";
 import React from "react";
 
 export default function Hero() {

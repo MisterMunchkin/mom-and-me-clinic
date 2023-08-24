@@ -36,3 +36,7 @@ body {
 .button-text {
   @apply normal-case font-medium text-base tracking-wide
 }
+
+.pagination-slider > .swiper-wrapper > .swiper-slide > * {
+  margin-bottom: 1.5rem;
+}

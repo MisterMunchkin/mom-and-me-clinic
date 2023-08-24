@@ -23,6 +23,7 @@ export default function MobileDoctors({doctors, className}: MobileDoctorsProps) 
     >
       <div className="w-screen">
         <Swiper
+          className="pagination-slider"
           modules={[Pagination]}
           pagination={{
             dynamicBullets: true,
@@ -36,7 +37,7 @@ export default function MobileDoctors({doctors, className}: MobileDoctorsProps) 
           >
             <Card
                 shadow={false}
-                className="bg-white-coffee border-white-coffee hover:cursor-pointer min-w-[22rem] mx-1 mb-6"
+                className="bg-white-coffee border-white-coffee hover:cursor-pointer min-w-[22rem] mx-1"
               >
                 <CardHeader
                   color="transparent"
