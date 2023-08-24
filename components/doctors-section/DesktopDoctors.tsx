@@ -14,7 +14,7 @@ export default function DesktopDoctors({doctors, className}: DesktopDoctorsProps
     <div
       className={className || ''}
     >
-      <div className="flex flex-row overflow-x-auto whitespace-nowrap w-screen">
+      <div className="flex flex-row overflow-x-auto">
         {doctors.map((doctor: DoctorClass) => (
           <Card
             key={doctor.name}
