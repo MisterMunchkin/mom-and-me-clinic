@@ -1,6 +1,6 @@
 import { ServiceClass } from "@/classes/service";
 import Link from "next/link";
-import ServiceTags from "./lists/ServiceTags";
+import ServiceTags from "../utilities/ServiceTags";
 interface ServiceProps {
   service: ServiceClass;
 }

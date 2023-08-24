@@ -1,7 +1,7 @@
 import Hero from '@/components/hero-section/Hero';
 import HeroCarousel from '@/components/hero-section/HeroCarousel';
 import Doctors from '@/components/doctors-section/Doctors';
-import Services from '@/components/lists/Services';
+import Services from '@/components/services-section/Services';
 import Maps from '@/components/Maps';
 import NavLayout from '@/components/nav-layout/NavLayout';
 
