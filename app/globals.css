@@ -6,7 +6,8 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-  --background-hex: #FBF6F6
+  --background-hex: #FBF6F6;
+  --swiper-theme-color: #E2A5A6 !important;
 }
 
 body {
@@ -16,11 +17,13 @@ body {
 
 .frosted-glass {
   /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.34);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(6.9px);
-  -webkit-backdrop-filter: blur(6.9px);
+  background: rgba(251, 246, 246, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  @apply border-b border-solid border-gray-650
 }
+
+
 
 .input-theme {
   @apply rounded-md bg-white-coffee border-none text-gray-650;
@@ -32,4 +35,8 @@ body {
 
 .button-text {
   @apply normal-case font-medium text-base tracking-wide
+}
+
+.pagination-slider > .swiper-wrapper > .swiper-slide > * {
+  margin-bottom: 1.5rem;
 }
