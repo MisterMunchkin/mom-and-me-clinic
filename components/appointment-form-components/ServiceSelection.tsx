@@ -1,7 +1,7 @@
 import { ServiceClass } from "@/classes/service";
 import { Button, Card, CardBody, CardFooter, Typography } from "@material-tailwind/react";
 import useSWR from "swr";
-import ServiceTags from "@/components/lists/ServiceTags";
+import ServiceTags from "@/components/utilities/ServiceTags";
 import { useState } from "react";
 import { fetcher } from "@/services/swr-service";
 import { toastNotifyService } from "@/services/toast-notify-service";

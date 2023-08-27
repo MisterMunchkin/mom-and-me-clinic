@@ -3,7 +3,7 @@ import { filterList } from "@/utilities/helpers";
 import { Combobox, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
-import ServiceTags from "../lists/ServiceTags";
+import ServiceTags from "../utilities/ServiceTags";
 
 interface ServiceSelectionProps {
   services: ServiceClass[];

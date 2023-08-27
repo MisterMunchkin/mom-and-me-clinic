@@ -1,7 +1,8 @@
 import { ClinicScheduleInterface, DoctorInterface, ScheduleInterface } from "@/interfaces/doctor";
 import { getEnumByValue } from "@/utilities/helpers";
+import { BaseClass } from "./base";
 
-export class DoctorClass implements DoctorInterface {
+export class DoctorClass extends BaseClass implements DoctorInterface {
   readonly title?: string;
   readonly designation?: string;
   readonly name: string;
@@ -24,6 +25,8 @@ export class DoctorClass implements DoctorInterface {
     specialties?: string[],
     title?: string, 
     designation?: string) {
+    super(); 
+
     this.name = name;
     this.serviceTags = serviceTags ?? [];
     this.joinedServiceTags = serviceTags?.join(' ') ?? '';
@@ -57,10 +60,6 @@ export class DoctorClass implements DoctorInterface {
       doctorInterface.designation
 
     )
-  }
-
-  public static getSplittedTags(tags: string): string[] {
-    return tags?.split(' ');
   }
 }
 

@@ -1,9 +1,13 @@
 import Hero from '@/components/hero-section/Hero';
 import HeroCarousel from '@/components/hero-section/HeroCarousel';
 import Doctors from '@/components/doctors-section/Doctors';
-import Services from '@/components/lists/Services';
+import Services from '@/components/services-section/Services';
 import Maps from '@/components/Maps';
 import NavLayout from '@/components/nav-layout/NavLayout';
+import { Suspense } from 'react';
+import LoadingServices from './loading-services';
+import OBGYNBanner from '@/components/services-section/ServiceBanner';
+import LoadingDoctors from './loading-doctors';
 
 export default function Home() {
   return (
@@ -13,24 +17,33 @@ export default function Home() {
         <Hero />
         <HeroCarousel />
       </section>
-      <main id="main-content" className="flex flex-col items-baseline justify-center md:px-24">
+      <main id="main-content" className="flex flex-col items-baseline justify-center">
         {/* Main info should be list of doctors where you can book */}
         <section id="doctors" className='pt-24 md:pt-16'>
-          <div className="mx-auto pb-6 pl-6 md:pb-12">
+          <div className="mx-auto pb-6 pl-6 md:pb-12 md:px-24">
             <div className="text-left">
               <h1 className="text-2xl font-bold tracking-tight text-gray-650 sm:text-4xl">Our Doctors</h1>
             </div>
           </div>
-          <Doctors />
+          <div className='md:px-24'>
+            <Suspense fallback={<LoadingDoctors />}>
+              <Doctors />
+            </Suspense>
+          </div>
         </section>
 
         <section id="services" className="pt-24 md:pt-16">
-          <div className="mx-auto pb-6 pl-6 md:pb-12">
+          <div className="mx-auto pb-4 pl-6 md:pb-6 md:px-24">
             <div className="text-left">
               <h1 className="text-2xl font-bold tracking-tight text-gray-650 sm:text-4xl">Our Services</h1>
             </div>
           </div>
-          <Services />
+          <OBGYNBanner />
+          <div className='md:px-24'>
+            <Suspense fallback={<LoadingServices />}>
+              <Services />
+            </Suspense>
+          </div>
         </section>
 
         <section id="location" className="pt-24 md:pt-16 pb-24">
