@@ -24,7 +24,7 @@ const getServices = async(): Promise<ServiceClass[]> => {
   if (!res.ok) {
     throw new Error ("failed to fetch services");
   }
-  
+  // await new Promise((resolve) => setTimeout(resolve, 10000)) //test skeleton
   const data = await res.json() as ServiceClass[];
   return data;
 }

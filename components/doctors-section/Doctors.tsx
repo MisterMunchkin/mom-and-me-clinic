@@ -1,32 +1,31 @@
-'use client'
-
-import useSWR from 'swr';
 import { DoctorClass } from "@/classes/doctor";
 import DesktopDoctors from './DesktopDoctors';
 import MobileDoctors from './MobileDoctors';
 
-const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
-
-export default function Doctors() {
-  const {data, error, isLoading} = useSWR<DoctorClass[], any>('/api/doctors', fetcher);
-
-  //Handle the error state
-  if (error) return <div>Failed to load</div>;
-  //Handle the loading state
-  if (isLoading) return <div>Loading...</div>;
-  //Handle the ready state and display the result contained in the data object mapped to the structure of the json file
-  if (!data) return null
+export default async function Doctors() {
+  const doctors = await getDoctors();
 
   return (
     <div>
       <DesktopDoctors 
-        doctors={data}
+        doctors={doctors}
         className='hidden md:block'
       />
       <MobileDoctors
-        doctors={data}
+        doctors={doctors}
         className='block md:hidden'
       />
     </div>
   );
+}
+
+const getDoctors = async(): Promise<DoctorClass[]> => {
+  const res = await fetch(`${process.env.URL}/api/doctors`);
+  
+  if (!res.ok) {
+    throw new Error ("failed to fetch services");
+  }
+  // await new Promise((resolve) => setTimeout(resolve, 10000)) //test skeleton
+  const data = await res.json() as DoctorClass[];
+  return data;
 }

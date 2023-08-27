@@ -7,6 +7,7 @@ import NavLayout from '@/components/nav-layout/NavLayout';
 import { Suspense } from 'react';
 import LoadingServices from './loading-services';
 import OBGYNBanner from '@/components/services-section/ServiceBanner';
+import LoadingDoctors from './loading-doctors';
 
 export default function Home() {
   return (
@@ -25,7 +26,9 @@ export default function Home() {
             </div>
           </div>
           <div className='md:px-24'>
-            <Doctors />
+            <Suspense fallback={<LoadingDoctors />}>
+              <Doctors />
+            </Suspense>
           </div>
         </section>
 
