@@ -1,25 +1,28 @@
-'use client'
 
-import useSWR from 'swr';
 import Service from "./Service";
 import { ServiceClass } from "@/classes/service";
 
-const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
+export default async function Services() {
+  const services = await getServices();
 
-export default function Services() {
-  const { data, error, isLoading } = useSWR<ServiceClass[], any>('/api/services', fetcher);
-
-  if (error) return <div>Failed to load</div>;
-
-  if (isLoading) return <div>Loading...</div>;
-
-  if (!data) return null
+  if (!services) return <div>No services fetched.</div>
 
   return (
     <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-      {data.map((service) => (
+      {services.map((service) => (
         <Service key={service.name} service={service} />
       ))}
     </div>
   )
+}
+
+const getServices = async(): Promise<ServiceClass[]> => {
+  const res = await fetch(`${process.env.URL}/api/services`);
+  
+  if (!res.ok) {
+    throw new Error ("failed to fetch services");
+  }
+  
+  const data = await res.json() as ServiceClass[];
+  return data;
 }

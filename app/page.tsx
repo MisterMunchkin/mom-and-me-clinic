@@ -4,6 +4,8 @@ import Doctors from '@/components/doctors-section/Doctors';
 import Services from '@/components/services-section/Services';
 import Maps from '@/components/Maps';
 import NavLayout from '@/components/nav-layout/NavLayout';
+import { Suspense } from 'react';
+import LoadingServices from './loading-services';
 
 export default function Home() {
   return (
@@ -30,7 +32,9 @@ export default function Home() {
               <h1 className="text-2xl font-bold tracking-tight text-gray-650 sm:text-4xl">Our Services</h1>
             </div>
           </div>
-          <Services />
+          <Suspense fallback={<LoadingServices />}>
+            <Services />
+          </Suspense>
         </section>
 
         <section id="location" className="pt-24 md:pt-16 pb-24">
