@@ -5,15 +5,15 @@ import {
   IconButton,
   Stepper,
   Step,
-  Textarea,
   List,
   ListItem,
   ListItemPrefix,
-  Input,
-  Alert,
   Typography,
   Drawer,
-  Carousel
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
 } from "@material-tailwind/react";
 
 export {
@@ -21,13 +21,13 @@ export {
   IconButton,
   Stepper,
   Step,
-  Textarea,
   List,
   ListItem,
   ListItemPrefix,
-  Input,
-  Alert,
   Typography,
   Drawer,
-  Carousel
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter
 }

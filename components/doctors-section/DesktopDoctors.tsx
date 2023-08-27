@@ -14,12 +14,12 @@ export default function DesktopDoctors({doctors, className}: DesktopDoctorsProps
     <div
       className={className || ''}
     >
-      <div className="flex flex-row overflow-x-auto">
+      <div className="flex flex-row overflow-x-auto space-x-6">
         {doctors.map((doctor: DoctorClass) => (
           <Card
             key={doctor.name}
             shadow={false}
-            className="bg-white-coffee border-white-coffee hover:cursor-pointer min-h-[8rem] min-w-[20rem] mx-4 md:mx-6"
+            className="bg-white-coffee border-white-coffee hover:cursor-pointer min-h-[8rem] min-w-[20rem]"
           >
             <CardHeader
               color="transparent"
