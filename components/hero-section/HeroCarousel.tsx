@@ -1,4 +1,3 @@
-// import { Carousel } from "@/utilities/material-tailwind-export";
 'use client'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -37,14 +36,14 @@ export default function HeroCarousel() {
       <SwiperSlide>
         <Image 
           src={Carousel2}
-          alt="Image 1"
+          alt="Image 2"
           className="h-full w-full object-cover"
         />
       </SwiperSlide>
       <SwiperSlide>
         <Image 
           src={Carousel3}
-          alt="Image 1"
+          alt="Image 3"
           className="h-full w-full object-cover"
         />
       </SwiperSlide>
