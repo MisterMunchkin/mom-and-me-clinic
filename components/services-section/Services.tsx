@@ -2,6 +2,8 @@
 import Service from "./Service";
 import { ServiceClass } from "@/classes/service";
 
+const availableServiceTags = 'OB-GYN'
+
 export default async function Services() {
   const services = await getServices();
 
@@ -17,7 +19,7 @@ export default async function Services() {
 }
 
 const getServices = async(): Promise<ServiceClass[]> => {
-  const res = await fetch(`${process.env.URL}/api/services`);
+  const res = await fetch(`${process.env.URL}/api/services?serviceTags=${availableServiceTags}`);
   
   if (!res.ok) {
     throw new Error ("failed to fetch services");
