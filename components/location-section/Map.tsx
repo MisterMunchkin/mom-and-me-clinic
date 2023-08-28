@@ -31,7 +31,7 @@ export default function Map({ locations }: MapProps) {
   return (
     <>
       {isLoaded &&
-        <div className="w-[300px] sm:w-[500px] md:w-[600px] lg:w-[1000px] px-6 pb-6">
+        <div className="w-screen h-full sm:w-[500px] md:w-[600px] lg:w-[1000px] md:px-6 md:pb-6">
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}

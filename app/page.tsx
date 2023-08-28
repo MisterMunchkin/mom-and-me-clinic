@@ -8,6 +8,8 @@ import { Suspense } from 'react';
 import LoadingServices from './loading-services';
 import OBGYNBanner from '@/components/services-section/ServiceBanner';
 import LoadingDoctors from './loading-doctors';
+import Image from 'next/image';
+import PlanIcon from '@/public/lifesavers_plant.png';
 
 export default function Home() {
   return (
@@ -47,21 +49,26 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="location" className="mt-24 md:mt-16 pt-16 md:pt-12 pb-24 bg-melon w-full">
-          <div className='flex justify-center'>
-            <div className="pb-6 pl-6 md:pb-12 md:px-24">
-              <div className="text-left">
+        <section id="location" className="mt-8 md:mt-16 pt-8 md:pt-12 pb-10 md:pb-24 bg-melon w-full">
+          <div className='flex flex-col md:flex-row justify-end'>
+            <div className='flex justify-around pb-4 md:pb-0 md:flex-col md:place-content-start'>
+              <div>
                 <h1 className="text-2xl font-bold tracking-tight text-gray-650 sm:text-4xl">Our Location</h1>
-                <div className=' text-md font-light tracking-light text-gray-650 sm:text-lg'>
+                <div className='indent-3 text-md font-light tracking-light text-gray-650 sm:text-lg'>
                   Room 611
                 </div>
-                <div className=' text-md font-light tracking-light text-gray-650 sm:text-lg'>
+                <div className='indent-3 text-md font-light tracking-light text-gray-650 sm:text-lg'>
                   Velez Medical Arts Building
                 </div>
-                <div className=' text-md font-light tracking-light text-gray-650 sm:text-lg'>
+                <div className='indent-3 text-md font-light tracking-light text-gray-650 sm:text-lg'>
                   V. Ranudo st., Cebu City
                 </div>
               </div>
+              <Image
+                src={PlanIcon}
+                alt='Plant'
+                className='w-[75px] h-[100px] md:w-[100px] md:h-[150px] md:place-self-end'
+              />
             </div>
             <Locations />
           </div>
