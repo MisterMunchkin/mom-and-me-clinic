@@ -5,9 +5,9 @@ import Services from '@/components/services-section/Services';
 import Locations from '@/components/location-section/Locations';
 import NavLayout from '@/components/nav-layout/NavLayout';
 import { Suspense } from 'react';
-import LoadingServices from './loading-services';
+import LoadingServices from '@/components/loading/loading-services';
 import OBGYNBanner from '@/components/services-section/ServiceBanner';
-import LoadingDoctors from './loading-doctors';
+import LoadingDoctors from '@/components/loading/loading-doctors';
 import Image from 'next/image';
 import PlanIcon from '@/public/lifesavers_plant.png';
 
@@ -67,7 +67,7 @@ export default function Home() {
               <Image
                 src={PlanIcon}
                 alt='Plant'
-                className='w-[75px] h-[100px] md:w-[100px] md:h-[150px] md:place-self-end'
+                className='w-[75px] h-[100px] md:w-[100px] md:h-[150px] md:place-self-center'
               />
             </div>
             <Locations />

@@ -3,7 +3,8 @@
 import { LocationInterface } from "@/interfaces/locations";
 import { GoogleMap, InfoWindowF, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import { useState } from "react";
-import MapDirectionsLink from "../MapDirectionsLink";
+import MapDirectionsLink from "./MapDirectionsLink";
+import LoadingMap from "../loading/loading-map";
 
 interface MapProps {
   locations: LocationInterface[];
@@ -25,9 +26,10 @@ export default function Map({ locations }: MapProps) {
     id: 'google-map-script',
     googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY ?? ''
   });
-  
   const [selectedPlace, setSelectedPlace] = useState<LocationInterface | undefined>(undefined);
   
+  if (!isLoaded) return <LoadingMap />
+
   return (
     <>
       {isLoaded &&
