@@ -2,7 +2,7 @@ import { Typography } from "@/utilities/material-tailwind-export";
 import Link from "next/link";
 import Image from "next/image";
 import PlantIcon from "@/public/lifesavers_plant_5.png"
-import EventIcon from "@mui/icons-material/Event";
+import { CalendarDaysIcon } from "@heroicons/react/20/solid";
 import React from "react";
 
 export default function Hero() {
@@ -32,7 +32,7 @@ export default function Hero() {
               <span
                 className="button-text items-center"
               >
-                <EventIcon className="w-5 h-5 display-inline mr-3" />
+                <CalendarDaysIcon className="w-5 h-5 display-inline mr-3" />
                 <span className="font-semibold tracking-wider text-xs sm:text-sm">Book Appointment</span>
               </span>
             </Link>

@@ -39,11 +39,6 @@ export default function Page({
               <span aria-hidden="true">←</span> Cancel Booking
             </Link>
             <div className="py-8 px-0 sm:px-8">
-              {/* <AppointmentForm
-                defaultServiceName={searchParams.defaultService} 
-                defaultDoctorName={searchParams.defaultDoctor}
-              /> */}
-
               <AppointmentFormMT
                 defaultServiceName={searchParams.defaultService} 
                 defaultDoctorName={searchParams.defaultDoctor}

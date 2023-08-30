@@ -3,7 +3,7 @@ import Image from "next/image";
 import logo from "@/public/logo.png";
 import { Bars3Icon } from "@heroicons/react/20/solid";
 import { IconButton } from "@/utilities/material-tailwind-export";
-import EventIcon from "@mui/icons-material/Event";
+import { CalendarDaysIcon } from "@heroicons/react/20/solid";
 
 interface NavBarProps {
   setShowDrawer: (show: boolean) => void;
@@ -50,7 +50,7 @@ export default function NavBar({setShowDrawer}: NavBarProps) {
               <span
                 className="button-text items-center"
               >
-                <EventIcon className="w-5 h-5 display-inline mr-3" />
+                <CalendarDaysIcon className="w-5 h-5 display-inline mr-3" />
                 <span className="font-semibold tracking-wider text-sm">Book Appointment</span>
               </span>
             </Link>
