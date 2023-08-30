@@ -46,7 +46,7 @@ export default function NavBar({setShowDrawer}: NavBarProps) {
               href={{
                 pathname: `/appointment`
               }} 
-              className="py-2 px-5 rounded-full bg-pastel-pink text-white-ivory hover:shadow-lg hover:shadow-pastel-pink/50">
+              className="py-2 px-4 rounded-full bg-pastel-pink text-white-ivory hover:shadow-lg hover:shadow-pastel-pink/50">
               <span
                 className="button-text items-center"
               >
