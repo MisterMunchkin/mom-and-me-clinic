@@ -3,7 +3,7 @@ import Image from "next/image";
 import logo from "@/public/logo.png";
 import { Bars3Icon } from "@heroicons/react/20/solid";
 import { IconButton } from "@/utilities/material-tailwind-export";
-import EventIcon from "@mui/icons-material/Event";
+import { CalendarDaysIcon } from "@heroicons/react/20/solid";
 
 interface NavBarProps {
   setShowDrawer: (show: boolean) => void;
@@ -46,11 +46,11 @@ export default function NavBar({setShowDrawer}: NavBarProps) {
               href={{
                 pathname: `/appointment`
               }} 
-              className="py-2 px-6 rounded-full bg-pastel-pink text-white-ivory hover:shadow-lg hover:shadow-pastel-pink/50">
+              className="py-2 px-4 rounded-full bg-pastel-pink text-white-ivory hover:shadow-lg hover:shadow-pastel-pink/50">
               <span
                 className="button-text items-center"
               >
-                <EventIcon className="w-5 h-5 display-inline mr-3" />
+                <CalendarDaysIcon className="w-5 h-5 inline mr-3 mb-[4px]" />
                 <span className="font-semibold tracking-wider text-sm">Book Appointment</span>
               </span>
             </Link>

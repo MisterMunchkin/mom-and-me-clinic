@@ -1,15 +1,28 @@
 import Hero from '@/components/hero-section/Hero';
 import HeroCarousel from '@/components/hero-section/HeroCarousel';
-import Doctors from '@/components/doctors-section/Doctors';
-import Services from '@/components/services-section/Services';
 import Locations from '@/components/location-section/Locations';
 import NavLayout from '@/components/nav-layout/NavLayout';
-import { Suspense } from 'react';
 import LoadingServices from '@/components/loading/loading-services';
 import OBGYNBanner from '@/components/services-section/ServiceBanner';
 import LoadingDoctors from '@/components/loading/loading-doctors';
 import Image from 'next/image';
 import PlanIcon from '@/public/lifesavers_plant.png';
+
+import dynamic from 'next/dynamic';
+
+const Doctors = dynamic(() => 
+  import ('@/components/doctors-section/Doctors'),
+  {
+    loading: () => <LoadingDoctors />
+  }
+)
+
+const Services = dynamic(() => 
+  import('@/components/services-section/Services'),
+  {
+    loading: () => <LoadingServices />
+  }
+)
 
 export default function Home() {
   return (
@@ -28,9 +41,7 @@ export default function Home() {
             </div>
           </div>
           <div className='md:px-24'>
-            <Suspense fallback={<LoadingDoctors />}>
-              <Doctors />
-            </Suspense>
+            <Doctors />
           </div>
         </section>
 
@@ -43,9 +54,7 @@ export default function Home() {
           </div>
           <OBGYNBanner className='block md:hidden w-screen pb-4' />
           <div className='md:px-24'>
-            <Suspense fallback={<LoadingServices />}>
-              <Services />
-            </Suspense>
+            <Services />
           </div>
         </section>
 
