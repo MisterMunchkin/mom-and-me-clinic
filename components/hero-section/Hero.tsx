@@ -32,8 +32,8 @@ export default function Hero() {
               <span
                 className="button-text items-center"
               >
-                <CalendarDaysIcon className="w-5 h-5 display-inline mr-3" />
-                <span className="font-semibold tracking-wider text-xs sm:text-sm">Book Appointment</span>
+                <CalendarDaysIcon className="w-5 h-5 inline mr-3" />
+                <span className="font-semibold tracking-wider text-sm">Book Appointment</span>
               </span>
             </Link>
             <Link href="#services" className="underline underline-offset-4">
