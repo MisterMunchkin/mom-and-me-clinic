@@ -1,10 +1,12 @@
 import { LocationInterface } from "@/interfaces/locations";
+import { ReactNode } from "react";
 
 interface MapDirectionsLinkProps {
-  destination: LocationInterface | undefined
+  destination: LocationInterface | undefined;
+  children: ReactNode;
 }
 
-export default function MapDirectionsLink({destination}: MapDirectionsLinkProps) {
+export default function MapDirectionsLink({destination, children}: MapDirectionsLinkProps) {
   const encodedAddress = encodeURIComponent(destination?.address ?? '');
   const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`;
   
@@ -13,9 +15,8 @@ export default function MapDirectionsLink({destination}: MapDirectionsLinkProps)
       {destination &&
         <a 
           href={googleMapsUrl} 
-          target="_blank"
-          className="text-primary decoration-primary underline md:no-underline hover:underline">
-          Directions on Google Maps
+          target="_blank">
+          {children}
         </a>
       }
     </>
