@@ -16,18 +16,38 @@ export default function NavBar({setShowDrawer}: NavBarProps) {
         <div className="h-16 mx-auto md:px-4 container flex items-center justify-between flex-wrap md:flex-nowrap">
           {/* Logo */}
           <div className="block order-2 md:order-1">
-            <Image
-              src={logo}
-              alt='logo'
-              width={200}
-            />
+            <a
+              href="#hero"
+            >
+              <Image
+                src={logo}
+                alt='logo'
+                width={200}
+              />
+            </a>
           </div>
           <div className="text-gray-650 w-full hidden md:block md:w-auto md:order-2">
             <ul className="flex font-semibold justify-between">
-              <li className="px-2 md:hidden hover:text-pastel-pink cursor-pointer"><a href="#doctors">Doctors</a></li>
-              <li className="hidden md:px-4 md:py-2 md:block hover:text-pastel-pink cursor-pointer"><a href="#doctors">Know your Doctors</a></li>
-              <li className="px-2 md:px-4 md:py-2 hover:text-pastel-pink cursor-pointer"><a href="#services">Services</a></li>
-              <li className="px-2 md:px-4 md:py-2 hover:text-pastel-pink cursor-pointer"><a href="#location">Clinic Locations</a></li>
+              <li className="px-2 md:hidden">
+                <a 
+                  className="hover:text-pastel-pink cursor-pointer"
+                  href="#doctors">Doctors</a>
+              </li>
+              <li className="hidden md:px-4 md:py-2 md:block">
+                <a 
+                  className="hover:text-pastel-pink cursor-pointer"
+                  href="#doctors">Know your Doctors</a>
+              </li>
+              <li className="px-2 md:px-4 md:py-2">
+                <a 
+                  className="hover:text-pastel-pink cursor-pointer"
+                  href="#services">Services</a>
+              </li>
+              <li className="px-2 md:px-4 md:py-2">
+                <a 
+                  className="hover:text-pastel-pink cursor-pointer"
+                  href="#location">Clinic Locations</a>
+              </li>
             </ul>
           </div>
           <div className="block order-1 md:hidden">

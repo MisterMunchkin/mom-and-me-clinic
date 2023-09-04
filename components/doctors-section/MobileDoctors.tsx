@@ -37,7 +37,7 @@ export default function MobileDoctors({doctors, className}: MobileDoctorsProps) 
           >
             <Card
                 shadow={false}
-                className="bg-white-coffee border-white-coffee hover:cursor-pointer min-w-[22rem] mx-1"
+                className="bg-white-coffee border-white-coffee hover:cursor-pointer min-w-[22rem] mx-4"
               >
                 <CardHeader
                   color="transparent"

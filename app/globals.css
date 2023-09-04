@@ -10,6 +10,10 @@
   --swiper-theme-color: #E2A5A6 !important;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: var(--background-hex);

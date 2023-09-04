@@ -5,8 +5,6 @@ import NavLayout from '@/components/nav-layout/NavLayout';
 import LoadingServices from '@/components/loading/loading-services';
 import OBGYNBanner from '@/components/services-section/ServiceBanner';
 import LoadingDoctors from '@/components/loading/loading-doctors';
-import Image from 'next/image';
-import PlanIcon from '@/public/lifesavers_plant.png';
 
 import dynamic from 'next/dynamic';
 
@@ -58,11 +56,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="location" className="mt-8 md:mt-16 pt-8 md:pt-12 pb-10 md:pb-24 bg-melon w-full">
-
-            
-            <Locations />
-
+        <section id="location" className="mt-8 md:mt-16 pt-8 md:pt-12 pb-10 md:pb-24 bg-melon w-full">            
+          <Locations />
         </section>
       </main>
     </>
