@@ -36,13 +36,15 @@ export default function Hero() {
                 <span className="font-semibold tracking-wider text-sm">Book Appointment</span>
               </span>
             </Link>
-            <Link href="#services" className="underline underline-offset-4">
+            <a 
+              href="#services" 
+              className="underline underline-offset-4 hover:text-pastel-pink cursor-pointer">
               <span
                 className="font-normal tracking-wider text-xs sm:text-sm"
               >
                 Browse Services <span aria-hidden="true">→</span>
               </span>
-            </Link>
+            </a>
           </div>
         </div>
       </div>
