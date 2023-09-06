@@ -1,10 +1,11 @@
 import { Typography } from "@/utilities/material-tailwind-export";
-import Link from "next/link";
 import Image from "next/image";
 import PlantIcon from "@/public/lifesavers_plant_5.png"
-import { CalendarDaysIcon } from "@heroicons/react/20/solid";
 import React from "react";
 import UnderconstructionIcon from '@/public/icons/under_construction.png';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { CalendarDaysIcon } from '@heroicons/react/20/solid';
+import CraneIcon from '@/public/icons/crane.svg';
 
 export default function Hero() {
   return (
@@ -29,20 +30,13 @@ export default function Hero() {
               className="relative"
             >
               <Image
-                src={UnderconstructionIcon}
-                width={35}
-                height={35}
+                src={CraneIcon}
+                width={50}
+                height={50}
                 alt="under_construction_icon"
                 className="absolute bottom-0 left-0"
               />
-              <Image
-                src={UnderconstructionIcon}
-                width={35}
-                height={35}
-                alt="under_construction_icon"
-                className="absolute bottom-0 right-0"
-              />
-              <Link 
+              {/* <Link 
                 href={{
                   pathname: `/appointment`
                 }} 
@@ -53,7 +47,30 @@ export default function Hero() {
                   <CalendarDaysIcon className="w-5 h-5 inline mr-3" />
                   <span className="font-semibold tracking-wider text-sm">Book Appointment</span>
                 </span>
-              </Link>
+              </Link> */}
+              <Popover>
+                <PopoverTrigger
+                  className="py-2 px-4 rounded-full bg-pastel-pink text-white-ivory hover:shadow-lg hover:shadow-pastel-pink/50"
+                >
+                  <CalendarDaysIcon className="w-5 h-5 inline mr-3" />
+                  <span className="font-semibold tracking-wider text-sm">Book Appointment</span>
+                </PopoverTrigger>
+                <PopoverContent
+                  className="bg-white-coffee text-center py-2"
+                  side="top"
+                >
+                  <div
+                    className="text-gray-650 text-lg tracking-wider font-bold"
+                  >
+                    🚧 Under Construction 🚧 👷🏽‍♀️ 
+                  </div>
+                  <div
+                    className="text-gray-650 text-base tracking-wider font-normal"
+                  >
+                    It&apos;ll be ready for you soon!
+                  </div>
+                </PopoverContent>
+              </Popover>
             </div>
             <a 
               href="#services" 
