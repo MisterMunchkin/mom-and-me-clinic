@@ -61,7 +61,7 @@ export default function NavBar({setShowDrawer}: NavBarProps) {
             />
           </IconButton>
           </div>
-          <div className="hidden md:block md:order-3">
+          {/* <div className="hidden md:block md:order-3">
             <Link 
               href={{
                 pathname: `/appointment`
@@ -74,7 +74,7 @@ export default function NavBar({setShowDrawer}: NavBarProps) {
                 <span className="font-semibold tracking-wider text-sm">Book Appointment</span>
               </span>
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </nav>

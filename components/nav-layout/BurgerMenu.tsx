@@ -12,10 +12,10 @@ const navItems = [
     description: 'Home',
     link: '#hero'
   },
-  {
-    description: "Book Appointment",
-    link: '/appointment'
-  },
+  // {
+  //   description: "Book Appointment",
+  //   link: '/appointment'
+  // },
   {
     description: 'Browse Services',
     link: '#services'
