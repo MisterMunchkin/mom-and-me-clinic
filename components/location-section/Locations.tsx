@@ -3,6 +3,9 @@ import Image from 'next/image';
 import PlanIcon from '@/public/lifesavers_plant.png';
 import VelezGMap from '@/public/maps/velez_medical_arts-gmap.png';
 import MapDirectionsLink from "./MapDirectionsLink";
+import { DocumentDuplicateIcon } from '@heroicons/react/24/outline';
+import { Button } from '@/components/ui/button';
+import CopyButton from "../utilities/CopyButton";
 
 const defaultMapLocation = encodeURIComponent('Mom & Me Clinic - Room 611');
 
@@ -24,6 +27,11 @@ export default async function Locations() {
           </div>
           <div className='indent-3 text-md font-light tracking-light text-gray-650 sm:text-lg'>
             V. Ranudo st., Cebu City
+          </div>
+          <div className="indent-3 ">
+            <CopyButton
+              value="+63 916 560 9404"
+            />
           </div>
         </div>
         <Image
