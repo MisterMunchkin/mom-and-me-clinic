@@ -53,7 +53,7 @@ export default function NavBar({setShowDrawer}: NavBarProps) {
           <div className="block order-1 md:hidden">
           <IconButton
             variant="text"
-            className="text-gray-650"
+            className="text-gray-650 focus:bg-pastel-pink focus:text-pastel-green active:bg-pastel-pink active:text-pastel-green hover:bg-white-coffee hover:text-gray-650"
           >
             <Bars3Icon 
               className="h-8 w-8"

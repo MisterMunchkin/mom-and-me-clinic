@@ -35,7 +35,7 @@ export default function BurgerMenu({showDrawer, setShowDrawer}: BurgerMenuProps)
     <React.Fragment>
       <Drawer
         overlay={false}
-        className="h-screen"
+        className="h-screen bg-white-ivory"
         open={showDrawer}
         onClose={() => setShowDrawer(false)}
       >
@@ -44,7 +44,7 @@ export default function BurgerMenu({showDrawer, setShowDrawer}: BurgerMenuProps)
         >
           <IconButton
             variant="text"
-            className="text-gray-650 float-right"
+            className="text-gray-650 float-right focus:bg-pastel-pink focus:text-pastel-green active:bg-pastel-pink active:text-pastel-green hover:bg-white-coffee hover:text-gray-650"
             onClick={() => setShowDrawer(false)}
           >
             <XMarkIcon
@@ -58,7 +58,9 @@ export default function BurgerMenu({showDrawer, setShowDrawer}: BurgerMenuProps)
               key={index}
               href={navItem.link}
             >
-              <ListItem>
+              <ListItem
+                className="text-gray-650 focus:bg-pastel-pink focus:text-pastel-green active:bg-pastel-pink active:text-pastel-green hover:bg-white-coffee hover:text-gray-650"
+              >
                 {navItem.description}
               </ListItem>
             </a>
