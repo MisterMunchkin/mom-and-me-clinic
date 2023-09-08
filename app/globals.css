@@ -24,7 +24,6 @@ body {
   background: rgba(251, 246, 246, 0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  @apply border-b border-solid border-gray-650
 }
 
 
