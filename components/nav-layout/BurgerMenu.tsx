@@ -17,12 +17,12 @@ const navItems = [
   //   link: '/appointment'
   // },
   {
-    description: 'Browse Services',
-    link: '#services'
-  },
-  {
     description: 'Our Doctors',
     link: '#doctors'
+  },
+  {
+    description: 'Browse Services',
+    link: '#services'
   },
   {
     description: 'Location',
