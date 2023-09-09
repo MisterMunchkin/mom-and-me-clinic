@@ -2,7 +2,6 @@ import { Typography } from "@/utilities/material-tailwind-export";
 import Image from "next/image";
 import PlantIcon from "@/public/lifesavers_plant_5.png"
 import React from "react";
-import UnderconstructionIcon from '@/public/icons/under_construction.png';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { CalendarDaysIcon } from '@heroicons/react/20/solid';
 import CraneIcon from '@/public/icons/crane.svg';
