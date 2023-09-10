@@ -3,8 +3,6 @@ import Image from 'next/image';
 import PlanIcon from '@/public/lifesavers_plant.png';
 import VelezGMap from '@/public/maps/velez_medical_arts-gmap.png';
 import MapDirectionsLink from "./MapDirectionsLink";
-import { DocumentDuplicateIcon } from '@heroicons/react/24/outline';
-import { Button } from '@/components/ui/button';
 import CopyButton from "../utilities/CopyButton";
 
 const defaultMapLocation = encodeURIComponent('Mom & Me Clinic - Room 611');
