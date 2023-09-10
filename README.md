@@ -6,31 +6,20 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
 ## Shadcn UI Usage
 Use the manual way, the CLI way causes changes to the current theme that we do not want, so we need to just do this manually.
 
 [shadcn/ui docs](https://ui.shadcn.com/docs/components/)
+
+## Supabase Development
+The app uses supabase for DB, and possibly authentication. For local development, you will need to run `supabase start` with Docker Desktop running. 
+You might also need to run `supabase db pull` to retrieve the latest database schema. Run `supabase db reset` to reset yopur local DB.
+
+
 
 Attributions - Flat Icon
 - <a href="https://www.flaticon.com/free-icons/under-construction" title="under construction icons">Under construction icons created by winnievinzence - Flaticon</a>
