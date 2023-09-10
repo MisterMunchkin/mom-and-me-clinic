@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { PhoneNumberClickLog } from '@/interfaces/phone-number-click-log';
-import { TableNames } from '@/supabase/database.types';
+import { TableNames } from '@/utilities/database.types';
 import { createFingerprint, retrieveUserAgentDevice } from '@/utilities/navigator';
 import { DocumentDuplicateIcon, CheckIcon } from '@heroicons/react/24/outline';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
