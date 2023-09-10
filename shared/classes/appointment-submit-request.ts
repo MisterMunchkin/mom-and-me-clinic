@@ -1,7 +1,7 @@
-import { PersonalDetailsMTFormInterface, VisitScheduleMTInterface } from "@/interfaces/appointment";
+import { PersonalDetailsMTFormInterface, VisitScheduleMTInterface } from "@/shared/interfaces/appointment";
 import { ServiceClass } from "./service";
 import { DoctorClass } from "./doctor";
-import { getFullDateString, getMonthName } from "@/utilities/helpers";
+import { getFullDateString, getMonthName } from "@/shared/utilities/helpers";
 
 export class AppointmentSubmitRequest {
   patientFullName: string;

@@ -1,4 +1,4 @@
-import { Drawer, IconButton, List, ListItem } from "@/utilities/material-tailwind-export";
+import { Drawer, IconButton, List, ListItem } from "@/shared/utilities/material-tailwind-export";
 import React from "react";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 

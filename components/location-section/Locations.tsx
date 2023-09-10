@@ -1,4 +1,4 @@
-import { LocationInterface } from "@/interfaces/locations";
+import { LocationInterface } from "@/shared/interfaces/locations";
 import Image from 'next/image';
 import PlanIcon from '@/public/lifesavers_plant.png';
 import VelezGMap from '@/public/maps/velez_medical_arts-gmap.png';

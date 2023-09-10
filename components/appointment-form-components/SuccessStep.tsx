@@ -1,4 +1,4 @@
-import { Typography } from "@/utilities/material-tailwind-export";
+import { Typography } from "@/shared/utilities/material-tailwind-export";
 import Image from "next/image";
 import confirmIcon from "../../public/booking-confirmation-icon.svg";
 import lifeSaverImage from "../../public/lifesavers-waiting.png";

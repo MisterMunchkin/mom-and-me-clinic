@@ -1,4 +1,4 @@
-import { Typography } from "@/utilities/material-tailwind-export";
+import { Typography } from "@/shared/utilities/material-tailwind-export";
 import Image from "next/image";
 import PlantIcon from "@/public/lifesavers_plant_5.png"
 import React from "react";

@@ -1,6 +1,6 @@
-import { ClinicScheduleClass, Day } from "@/classes/doctor";
-import { ScheduleClass } from '../../classes/doctor';
-import { getEnumKeyByValue } from "@/utilities/helpers";
+import { ClinicScheduleClass, Day } from "@/shared/classes/doctor";
+import { ScheduleClass } from '../../shared/classes/doctor';
+import { getEnumKeyByValue } from "@/shared/utilities/helpers";
 
 interface ClinicScheduleProps {
   clinicSchedules: ClinicScheduleClass[];

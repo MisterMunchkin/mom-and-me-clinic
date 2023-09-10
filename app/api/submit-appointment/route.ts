@@ -2,7 +2,7 @@ import { AppointmentRequestTemplate } from "@/emails/appointment-request";
 import { render } from "@react-email/render";
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from 'nodemailer';
-import { AppointmentSubmitRequest } from "@/classes/appointment-submit-request";
+import { AppointmentSubmitRequest } from "@/shared/classes/appointment-submit-request";
 
 // https://www.kirandev.com/next-js-react-email-sending
 // https://react.email/docs/getting-started/automatic-setup

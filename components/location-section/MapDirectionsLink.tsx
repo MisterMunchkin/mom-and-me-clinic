@@ -1,4 +1,4 @@
-import { LocationInterface } from "@/interfaces/locations";
+import { LocationInterface } from "@/shared/interfaces/locations";
 import { ReactNode } from "react";
 
 interface MapDirectionsLinkProps {

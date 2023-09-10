@@ -1,11 +1,11 @@
-import { ServiceClass } from "@/classes/service";
+import { ServiceClass } from "@/shared/classes/service";
 import { Button, Card, CardBody, CardFooter, Typography } from "@material-tailwind/react";
 import useSWR from "swr";
 import ServiceTags from "@/components/utilities/ServiceTags";
 import { useState } from "react";
-import { fetcher } from "@/services/swr-service";
-import { toastNotifyService } from "@/services/toast-notify-service";
-import { toastConstants } from "@/utilities/toast-constants";
+import { fetcher } from "@/shared/services/swr-service";
+import { toastNotifyService } from "@/shared/services/toast-notify-service";
+import { toastConstants } from "@/shared/utilities/toast-constants";
 
 interface ServiceSelectionProps {
   defaultSelected?: ServiceClass;

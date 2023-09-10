@@ -1,5 +1,5 @@
-import { ServiceClass } from "@/classes/service";
-import { Card, CardFooter } from "@/utilities/material-tailwind-export";
+import { ServiceClass } from "@/shared/classes/service";
+import { Card, CardFooter } from "@/shared/utilities/material-tailwind-export";
 
 interface ServiceProps {
   service: ServiceClass;

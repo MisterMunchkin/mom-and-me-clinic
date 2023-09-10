@@ -1,6 +1,6 @@
 'use client'
 
-import { DoctorClass } from "@/classes/doctor";
+import { DoctorClass } from "@/shared/classes/doctor";
 import { Card, CardHeader, Typography } from "@material-tailwind/react";
 import Image from 'next/image';
 

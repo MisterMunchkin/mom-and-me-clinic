@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import path from "path";
 import { promises as fs } from 'fs';
-import { LocationInterface } from "@/interfaces/locations";
+import { LocationInterface } from "@/shared/interfaces/locations";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
