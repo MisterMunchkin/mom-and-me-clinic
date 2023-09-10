@@ -1,4 +1,4 @@
-import { TagToHexColorInterface } from "@/interfaces/tag-to-hex-color";
+import { TagToHexColorInterface } from "@/shared/interfaces/tag-to-hex-color";
 
 interface ServiceTagsProps {
   tags: string[];

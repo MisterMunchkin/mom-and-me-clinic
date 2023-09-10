@@ -1,4 +1,4 @@
-import { PersonalDetailsMTFormInterface } from '@/interfaces/appointment';
+import { PersonalDetailsMTFormInterface } from '@/shared/interfaces/appointment';
 import {
   Body,
   Container,

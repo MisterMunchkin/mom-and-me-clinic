@@ -1,12 +1,12 @@
-import { DoctorClass } from "@/classes/doctor";
-import { ServiceClass } from "@/classes/service";
+import { DoctorClass } from "@/shared/classes/doctor";
+import { ServiceClass } from "@/shared/classes/service";
 import { Avatar, Button, Card, CardBody, CardHeader, Timeline, TimelineBody, TimelineConnector, TimelineHeader, TimelineIcon, TimelineItem, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import useSWR from 'swr';
 import ClinicSchedules from "../lists/ClinicSchedules";
-import { fetcher } from "@/services/swr-service";
-import { toastNotifyService } from "@/services/toast-notify-service";
-import { toastConstants } from "@/utilities/toast-constants";
+import { fetcher } from "@/shared/services/swr-service";
+import { toastNotifyService } from "@/shared/services/toast-notify-service";
+import { toastConstants } from "@/shared/utilities/toast-constants";
 
 interface DoctorSelectionProps {
   defaultSelected?: DoctorClass;

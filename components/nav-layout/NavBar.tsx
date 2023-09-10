@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "@/public/logo.png";
 import { Bars3Icon } from "@heroicons/react/20/solid";
-import { IconButton } from "@/utilities/material-tailwind-export";
+import { IconButton } from "@/shared/utilities/material-tailwind-export";
 import { CalendarDaysIcon } from "@heroicons/react/20/solid";
 
 interface NavBarProps {

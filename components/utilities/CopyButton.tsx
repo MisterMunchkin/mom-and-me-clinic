@@ -1,9 +1,9 @@
 'use client'
 
 import { Button } from '@/components/ui/button';
-import { PhoneNumberClickLog } from '@/interfaces/phone-number-click-log';
-import { TableNames } from '@/utilities/database.types';
-import { createFingerprint, retrieveUserAgentDevice } from '@/utilities/navigator';
+import { PhoneNumberClickLog } from '@/shared/interfaces/phone-number-click-log';
+import { TableNames } from '@/shared/utilities/database.types';
+import { createFingerprint, retrieveUserAgentDevice } from '@/shared/utilities/navigator';
 import { DocumentDuplicateIcon, CheckIcon } from '@heroicons/react/24/outline';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useState } from 'react';

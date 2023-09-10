@@ -1,8 +1,8 @@
-import { ClinicScheduleClass, DayNumber, DoctorClass } from "@/classes/doctor";
-import { VisitScheduleMTInterface } from "@/interfaces/appointment";
-import { toastNotifyService } from "@/services/toast-notify-service";
-import { defaultLocation } from "@/utilities/constants";
-import { toastConstants } from "@/utilities/toast-constants";
+import { ClinicScheduleClass, DayNumber, DoctorClass } from "@/shared/classes/doctor";
+import { VisitScheduleMTInterface } from "@/shared/interfaces/appointment";
+import { toastNotifyService } from "@/shared/services/toast-notify-service";
+import { defaultLocation } from "@/shared/utilities/constants";
+import { toastConstants } from "@/shared/utilities/toast-constants";
 import { Avatar, Button, Card, CardBody, CardHeader, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import DatePicker from 'react-datepicker';

@@ -1,4 +1,4 @@
-import { shadcn } from "@/utilities/shadcn"
+import { shadcn } from "@/shared/utilities/shadcn"
 
 function Skeleton({
   className,

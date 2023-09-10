@@ -1,4 +1,4 @@
-import { DoctorClass } from "@/classes/doctor";
+import { DoctorClass } from "@/shared/classes/doctor";
 import DesktopDoctors from './DesktopDoctors';
 import MobileDoctors from './MobileDoctors';
 

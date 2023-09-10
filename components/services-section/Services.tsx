@@ -1,6 +1,6 @@
 
 import Service from "./Service";
-import { ServiceClass } from "@/classes/service";
+import { ServiceClass } from "@/shared/classes/service";
 
 const availableServiceTags = 'OB-GYN'
 

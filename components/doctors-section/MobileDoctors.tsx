@@ -1,6 +1,6 @@
 'use client'
 
-import { DoctorClass } from "@/classes/doctor";
+import { DoctorClass } from "@/shared/classes/doctor";
 import Image from 'next/image';
 
 import { Swiper, SwiperSlide } from 'swiper/react';

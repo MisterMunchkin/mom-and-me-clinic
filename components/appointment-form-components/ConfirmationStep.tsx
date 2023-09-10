@@ -1,12 +1,12 @@
-import { AppointmentFormMTInterface } from "@/interfaces/appointment";
+import { AppointmentFormMTInterface } from "@/shared/interfaces/appointment";
 import { Avatar, Button, Card, CardHeader, Typography } from "@material-tailwind/react";
 import { CheckBadgeIcon } from "@heroicons/react/20/solid";
 import Image from 'next/image';
 import lifeSaverImage from '../../public/lifesavers_consulting.png';
-import { monthNames } from "@/utilities/constants";
-import { AppointmentSubmitRequest } from "@/classes/appointment-submit-request";
-import { toastNotifyService } from "@/services/toast-notify-service";
-import { toastConstants } from "@/utilities/toast-constants";
+import { monthNames } from "@/shared/utilities/constants";
+import { AppointmentSubmitRequest } from "@/shared/classes/appointment-submit-request";
+import { toastNotifyService } from "@/shared/services/toast-notify-service";
+import { toastConstants } from "@/shared/utilities/toast-constants";
 import { useRouter } from 'next/navigation';
 
 interface ConfirmationStepProps {

@@ -1,5 +1,5 @@
-import { ClinicScheduleInterface, DoctorInterface, ScheduleInterface } from "@/interfaces/doctor";
-import { getEnumByValue } from "@/utilities/helpers";
+import { ClinicScheduleInterface, DoctorInterface, ScheduleInterface } from "@/shared/interfaces/doctor";
+import { getEnumByValue } from "@/shared/utilities/helpers";
 import { BaseClass } from "./base";
 
 export class DoctorClass extends BaseClass implements DoctorInterface {

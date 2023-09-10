@@ -1,5 +1,5 @@
-import { DoctorClass } from "@/classes/doctor";
-import { ServiceClass } from "@/classes/service";
+import { DoctorClass } from "@/shared/classes/doctor";
+import { ServiceClass } from "@/shared/classes/service";
 
 export interface AppointmentFormMTInterface {
   personalDetails?: PersonalDetailsMTFormInterface;

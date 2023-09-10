@@ -1,4 +1,4 @@
-import { ServiceInterface } from "@/interfaces/service";
+import { ServiceInterface } from "@/shared/interfaces/service";
 import { BaseClass } from "./base";
 
 export class ServiceClass extends BaseClass implements ServiceInterface {
