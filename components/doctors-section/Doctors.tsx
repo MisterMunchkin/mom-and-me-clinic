@@ -23,7 +23,7 @@ const getDoctors = async(): Promise<DoctorClass[]> => {
   const res = await fetch(`${process.env.URL}/api/doctors`);
   
   if (!res.ok) {
-    throw new Error ("failed to fetch services");
+    throw new Error ("failed to fetch doctors");
   }
   // await new Promise((resolve) => setTimeout(resolve, 10000)) //test skeleton
   const data = await res.json() as DoctorClass[];
