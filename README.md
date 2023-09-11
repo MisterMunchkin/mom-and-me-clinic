@@ -25,7 +25,8 @@ Material UI, should be last resort. We want to move into using only just one lib
 The app uses supabase for DB, and possibly authentication. For local development, you will need to run `supabase start` with Docker Desktop running. 
 You might also need to run `supabase db pull` to retrieve the latest database schema. Run `supabase db reset` to reset yopur local DB.
 
-
+## React Email and Nodemailer
+In the future, the app will be able to send emails whenever there is a new booking appointment created. It should send to the doctor or front desk email, and an email confirmation to the user. We are using React Email and Nodemailer to make this happen: https://react.email/docs/integrations/nodemailer
 
 Attributions - Flat Icon
 - <a href="https://www.flaticon.com/free-icons/under-construction" title="under construction icons">Under construction icons created by winnievinzence - Flaticon</a>
