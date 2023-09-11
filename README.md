@@ -15,6 +15,12 @@ Use the manual way, the CLI way causes changes to the current theme that we do n
 
 [shadcn/ui docs](https://ui.shadcn.com/docs/components/)
 
+## Material UI Usage
+As much as possible, we want to use Shadcn for UI libraries but there are some components we needed from material UI. 
+For server components, you can use the existing, or add new components to the `@/shared/utilities/material-tailwind-export.ts` file.
+
+Material UI, should be last resort. We want to move into using only just one library and Shadcn is a better all around library than Material UI.
+
 ## Supabase Development
 The app uses supabase for DB, and possibly authentication. For local development, you will need to run `supabase start` with Docker Desktop running. 
 You might also need to run `supabase db pull` to retrieve the latest database schema. Run `supabase db reset` to reset yopur local DB.
