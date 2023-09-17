@@ -47,6 +47,8 @@ export default async function Locations() {
           src={VelezGMap}
           alt='google map'
           className="w-[300px] h-[300px] md:w-[370px] md:h-[370px] rounded-xl"
+          sizes="(max-width:720px) 60vw, 30vw"
+          placeholder="blur"
         />
       </MapDirectionsLink>
     </div>
