@@ -15,6 +15,7 @@ export default function Hero() {
             src={PlantIcon}
             alt='Plant 5'
             width={70}
+            priority
           />
 
           <Typography

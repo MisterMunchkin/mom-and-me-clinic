@@ -26,13 +26,13 @@ export default function Home() {
   return (
     <>
       <NavLayout />
-      <section id="hero" className="pt-6 pb-10 md:px-24 md:py-24 flex flex-col items-center space-y-6">
+      <section id="hero" className="pt-6 md:px-24 md:py-16 flex flex-col items-center space-y-6">
         <Hero />
         <HeroCarousel />
       </section>
       <main id="main-content" className="flex flex-col items-baseline justify-center">
         {/* Main info should be list of doctors where you can book */}
-        <section id="doctors" className='pt-24 md:pt-16'>
+        <section id="doctors" className='pt-16'>
           <div className="mx-auto pb-6 pl-6 md:pb-12 md:px-24">
             <div className="text-left">
               <h1 className="text-2xl font-bold tracking-tight text-gray-650 sm:text-4xl">Our Doctors</h1>
@@ -43,7 +43,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="services" className="pt-24 md:pt-16">
+        <section id="services" className="pt-16">
           <div className="mx-auto pb-4 pl-6 md:pb-6 md:px-24">
             <div className="text-left">
               <h1 className="text-2xl font-bold tracking-tight text-gray-650 sm:text-4xl md:mb-4">Our Services</h1>
