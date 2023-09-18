@@ -13,7 +13,7 @@ import Carousel3 from "@/public/carousel_3.jpeg";
 export default function HeroCarousel() {
   return (
     <Swiper 
-      className="w-full h-[300px] overflow-x-hidden md:rounded-lg md:w-8/12 md:h-[600px]"
+      className="w-full h-[300px] overflow-x-hidden md:rounded-lg md:w-8/12 md:h-[600px] max-w-[90rem] lg:h-[700px]"
       modules={[Autoplay]}
       loop={true}
       // pagination={{
@@ -32,7 +32,7 @@ export default function HeroCarousel() {
           alt="Image 1"
           className="h-full w-full object-cover"
           placeholder='blur'
-          sizes='(max-width: 720px) 100vw, 40vw'
+          sizes='(max-width: 720px) 100vw, (max-width: 1200px) 60vw, 40vw'
           fill
         />
       </SwiperSlide>
@@ -42,7 +42,7 @@ export default function HeroCarousel() {
           alt="Image 2"
           className="h-full w-full object-cover"
           placeholder='blur'
-          sizes='(max-width: 720px) 100vw, 40vw'
+          sizes='(max-width: 720px) 100vw, (max-width: 1200px) 60vw, 40vw'
           fill
         />
       </SwiperSlide>
@@ -52,7 +52,7 @@ export default function HeroCarousel() {
           alt="Image 3"
           className="h-full w-full object-cover"
           placeholder='blur'
-          sizes='(max-width: 720px) 100vw, 40vw'
+          sizes='(max-width: 720px) 100vw, (max-width: 1200px) 60vw, 40vw'
           fill
         />
       </SwiperSlide>
