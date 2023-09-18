@@ -14,7 +14,7 @@ export default async function Locations() {
 
   return (
     <div className='flex flex-col items-center md:flex-row md:justify-center md:space-x-8'>
-      <div className='flex justify-around pb-4 space-x-8 md:space-y-8 md:flex-col md:place-content-start'>
+      <div className='flex justify-around items-end pb-4 md:pb-0 space-x-8 md:space-y-8 md:flex-col md:place-content-start'>
         <div>
           <h1 className="text-xl font-bold tracking-tight text-gray-650 sm:text-4xl pb-4">Our Location</h1>
           <div className='indent-3 text-md font-light tracking-light text-gray-650 sm:text-lg'>
