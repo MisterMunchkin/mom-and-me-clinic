@@ -24,8 +24,13 @@ export default function Hero() {
           >
             How are you feeling today?
           </Typography>
+          <Typography
+            className="font-normal text-gray-650 text-center text-base whitespace-break-spaces"
+          >
+            Women      ⁕      Kids      ⁕      Teens
+          </Typography>
 
-          <div className="mt-10 flex space-x-4 md:space-x-16 items-center justify-center pt-6">
+          <div className="mt-10 flex space-x-4 md:space-x-16 items-center justify-center pt-2">
             <div
               className="relative"
             >
