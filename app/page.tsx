@@ -32,8 +32,8 @@ export default function Home() {
       </section>
       <main id="main-content" className="flex flex-col items-baseline justify-center">
         {/* Main info should be list of doctors where you can book */}
-        <section id="doctors" className='pt-16'>
-          <div className="mx-auto pb-6 pl-6 md:pb-12 md:px-24">
+        <section id="doctors" className='pt-8 md:pt-12'>
+          <div className="mx-auto pb-4 pl-6 md:pb-6 md:px-24">
             <div className="text-left">
               <h1 className="text-xl font-bold tracking-tight text-gray-650 sm:text-4xl">Our Doctors</h1>
             </div>
@@ -43,7 +43,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="services" className="pt-16">
+        <section id="services" className="pt-8 md:pt-12">
           <div className="mx-auto pb-4 pl-6 md:pb-6 md:px-24">
             <div className="text-left">
               <h1 className="text-xl font-bold tracking-tight text-gray-650 sm:text-4xl md:mb-4">Our Services</h1>
