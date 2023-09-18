@@ -35,7 +35,7 @@ export default function Home() {
         <section id="doctors" className='pt-16'>
           <div className="mx-auto pb-6 pl-6 md:pb-12 md:px-24">
             <div className="text-left">
-              <h1 className="text-2xl font-bold tracking-tight text-gray-650 sm:text-4xl">Our Doctors</h1>
+              <h1 className="text-xl font-bold tracking-tight text-gray-650 sm:text-4xl">Our Doctors</h1>
             </div>
           </div>
           <div className='md:px-24'>
@@ -46,7 +46,7 @@ export default function Home() {
         <section id="services" className="pt-16">
           <div className="mx-auto pb-4 pl-6 md:pb-6 md:px-24">
             <div className="text-left">
-              <h1 className="text-2xl font-bold tracking-tight text-gray-650 sm:text-4xl md:mb-4">Our Services</h1>
+              <h1 className="text-xl font-bold tracking-tight text-gray-650 sm:text-4xl md:mb-4">Our Services</h1>
               <OBGYNBanner className='hidden md:block w-full' />
             </div>
           </div>
