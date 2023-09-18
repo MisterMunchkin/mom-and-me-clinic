@@ -1,5 +1,6 @@
 import { ServiceClass } from "@/shared/classes/service";
-import { Card, CardFooter } from "@/shared/utilities/material-tailwind-export";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
 interface ServiceProps {
   service: ServiceClass;
@@ -7,15 +8,30 @@ interface ServiceProps {
 
 export default function Service({service}: ServiceProps) {
   return (
-    <Card 
-      shadow={false}
-      className="mx-4 md:mx-1 w-min-[24rem] bg-white-coffee hover:cursor-pointer">
-      <CardFooter>
-        <h3 className="text-lg font-bold text-gray-650 sm:text-xl">{service.name}</h3>
-        <p className="hidden text-sm sm:block text-gray-650 whitespace-pre-line">
-          {service.description}
-        </p>
-      </CardFooter>
-    </Card>
+    <div className="p-4 w-min-[24rem] bg-white-coffee hover:cursor-pointer rounded-lg text-center">
+      <div className="flex flex-1 items-center justify-between">
+        <span className="text-lg font-bold text-gray-650 sm:text-xl flex-shrink">
+          {service.name}
+        </span>
+        {service.description && (
+          <Popover>
+            <PopoverTrigger className="text-lg font-bold text-gray-650 sm:text-xl flex-shrink-0" asChild>
+              <InformationCircleIcon 
+                className="h-6 w-6 text-gray-650"
+              />
+            </PopoverTrigger>
+
+              <PopoverContent
+                side="bottom"
+                className="bg-melon border-melon p-4 text-center"
+              >
+                <div className="text-base text-gray-650 whitespace-pre-line">
+                  {service.description}
+                </div>
+              </PopoverContent>
+          </Popover>
+        )}
+      </div>
+    </div>
   );
 }
