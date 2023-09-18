@@ -23,7 +23,7 @@ export default function Service({service}: ServiceProps) {
 
               <PopoverContent
                 side="bottom"
-                className="bg-white-coffee p-4 text-center"
+                className="bg-melon border-melon p-4 text-center"
               >
                 <div className="text-base text-gray-650 whitespace-pre-line">
                   {service.description}
