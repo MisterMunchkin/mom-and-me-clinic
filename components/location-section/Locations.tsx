@@ -40,7 +40,8 @@ export default async function Locations() {
           <Image
             src={PlanIcon}
             alt='Plant'
-            className='w-[75px] h-[100px] md:w-[100px] md:h-[150px] md:place-self-center'
+            className='md:place-self-center'
+            width={85}
           />
         </div>
         {/* <Locations />  */}
