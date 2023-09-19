@@ -37,20 +37,20 @@ export default function MobileDoctors({doctors, className}: MobileDoctorsProps) 
           >
             <Card
                 shadow={false}
-                className="bg-white-coffee border-white-coffee hover:cursor-pointer min-w-[22rem] mx-4"
+                className="bg-white-coffee border-white-coffee hover:cursor-pointer min-w-[22rem] min-h-[5rem] mx-4"
               >
                 <CardHeader
                   color="transparent"
                   floated={false}
                   shadow={false}
-                  className="m-2 flex items-center gap-2"
+                  className="ml-4 mr-2 my-2 flex items-center gap-6"
                 >
                   <Image 
                     className='rounded-full'
                     src={doctor.picture} 
                     alt={doctor.name}
-                    width={100}
-                    height={100}                
+                    width={60}
+                    height={60}                
                   />
                   <div
                     className="flex w-full flex-col gap-0.5"

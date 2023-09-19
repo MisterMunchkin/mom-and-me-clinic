@@ -23,6 +23,7 @@ export default function NavBar({setShowDrawer}: NavBarProps) {
                 src={logo}
                 alt='logo'
                 width={200}
+                priority
               />
             </a>
           </div>
@@ -54,6 +55,7 @@ export default function NavBar({setShowDrawer}: NavBarProps) {
           <IconButton
             variant="text"
             className="text-gray-650 focus:bg-pastel-pink focus:text-pastel-green active:bg-pastel-pink active:text-pastel-green hover:bg-white-coffee hover:text-gray-650"
+            aria-label="Burger Menu"
           >
             <Bars3Icon 
               className="h-8 w-8"

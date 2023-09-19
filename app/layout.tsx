@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://momandme.clinic'),
   title: 'Mom & Me Clinic',
   description: 'Women, Kids and Teens Health Hub. Located in Room 611 Cebu Velez Medical Arts F. Ramos St., Cebu City',
   openGraph: {
