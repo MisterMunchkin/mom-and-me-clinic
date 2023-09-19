@@ -33,6 +33,7 @@ export default function HeroCarousel() {
           className="h-full w-full object-cover"
           placeholder='blur'
           sizes='(max-width: 720px) 100vw, (max-width: 1200px) 60vw, 50vw'
+          priority
           fill
         />
       </SwiperSlide>

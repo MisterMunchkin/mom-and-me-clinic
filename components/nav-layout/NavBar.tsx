@@ -23,7 +23,6 @@ export default function NavBar({setShowDrawer}: NavBarProps) {
                 src={logo}
                 alt='logo'
                 width={200}
-                sizes="(max-width: 720px) 20vw, 10vw"
                 priority
               />
             </a>
