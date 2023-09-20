@@ -57,6 +57,7 @@ export default function BurgerMenu({showDrawer, setShowDrawer}: BurgerMenuProps)
             <a
               key={index}
               href={navItem.link}
+              onClick={() => setShowDrawer(false)}
             >
               <ListItem
                 className="text-gray-650 focus:bg-pastel-pink focus:text-pastel-green active:bg-pastel-pink active:text-pastel-green hover:bg-white-coffee hover:text-gray-650"
