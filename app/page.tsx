@@ -7,6 +7,7 @@ import OBGYNBanner from '@/components/services-section/ServiceBanner';
 import LoadingDoctors from '@/components/loading/loading-doctors';
 
 import dynamic from 'next/dynamic';
+import Footer from '@/components/Footer';
 
 const Doctors = dynamic(() => 
   import ('@/components/doctors-section/Doctors'),
@@ -60,6 +61,7 @@ export default function Home() {
           <Locations />
         </section>
       </main>
+      <Footer />
     </>
   )
 }
