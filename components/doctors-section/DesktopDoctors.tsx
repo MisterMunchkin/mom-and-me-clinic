@@ -1,15 +1,18 @@
 'use client'
 
 import { DoctorClass } from "@/shared/classes/doctor";
+import { DoctorInterface } from "@/shared/interfaces/doctor";
 import { Card, CardHeader, Typography } from "@material-tailwind/react";
 import Image from 'next/image';
 
 interface DesktopDoctorsProps {
-  doctors: DoctorClass[];
+  data: DoctorInterface[];
   className?: string;
 }
 
-export default function DesktopDoctors({doctors, className}: DesktopDoctorsProps) {
+export default function DesktopDoctors({data, className}: DesktopDoctorsProps) {
+  const doctors = data?.map(doctor => DoctorClass.fromInterface(doctor));
+
   return (
     <div
       className={className || ''}

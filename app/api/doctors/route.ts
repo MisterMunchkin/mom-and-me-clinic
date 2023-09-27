@@ -13,17 +13,16 @@ export async function GET(request: NextRequest) {
   //read the json data file
   const fileContents = await fs.readFile(jsonDirectory + '/doctors.json', 'utf8');
 
-  const doctors = JSON.parse(fileContents) as DoctorInterface[];
-  let doctorClasses = doctors.map(doctor => DoctorClass.fromInterface(doctor));
+  let doctors = JSON.parse(fileContents) as DoctorInterface[];
 
   if (serviceTags) {
-    doctorClasses = filterDoctors(doctorClasses, DoctorClass.getSplittedTags(serviceTags));
+    doctors = filterDoctors(doctors, DoctorClass.getSplittedTags(serviceTags));
   }
 
-  return NextResponse.json<DoctorClass[]>(doctorClasses, {status:200});
+  return NextResponse.json<DoctorInterface[]>(doctors, {status:200});
 }
 
-function filterDoctors(doctors: DoctorClass[], serviceTags: string[]) {
+function filterDoctors(doctors: DoctorInterface[], serviceTags: string[]) {
   return doctors.filter(doctor => 
     serviceTags.some(tag => doctor.serviceTags.includes(tag))  
   );

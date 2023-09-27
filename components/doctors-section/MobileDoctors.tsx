@@ -10,13 +10,16 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 import { Card, CardHeader, Typography } from "@material-tailwind/react";
+import { DoctorInterface } from "@/shared/interfaces/doctor";
 
 interface MobileDoctorsProps {
-  doctors: DoctorClass[];
+  data: DoctorInterface[];
   className?: string;
 }
 
-export default function MobileDoctors({doctors, className}: MobileDoctorsProps) {
+export default function MobileDoctors({data, className}: MobileDoctorsProps) {
+  const doctors = data.map(doctor => DoctorClass.fromInterface(doctor));
+  console.log(doctors);
   return (
     <div
       className={className || ''}
