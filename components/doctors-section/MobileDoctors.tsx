@@ -19,7 +19,7 @@ interface MobileDoctorsProps {
 
 export default function MobileDoctors({data, className}: MobileDoctorsProps) {
   const doctors = data.map(doctor => DoctorClass.fromInterface(doctor));
-  console.log(doctors);
+
   return (
     <div
       className={className || ''}
@@ -67,7 +67,7 @@ export default function MobileDoctors({data, className}: MobileDoctorsProps) {
                     </Typography>
 
                     <Typography variant="small" className="text-gray-650">
-                      {doctor.joinedServiceTags}
+                      {doctor.serviceTagsForDisplay}
                     </Typography>
                   
                   </div>

@@ -11,7 +11,7 @@ interface DesktopDoctorsProps {
 }
 
 export default function DesktopDoctors({data, className}: DesktopDoctorsProps) {
-  const doctors = data?.map(doctor => DoctorClass.fromInterface(doctor));
+  const doctors: DoctorClass[] = data?.map(doctor => DoctorClass.fromInterface(doctor));
 
   return (
     <div
@@ -52,7 +52,7 @@ export default function DesktopDoctors({data, className}: DesktopDoctorsProps) {
                 </div>
 
                 <Typography variant="small" className="text-gray-650">
-                  {doctor.joinedServiceTags}
+                  {doctor.serviceTagsForDisplay}
                 </Typography>
               </div>
             </CardHeader>
