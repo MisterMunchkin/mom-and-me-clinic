@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "debug": "NODE_OPTIONS='--inspect' next dev",
     "preview-email": "email dev",
     "build": "next build",
     "start": "next start",
@@ -26,7 +27,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "date-fns": "^2.30.0",
-    "next": "13.4.5",
+    "next": "^13.5.2",
     "nodemailer": "^6.9.4",
     "react": "18.2.0",
     "react-datepicker": "^4.15.0",

@@ -3,6 +3,11 @@ import { getEnumByValue } from "@/shared/utilities/helpers";
 import { BaseClass } from "./base";
 
 export class DoctorClass extends BaseClass implements DoctorInterface {
+  get serviceTagsForDisplay(): string {
+    const result = this.serviceTags.map(tag => ServiceTagDisplayRecord[tag]).join(this.serviceTagSeparator);
+    return result;
+  }
+  
   readonly title?: string;
   readonly designation?: string;
   readonly name: string;
@@ -29,7 +34,7 @@ export class DoctorClass extends BaseClass implements DoctorInterface {
 
     this.name = name;
     this.serviceTags = serviceTags ?? [];
-    this.joinedServiceTags = serviceTags?.join(' ') ?? '';
+    this.joinedServiceTags = serviceTags?.join(this.serviceTagSeparator) ?? '';
     this.phoneNumber = phoneNumber;
     this.email = email;
     this.specialties = specialties;
@@ -47,6 +52,8 @@ export class DoctorClass extends BaseClass implements DoctorInterface {
     this.picture = picture;
   }
 
+  private readonly serviceTagSeparator = ' ';
+
   public static fromInterface(doctorInterface: DoctorInterface) {
     return new DoctorClass (
       doctorInterface.name,
@@ -61,6 +68,10 @@ export class DoctorClass extends BaseClass implements DoctorInterface {
 
     )
   }
+}
+
+const ServiceTagDisplayRecord: Record<string, string> = {
+  "OB-GYN": "Obstetrics and Gynecology"
 }
 
 export class ClinicScheduleClass implements ClinicScheduleInterface {
