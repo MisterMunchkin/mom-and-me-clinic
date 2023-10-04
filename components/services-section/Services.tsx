@@ -1,8 +1,8 @@
 
-import Service from "./Service";
 import { ServiceClass } from "@/shared/classes/service";
+import Service from "./Service";
+import { getServicesURL } from "@/shared/services/api-service.constants";
 
-const availableServiceTags = 'OB-GYN'
 
 export default async function Services() {
   const services = await getServices();
@@ -19,7 +19,7 @@ export default async function Services() {
 }
 
 const getServices = async(): Promise<ServiceClass[]> => {
-  const res = await fetch(`${process.env.URL}/api/services?serviceTags=${availableServiceTags}`);
+  const res = await fetch(`${process.env.URL}${getServicesURL}`);
   
   if (!res.ok) {
     throw new Error ("failed to fetch services");

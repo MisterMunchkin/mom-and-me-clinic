@@ -1,11 +1,10 @@
 import { ServiceClass } from "@/shared/classes/service";
 import { Button, Card, CardBody, CardFooter, Typography } from "@material-tailwind/react";
-import useSWR from "swr";
 import ServiceTags from "@/components/utilities/ServiceTags";
-import { useState } from "react";
-import { fetcher } from "@/shared/services/swr-service";
+import { useEffect, useState } from "react";
 import { toastNotifyService } from "@/shared/services/toast-notify-service";
 import { toastConstants } from "@/shared/utilities/toast-constants";
+import { getServicesURL } from "@/shared/services/api-service.constants";
 
 interface ServiceSelectionProps {
   defaultSelected?: ServiceClass;
@@ -13,19 +12,25 @@ interface ServiceSelectionProps {
 }
 
 export default function ServiceSelection({defaultSelected, handleFormSubmit}: ServiceSelectionProps) {
-  const { data, error, isLoading } = useSWR<ServiceClass[], any>('/api/services', fetcher);
+  const [ services, setServices ] = useState<ServiceClass[]>([]);
   const [ selectedService, setSelectedService ] = useState<ServiceClass | undefined>(defaultSelected);
   const {
     toastId, 
     message
   } = toastConstants.serviceSelection.noSelectedService;
 
-  //Handle the error state
-  if (error) return <div>Failed to load</div>;
-  //Handle the loading state
-  if (isLoading) return <div>Loading...</div>;
-  //Handle the ready state and display the result contained in the data object mapped to the structure of the json file
-  if (!data) return null
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(getServicesURL);
+      if (!res.ok) {
+        throw new Error ("failed to fetch services");
+      }
+      const data = await res.json() as ServiceClass[];
+      setServices(data);
+    }
+
+    fetchData();
+  }, []);
 
   const handleNext = () => {
     if (!selectedService) {
@@ -36,12 +41,12 @@ export default function ServiceSelection({defaultSelected, handleFormSubmit}: Se
     toastNotifyService.dismiss(toastId);
     handleFormSubmit(selectedService);
   }
-  
+
   return (
     <>
       <div className="flex flex-col space-y-4">
         <div className="overflow-auto max-h-[75vh] p-1 grid gap-4 grid-cols-1 md:max-h-[70vh] sm:grid-cols-2 items-start">
-          {data.map((service) => (
+          {services.map((service) => (
             <Card 
               className={`${selectedService?.name === service.name ? 'ring-melon ring-4' : ''}
               w-full hover:cursor-pointer`}
