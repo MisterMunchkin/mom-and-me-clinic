@@ -1,10 +1,12 @@
 import { ServiceClass } from "@/shared/classes/service";
 import { Button } from "@material-tailwind/react";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState, useTransition } from "react";
 import { toastNotifyService } from "@/shared/services/toast-notify-service";
 import { toastConstants } from "@/shared/utilities/toast-constants";
 import { getServicesURL } from "@/shared/services/api-service.constants";
 import Service from "../services-section/Service";
+import LoadingServices from '@/components/loading/loading-services';
+import LoadingService from '../loading/loading-service';
 
 interface ServiceSelectionProps {
   defaultSelected?: ServiceClass;
@@ -14,6 +16,7 @@ interface ServiceSelectionProps {
 export default function ServiceSelection({defaultSelected, handleFormSubmit}: ServiceSelectionProps) {
   const [ services, setServices ] = useState<ServiceClass[]>([]);
   const [ selectedService, setSelectedService ] = useState<ServiceClass | undefined>(defaultSelected);
+  const [ isLoading, setIsLoading ] = useState<boolean>(true);
   const {
     toastId, 
     message
@@ -27,6 +30,7 @@ export default function ServiceSelection({defaultSelected, handleFormSubmit}: Se
       }
       const data = await res.json() as ServiceClass[];
       setServices(data);
+      setIsLoading(false);
     }
 
     fetchData();
@@ -46,7 +50,10 @@ export default function ServiceSelection({defaultSelected, handleFormSubmit}: Se
     <>
       <div className="flex flex-col space-y-4">
         <div className="overflow-auto max-h-[75vh] p-1 grid gap-4 grid-cols-1 md:max-h-[70vh] sm:grid-cols-2 items-start">
-          {services.map((service, index) => (
+          {isLoading && Array.from({length: 10}, (_, i) => i + 1).map((id) => (
+            <LoadingService key={id} />
+          ))}
+          {!isLoading && services.map((service, index) => (
             <Service
               className={`${selectedService?.name === service.name ? 'ring-pastel-pink ring-4': undefined} hover:cursor-pointer`}
               key={index}
