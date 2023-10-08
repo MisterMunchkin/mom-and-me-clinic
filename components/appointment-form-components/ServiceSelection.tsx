@@ -1,10 +1,10 @@
 import { ServiceClass } from "@/shared/classes/service";
-import { Button, Card, CardBody, CardFooter, Typography } from "@material-tailwind/react";
-import ServiceTags from "@/components/utilities/ServiceTags";
+import { Button } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { toastNotifyService } from "@/shared/services/toast-notify-service";
 import { toastConstants } from "@/shared/utilities/toast-constants";
 import { getServicesURL } from "@/shared/services/api-service.constants";
+import Service from "../services-section/Service";
 
 interface ServiceSelectionProps {
   defaultSelected?: ServiceClass;
@@ -46,27 +46,13 @@ export default function ServiceSelection({defaultSelected, handleFormSubmit}: Se
     <>
       <div className="flex flex-col space-y-4">
         <div className="overflow-auto max-h-[75vh] p-1 grid gap-4 grid-cols-1 md:max-h-[70vh] sm:grid-cols-2 items-start">
-          {services.map((service) => (
-            <Card 
-              className={`${selectedService?.name === service.name ? 'ring-melon ring-4' : ''}
-              w-full hover:cursor-pointer`}
-              key={service.name}
+          {services.map((service, index) => (
+            <Service
+              className={`${selectedService?.name === service.name ? 'ring-pastel-pink ring-4': undefined} hover:cursor-pointer`}
+              key={index}
+              service={service} 
               onClick={() => setSelectedService(service)}
-            >
-              <CardBody>
-                <Typography variant="h6" className="mb-2 text-gray-650">
-                  {service.name}
-                </Typography>
-                {service.description && (
-                  <Typography variant="small" className="text-gray-650">
-                    {service.description}
-                  </Typography>
-                )}
-              </CardBody>
-              <CardFooter className="pt-0">
-                <ServiceTags tags={service.tags} />
-              </CardFooter>
-            </Card>
+            />
           ))}
         </div>
         <div className="w-full grid grid-cols-4 pt-4">
