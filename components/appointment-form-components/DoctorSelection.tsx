@@ -1,12 +1,11 @@
 import { DoctorClass } from "@/shared/classes/doctor";
 import { ServiceClass } from "@/shared/classes/service";
 import { Avatar, Button, Card, CardBody, CardHeader, Timeline, TimelineBody, TimelineConnector, TimelineHeader, TimelineIcon, TimelineItem, Typography } from "@material-tailwind/react";
-import { useState } from "react";
-import useSWR from 'swr';
-import ClinicSchedules from "../lists/ClinicSchedules";
-import { fetcher } from "@/shared/services/swr-service";
+import { useEffect, useState } from "react";
 import { toastNotifyService } from "@/shared/services/toast-notify-service";
 import { toastConstants } from "@/shared/utilities/toast-constants";
+import { getDoctorsURL } from "@/shared/services/api-service.constants";
+import { DoctorInterface } from "@/shared/interfaces/doctor";
 
 interface DoctorSelectionProps {
   defaultSelected?: DoctorClass;
@@ -16,19 +15,30 @@ interface DoctorSelectionProps {
 }
 
 export default function DoctorSelection({defaultSelected, selectedService , handleFormSubmit, handleBack}: DoctorSelectionProps) {
-  const { data, error, isLoading } = useSWR<DoctorClass[], any>(() => '/api/doctors?serviceTags=' + selectedService.joinedTags, fetcher);
+  // const { data, error, isLoading } = useSWR<DoctorClass[], any>(() => '/api/doctors?serviceTags=' + selectedService.joinedTags, fetcher);
+  const [ doctors, setDoctors ] = useState<DoctorClass[]>([]);
   const [selectedDoctor, setSelectedDoctor] = useState<DoctorClass | undefined>(defaultSelected);
+  const [ isLoading, setIsLoading ] = useState<boolean>(true);
   const { 
     toastId,
     message
   } = toastConstants.doctorSelection.noSelectedDoctor
 
-  //Handle the error state
-  if (error) return <div>Failed to load</div>;
-  //Handle the loading state
-  if (isLoading) return <div>Loading...</div>;
-  //Handle the ready state and display the result contained in the data object mapped to the structure of the json file
-  if (!data) return null
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(getDoctorsURL(selectedService.joinedTags));
+      if (!res.ok) {
+        throw new Error ("failed to fetch doctors");
+      }
+
+      const datas = await res.json() as DoctorInterface[];
+      setDoctors(datas.map(data => DoctorClass.fromInterface(data)));
+      setIsLoading(false);
+      console.log(datas);
+    }
+
+    fetchData();
+  }, [selectedService.joinedTags]);
   
   const handleNext = () => {
     if (!selectedDoctor) {
@@ -76,7 +86,7 @@ export default function DoctorSelection({defaultSelected, selectedService , hand
         </Timeline>
 
         <div className="overflow-auto max-h-[75vh] md:max-h-[70vh] p-1 flex flex-col space-y-4">
-          {data.map((doctor) => (
+          {/* {data.map((doctor) => (
             <Card 
               key={doctor.name}
               
@@ -112,7 +122,7 @@ export default function DoctorSelection({defaultSelected, selectedService , hand
                 />
               </CardBody>
             </Card>
-          ))}
+          ))} */}
         </div>
         
         <div className="w-full grid grid-cols-4 pt-4">
