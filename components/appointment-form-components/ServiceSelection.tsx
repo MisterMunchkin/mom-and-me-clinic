@@ -1,11 +1,10 @@
 import { ServiceClass } from "@/shared/classes/service";
 import { Button } from "@material-tailwind/react";
-import { Suspense, useEffect, useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 import { toastNotifyService } from "@/shared/services/toast-notify-service";
 import { toastConstants } from "@/shared/utilities/toast-constants";
 import { getServicesURL } from "@/shared/services/api-service.constants";
 import Service from "../services-section/Service";
-import LoadingServices from '@/components/loading/loading-services';
 import LoadingService from '../loading/loading-service';
 
 interface ServiceSelectionProps {
