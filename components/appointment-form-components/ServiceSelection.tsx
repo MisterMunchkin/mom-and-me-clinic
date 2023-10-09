@@ -49,7 +49,7 @@ export default function ServiceSelection({defaultSelected, handleFormSubmit}: Se
   return (
     <>
       <div className="flex flex-col space-y-4">
-        <div className="overflow-auto max-h-[75vh] p-1 grid gap-4 grid-cols-1 md:max-h-[70vh] sm:grid-cols-2 items-start">
+        <div className="overflow-auto max-h-[75vh] p-1 grid gap-4 grid-cols-1 md:max-h-[70vh] sm:grid-cols-2">
           {isLoading && Array.from({length: 10}, (_, i) => i + 1).map((id) => (
             <LoadingService key={id} />
           ))}
