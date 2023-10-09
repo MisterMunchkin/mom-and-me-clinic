@@ -10,7 +10,7 @@ export default async function Services() {
   if (!services) return <div>No services fetched.</div>
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 items-start justify-stretch mx-4 md:mx-0">
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 items-stretch justify-stretch mx-4 md:mx-0">
       {services.map((service) => (
         <Service key={service.name} service={service} showDescriptionPopover={true} />
       ))}

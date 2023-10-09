@@ -12,31 +12,29 @@ export default function Service({service, showDescriptionPopover, onClick, class
   return (
     <div
       onClick={onClick} 
-      className={shadcn("p-4 w-min-[24rem] bg-white-coffee rounded-lg text-center", className)}
+      className={shadcn("py-4 pr-2 pl-4 w-min-[24rem] bg-white-coffee rounded-lg text-center flex items-center justify-center", className)}
     >
-      <div className="flex flex-1 items-center justify-between">
-        <span className="text-lg font-bold text-gray-650 sm:text-xl flex-shrink">
-          {service.name}
-        </span>
-        {showDescriptionPopover && service.description && (
-          <Popover>
-            <PopoverTrigger className="text-lg font-bold text-gray-650 sm:text-xl flex-shrink-0 hover:cursor-pointer" asChild>
-              <InformationCircleIcon 
-                className="h-6 w-6 text-gray-650"
-              />
-            </PopoverTrigger>
+      <span className="text-lg font-bold text-gray-650 sm:text-xl flex-shrink">
+        {service.name}
+      </span>
+      {showDescriptionPopover && service.description && (
+        <Popover>
+          <PopoverTrigger className="text-lg font-bold text-gray-650 sm:text-xl flex-shrink-0 hover:cursor-pointer ml-auto" asChild>
+            <InformationCircleIcon 
+              className="h-6 w-6 text-gray-650"
+            />
+          </PopoverTrigger>
 
-              <PopoverContent
-                side="bottom"
-                className="bg-melon border-melon p-4 text-center"
-              >
-                <div className="text-base text-gray-650 whitespace-pre-line">
-                  {service.description}
-                </div>
-              </PopoverContent>
-          </Popover>
-        )}
-      </div>
+            <PopoverContent
+              side="bottom"
+              className="bg-melon border-melon p-4 text-center"
+            >
+              <div className="text-base text-gray-650 whitespace-pre-line">
+                {service.description}
+              </div>
+            </PopoverContent>
+        </Popover>
+      )}
     </div>
   );
 }
