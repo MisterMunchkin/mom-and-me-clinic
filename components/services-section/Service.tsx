@@ -20,7 +20,7 @@ export default function Service({service, showDescriptionPopover, onClick, class
         </span>
         {showDescriptionPopover && service.description && (
           <Popover>
-            <PopoverTrigger className="text-lg font-bold text-gray-650 sm:text-xl flex-shrink-0" asChild>
+            <PopoverTrigger className="text-lg font-bold text-gray-650 sm:text-xl flex-shrink-0 hover:cursor-pointer" asChild>
               <InformationCircleIcon 
                 className="h-6 w-6 text-gray-650"
               />
