@@ -7,6 +7,7 @@ import { Avatar, Button, Card, CardBody, CardHeader, Typography } from "@materia
 import { useState } from "react";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import DoctorCard from "../doctors-section/DoctorCard";
 
 interface VisitScheduleSelectionProps {
   defaultAvailableTimeBlocks: string[];
@@ -93,30 +94,9 @@ export default function VisitScheduleSelection({defaultAvailableTimeBlocks, defa
         className="flex flex-col space-y-12"
       > 
         <div className="flex flex-col items-center space-y-8 w-full">
-          <Card color="transparent" shadow={false} className=" border-gray-300 border">
-            <CardHeader
-              color="transparent"
-              floated={false}
-              shadow={false}
-              className="ml-4 mr-8 flex items-center gap-4 my-4"
-            >
-              <Avatar
-                size="lg"
-                variant="circular"
-                src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-                alt={selectedDoctor.name}
-              />
-              <div className="flex w-full flex-col gap-0.5">
-                <div className="flex items-center justify-between">
-                  <Typography variant="h6" className="text-gray-650">
-                    {selectedDoctor.fullTitle}
-                  </Typography>
-                </div>
-
-                <Typography variant="small" className="text-gray-650">{selectedDoctor.joinedServiceTags}</Typography>
-              </div>
-            </CardHeader>
-          </Card>
+          <DoctorCard
+            data={selectedDoctor}
+          />
           <div 
             className="flex flex-col space-y-4 items-center md:items-start md:flex-row md:space-y-0 md:justify-around md:w-full"
           >
