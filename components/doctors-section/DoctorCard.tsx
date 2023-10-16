@@ -16,7 +16,7 @@ export default function DoctorCard({data, className, onClick}: DoctorProps) {
       key={doctor.name}
       onClick={onClick}
       shadow={false}
-      className={shadcn("bg-white-coffee border-white-coffee min-h-[8rem] min-w-[20rem]", className)}
+      className={shadcn("bg-white-coffee border-white-coffee", className)}
     >
       <CardHeader
         color="transparent"
