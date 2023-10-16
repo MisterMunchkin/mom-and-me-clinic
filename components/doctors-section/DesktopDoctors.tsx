@@ -1,9 +1,7 @@
 'use client'
 
-import { DoctorClass } from "@/shared/classes/doctor";
 import { DoctorInterface } from "@/shared/interfaces/doctor";
-import { Card, CardHeader, Typography } from "@material-tailwind/react";
-import Image from 'next/image';
+import DoctorCard from "./DoctorCard";
 
 interface DesktopDoctorsProps {
   data: DoctorInterface[];
@@ -11,56 +9,16 @@ interface DesktopDoctorsProps {
 }
 
 export default function DesktopDoctors({data, className}: DesktopDoctorsProps) {
-  const doctors: DoctorClass[] = data?.map(doctor => DoctorClass.fromInterface(doctor));
-
   return (
     <div
       className={className || ''}
     >
       <div className="flex flex-row overflow-x-auto space-x-6">
-        {doctors.map((doctor: DoctorClass) => (
-          <Card
-            key={doctor.name}
-            shadow={false}
-            className="bg-white-coffee border-white-coffee hover:cursor-pointer min-h-[8rem] min-w-[20rem]"
-          >
-            <CardHeader
-              color="transparent"
-              floated={false}
-              shadow={false}
-              className="mx-2 md:mx-4 flex items-center gap-2 md:gap-4 md:my-4"
-            >
-              <Image 
-                className='rounded-full'
-                src={doctor.picture} 
-                alt={doctor.name}
-                width={100}
-                height={100}                
-              />
-              <div
-                className="flex w-full flex-col gap-0.5"
-              >
-                <div
-                  className="flex items-center justify-between"
-                >
-                  <Typography
-                    variant="h6"
-                    className="text-gray-650 break-words"
-                  >
-                    {doctor.fullTitle}
-                  </Typography>
-                </div>
-
-                <Typography variant="small" className="text-gray-650">
-                  {doctor.serviceTagsForDisplay}
-                </Typography>
-              </div>
-            </CardHeader>
-            {/* <CardBody className="pt-0">
-              <ClinicSchedules>
-              </ClinicSchedules>
-            </CardBody> */}
-          </Card>
+        {data.map((doctor, index) => (
+          <DoctorCard
+            key={index}
+            data={doctor}
+          />
         ))}
       </div>
     </div>
