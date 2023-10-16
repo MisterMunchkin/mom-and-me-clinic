@@ -30,7 +30,6 @@ export default function ServiceSelection({defaultSelected, handleFormSubmit}: Se
       const data = await res.json() as ServiceClass[];
       setServices(data);
       setIsLoading(false);
-      console.log(data);
     }
 
     fetchData();
