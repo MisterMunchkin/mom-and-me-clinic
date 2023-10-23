@@ -1,6 +1,7 @@
 import { ClinicScheduleInterface, DoctorInterface, ScheduleInterface } from "@/shared/interfaces/doctor";
 import { getEnumByValue } from "@/shared/utilities/helpers";
 import { BaseClass } from "./base";
+import { DayOfWeek } from "react-day-picker";
 
 export class DoctorClass extends BaseClass implements DoctorInterface {
   get serviceTagsForDisplay(): string {
@@ -78,6 +79,47 @@ export class ClinicScheduleClass implements ClinicScheduleInterface {
   clinicLocation: string;
   schedules: ScheduleClass[];
 
+  /**
+   * Retrieves the DayOfWeek of all available clinic schedule days.
+   * 
+   * @remark DayOfWeek is a ReactDay Picker Matcher
+   */
+  get availableDaysMatcher(): DayOfWeek {
+    return {
+      dayOfWeek: this.daysOfWeek
+    }
+  }
+
+  /**
+   * Retrieves the DayOfWeek of all the days that are unavailable for this 
+   * clinic schedule
+   * 
+   * @remark DayOfWeek is a ReactDay Picker Matcher
+   */
+  get unAvailableDaysMatcher(): DayOfWeek {
+    return {
+      dayOfWeek: dayNumberArray.filter(day => !this.daysOfWeek.includes(day))
+    }
+  }
+
+  availableTimeBlocks(date: Date): string[] {
+    const day = date.getDay();
+
+    const schedule = this.schedules.find(schedule => schedule.dayOfWeek === day);
+    if (!schedule) {
+      return [];
+    }
+    return schedule.timeBlocks;
+  }
+
+  /**
+   * Retrieves all days in the schedule
+   * @example [0, 2, 5] (Sunday, Tuesday, Friday)
+   */
+  get daysOfWeek(): number[] {
+    return this.schedules.map(schedule => schedule.dayOfWeek);
+  }
+
   constructor(clinicLocation: string, schedules: ScheduleInterface[]) {
     this.clinicLocation = clinicLocation;
     this.schedules = schedules?.map(schedule => 
@@ -93,6 +135,22 @@ export class ScheduleClass implements ScheduleInterface {
   day: Day;
   start: string;
   end: string;
+
+  /**
+   * Retrieves the number the Day is mapped to
+   */
+  get dayOfWeek(): number {
+    return this.dayToNumberMap[this.day];
+  }
+
+  /**
+   * retrieves the time blocks for a given day
+   * @remarks Currently only 1 time block is supported. In the future,
+   * it should support multiple time blocks on a given day.
+   */
+  get timeBlocks(): string[] {
+    return [`${this.start} - ${this.end}`];
+  }
 
   constructor(day?: Day, start?: string, end?: string) {
     this.day = day ?? Day.Monday;
@@ -140,3 +198,5 @@ export enum DayNumber {
   Friday = 5,
   Saturday = 6
 }
+
+export const dayNumberArray: number[] = [0, 1, 2, 3, 4, 5, 6]
