@@ -6,7 +6,8 @@ import { toastNotifyService } from "@/shared/services/toast-notify-service";
 import { toastConstants } from "@/shared/utilities/toast-constants";
 import { getDoctorsURL } from "@/shared/services/api-service.constants";
 import { DoctorInterface } from "@/shared/interfaces/doctor";
-import DoctorCard from "../doctors-section/DoctorCard";
+import DoctorCard from "@/components/doctors-section/DoctorCard";
+import LoadingDoctor from "@/components/loading/loading-doctor";
 
 interface DoctorSelectionProps {
   defaultSelected?: DoctorClass;
@@ -85,7 +86,12 @@ export default function DoctorSelection({defaultSelected, selectedService , hand
         </Timeline>
 
         <div className="overflow-auto max-h-[75vh] md:max-h-[70vh] p-1 flex flex-col space-y-4">
-          {doctors.map((doctor, index) => (
+          {isLoading && Array.from({length: 2}, (_, i) => i + 1).map((id) => (
+            <LoadingDoctor
+              key={id}
+            />
+          ))}
+          {!isLoading && doctors.map((doctor, index) => (
             <DoctorCard 
               key={index}
               data={doctor}
