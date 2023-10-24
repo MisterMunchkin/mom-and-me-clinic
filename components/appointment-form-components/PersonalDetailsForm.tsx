@@ -43,48 +43,48 @@ const personalDetailsFormSchema: yup.ObjectSchema<PersonalDetailsMTFormInterface
     name: 'validBirthdate',
     test: function (birthdate) {
       const { day, month, year } = birthdate;
-    if (!day || !month || !year) { //all 3 must not be null or empty
-      return this.createError({
-        path: 'dateOfBirth',
-        message: 'day, month, and year must be set'
-      });
-    }
-    
-    if (day < 1 || day > 31) { //day must be between 1 to 31
-      return this.createError({
-        path: 'dateOfBirth',
-        message: 'day must be between 1 to 31'
-      });
-    }
-    if (month < 1 || month > 12) { //month must be between 1 to 12
-      return this.createError({
-        path: 'dateOfBirth',
-        message: 'month must be between 1 to 12'
-      });
-    }
-    if (year < 1900) {//year must not be lesser than 1900
-      return this.createError({
-        path: 'dateOfBirth',
-        message: 'are you a vampire? Please double check the year'
-      });
-    }
+      if (!day || !month || !year) { //all 3 must not be null or empty
+        return this.createError({
+          path: 'dateOfBirth',
+          message: 'day, month, and year must be set'
+        });
+      }
+      
+      if (day < 1 || day > 31) { //day must be between 1 to 31
+        return this.createError({
+          path: 'dateOfBirth',
+          message: 'day must be between 1 to 31'
+        });
+      }
+      if (month < 1 || month > 12) { //month must be between 1 to 12
+        return this.createError({
+          path: 'dateOfBirth',
+          message: 'month must be between 1 to 12'
+        });
+      }
+      if (year < 1900) {//year must not be lesser than 1900
+        return this.createError({
+          path: 'dateOfBirth',
+          message: 'are you a vampire? Please double check the year'
+        });
+      }
 
-    //age must not be lesser than 1 year old
-    const dateValue = new Date(year, month - 1, day);
-    const currentDate = new Date();
-    const validMinimumAge = differenceInYears(currentDate, dateValue) >= 1;
-    if (!validMinimumAge) {
-      return this.createError({
-        path: 'dateOfBirth',
-        message: 'must be atleast 1 year old'
-      });
-    }
+      //age must not be lesser than 1 year old
+      const dateValue = new Date(year, month - 1, day);
+      const currentDate = new Date();
+      const validMinimumAge = differenceInYears(currentDate, dateValue) >= 1;
+      if (!validMinimumAge) {
+        return this.createError({
+          path: 'dateOfBirth',
+          message: 'must be atleast 1 year old'
+        });
+      }
 
-    //must be a valid date
-    return (isDate(dateValue)) ? true : this.createError({
-      path: 'dateOfBirth',
-      message: 'must be a valid date'
-    });
+      //must be a valid date
+      return (isDate(dateValue)) ? true : this.createError({
+        path: 'dateOfBirth',
+        message: 'must be a valid date'
+      });
     }
   }),
   phoneNumber: yup

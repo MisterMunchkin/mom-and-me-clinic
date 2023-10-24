@@ -1,11 +1,11 @@
 import { ServiceClass } from "@/shared/classes/service";
-import { Button, Card, CardBody, CardFooter, Typography } from "@material-tailwind/react";
-import useSWR from "swr";
-import ServiceTags from "@/components/utilities/ServiceTags";
-import { useState } from "react";
-import { fetcher } from "@/shared/services/swr-service";
+import { Button } from "@material-tailwind/react";
+import { useEffect, useState } from "react";
 import { toastNotifyService } from "@/shared/services/toast-notify-service";
 import { toastConstants } from "@/shared/utilities/toast-constants";
+import { getServicesURL } from "@/shared/services/api-service.constants";
+import Service from "../services-section/Service";
+import LoadingService from '../loading/loading-service';
 
 interface ServiceSelectionProps {
   defaultSelected?: ServiceClass;
@@ -13,19 +13,27 @@ interface ServiceSelectionProps {
 }
 
 export default function ServiceSelection({defaultSelected, handleFormSubmit}: ServiceSelectionProps) {
-  const { data, error, isLoading } = useSWR<ServiceClass[], any>('/api/services', fetcher);
+  const [ services, setServices ] = useState<ServiceClass[]>([]);
   const [ selectedService, setSelectedService ] = useState<ServiceClass | undefined>(defaultSelected);
+  const [ isLoading, setIsLoading ] = useState<boolean>(true);
   const {
     toastId, 
     message
   } = toastConstants.serviceSelection.noSelectedService;
 
-  //Handle the error state
-  if (error) return <div>Failed to load</div>;
-  //Handle the loading state
-  if (isLoading) return <div>Loading...</div>;
-  //Handle the ready state and display the result contained in the data object mapped to the structure of the json file
-  if (!data) return null
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(getServicesURL);
+      if (!res.ok) {
+        throw new Error ("failed to fetch services");
+      }
+      const data = await res.json() as ServiceClass[];
+      setServices(data);
+      setIsLoading(false);
+    }
+
+    fetchData();
+  }, []);
 
   const handleNext = () => {
     if (!selectedService) {
@@ -36,35 +44,24 @@ export default function ServiceSelection({defaultSelected, handleFormSubmit}: Se
     toastNotifyService.dismiss(toastId);
     handleFormSubmit(selectedService);
   }
-  
+
   return (
     <>
       <div className="flex flex-col space-y-4">
-        <div className="overflow-auto max-h-[75vh] p-1 grid gap-4 grid-cols-1 md:max-h-[70vh] sm:grid-cols-2 items-start">
-          {data.map((service) => (
-            <Card 
-              className={`${selectedService?.name === service.name ? 'ring-melon ring-4' : ''}
-              w-full hover:cursor-pointer`}
-              key={service.name}
+        <div className="overflow-auto max-h-[75vh] p-1 grid gap-4 grid-cols-1 md:max-h-[70vh] sm:grid-cols-2">
+          {isLoading && Array.from({length: 10}, (_, i) => i + 1).map((id) => (
+            <LoadingService key={id} />
+          ))}
+          {!isLoading && services.map((service, index) => (
+            <Service
+              className={`${selectedService?.name === service.name ? 'ring-pastel-pink ring-4': undefined} hover:cursor-pointer`}
+              key={index}
+              service={service} 
               onClick={() => setSelectedService(service)}
-            >
-              <CardBody>
-                <Typography variant="h6" className="mb-2 text-gray-650">
-                  {service.name}
-                </Typography>
-                {service.description && (
-                  <Typography variant="small" className="text-gray-650">
-                    {service.description}
-                  </Typography>
-                )}
-              </CardBody>
-              <CardFooter className="pt-0">
-                <ServiceTags tags={service.tags} />
-              </CardFooter>
-            </Card>
+            />
           ))}
         </div>
-        <div className="w-full grid grid-cols-4 pt-4">
+        <div className="w-full grid grid-cols-4">
           <Button
             className="col-span-4 md:col-start-2 md:col-span-2 rounded-full bg-pastel-pink shadow-none hover:shadow-lg hover:shadow-pastel-pink/50"
             type="button"

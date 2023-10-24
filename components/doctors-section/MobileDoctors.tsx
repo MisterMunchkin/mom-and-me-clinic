@@ -11,6 +11,7 @@ import 'swiper/css/pagination';
 
 import { Card, CardHeader, Typography } from "@material-tailwind/react";
 import { DoctorInterface } from "@/shared/interfaces/doctor";
+import DoctorCard from "./DoctorCard";
 
 interface MobileDoctorsProps {
   data: DoctorInterface[];
@@ -18,8 +19,6 @@ interface MobileDoctorsProps {
 }
 
 export default function MobileDoctors({data, className}: MobileDoctorsProps) {
-  const doctors = data.map(doctor => DoctorClass.fromInterface(doctor));
-
   return (
     <div
       className={className || ''}
@@ -34,49 +33,14 @@ export default function MobileDoctors({data, className}: MobileDoctorsProps) {
           }}
           spaceBetween={10}
         >
-          {doctors.map((doctor: DoctorClass) => (
-          <SwiperSlide
-            key={doctor.name}
-          >
-            <Card
-                shadow={false}
-                className="bg-white-coffee border-white-coffee hover:cursor-pointer min-w-[22rem] min-h-[5rem] mx-4"
-              >
-                <CardHeader
-                  color="transparent"
-                  floated={false}
-                  shadow={false}
-                  className="ml-4 mr-2 my-2 flex items-center gap-6"
-                >
-                  <Image 
-                    className='rounded-full'
-                    src={doctor.picture} 
-                    alt={doctor.name}
-                    width={60}
-                    height={60}                
-                  />
-                  <div
-                    className="flex w-full flex-col gap-0.5"
-                  >
-
-                    <Typography
-                      variant="h6"
-                      className="text-gray-650 break-words"
-                    >
-                      {doctor.fullTitle}
-                    </Typography>
-
-                    <Typography variant="small" className="text-gray-650">
-                      {doctor.serviceTagsForDisplay}
-                    </Typography>
-                  
-                  </div>
-                </CardHeader>
-                {/* <CardBody className="pt-0">
-                  <ClinicSchedules>
-                  </ClinicSchedules>
-                </CardBody> */}
-              </Card>
+          {data.map((doctor) => (
+            <SwiperSlide
+              key={doctor.name}
+            >
+              <DoctorCard 
+                data={doctor}
+                className="mx-4 min-h-[5rem] min-w-[22rem]"
+              />
             </SwiperSlide>
           ))}
         </Swiper>
