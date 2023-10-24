@@ -54,8 +54,8 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
 
   return (
     <>
-      <div className="space-y-8">
-        <div className="px-4 sm:px-0">
+      <div className="space-y-4">
+        <div>
           <Stepper
             lineClassName="bg-white-coffee"
             activeLineClassName="bg-pastel-pink"

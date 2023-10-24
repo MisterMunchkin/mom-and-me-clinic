@@ -8,6 +8,7 @@ import { AppointmentSubmitRequest } from "@/shared/classes/appointment-submit-re
 import { toastNotifyService } from "@/shared/services/toast-notify-service";
 import { toastConstants } from "@/shared/utilities/toast-constants";
 import { useRouter } from 'next/navigation';
+import DoctorCard from "@/components/doctors-section/DoctorCard";
 
 interface ConfirmationStepProps {
   form: AppointmentFormMTInterface;
@@ -102,28 +103,9 @@ export default function ConfirmationStep({form, handleBack}: ConfirmationStepPro
               Your Doctor
             </Typography>
 
-            <Card color="transparent" shadow={false} className=" rounded-xl bg-white-coffee">
-              <CardHeader
-                color="transparent"
-                floated={false}
-                shadow={false}
-                className="ml-4 mr-4 flex items-center gap-4 my-4"
-              >
-                <Avatar
-                  size="lg"
-                  variant="circular"
-                  src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-                  alt="Test"
-                />
-                <div className="flex w-full flex-col gap-0.5">
-                  <Typography className="text-sm sm:text-base font-bold text-gray-650 leading-tight">
-                    {selectedDoctor.fullTitle}
-                  </Typography>
-
-                  <Typography variant="small" className="text-gray-650">{selectedDoctor.joinedServiceTags}</Typography>
-                </div>
-              </CardHeader>
-            </Card>
+            <DoctorCard 
+              data={selectedDoctor}
+            />
           </div>
 
         </div>
