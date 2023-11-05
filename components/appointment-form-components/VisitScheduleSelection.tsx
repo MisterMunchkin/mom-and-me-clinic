@@ -1,5 +1,5 @@
 import { ClinicScheduleClass, DoctorClass } from "@/shared/classes/doctor";
-import { VisitScheduleMTInterface } from "@/shared/interfaces/appointment";
+import { VisitScheduleInterface } from "@/shared/interfaces/appointment.interface";
 import { toastNotifyService } from "@/shared/services/toast-notify-service";
 import { defaultLocation } from "@/shared/utilities/constants";
 import { toastConstants } from "@/shared/utilities/toast-constants";
@@ -11,14 +11,14 @@ import { Calendar } from "@/components/ui/calendar";
 
 interface VisitScheduleSelectionProps {
   defaultAvailableTimeBlocks: string[];
-  defaultSelected?: VisitScheduleMTInterface;
+  defaultSelected?: VisitScheduleInterface;
   selectedDoctor: DoctorClass;
-  handleFormSubmit: (selectedVisitSchedule: VisitScheduleMTInterface) => void;
+  handleFormSubmit: (selectedVisitSchedule: VisitScheduleInterface) => void;
   handleBack: () => void;
 }
 
 export default function VisitScheduleSelection({defaultAvailableTimeBlocks, defaultSelected, selectedDoctor, handleFormSubmit, handleBack}: VisitScheduleSelectionProps) {
-  const [ visitSchedule, setVisitSchedule ] = useState<VisitScheduleMTInterface | undefined>(defaultSelected);
+  const [ visitSchedule, setVisitSchedule ] = useState<VisitScheduleInterface | undefined>(defaultSelected);
   // Set as constant for now, but in the future it should allow changing locations
   const location: string = defaultLocation;
   const doctorClinicSchedule: ClinicScheduleClass | undefined = selectedDoctor

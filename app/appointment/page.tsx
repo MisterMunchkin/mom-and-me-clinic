@@ -1,4 +1,4 @@
-import AppointmentFormMT from "@/components/AppointmentFormMT";
+import AppointmentForm from "@/components/AppointmentFormMT";
 import Link from "next/link";
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -39,7 +39,7 @@ export default function Page({
               <span aria-hidden="true">←</span> Cancel Booking
             </Link>
             <div className="py-8 px-0 sm:px-8">
-              <AppointmentFormMT
+              <AppointmentForm
                 defaultServiceName={searchParams.defaultService} 
                 defaultDoctorName={searchParams.defaultDoctor}
               />
