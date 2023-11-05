@@ -1,4 +1,4 @@
-import { PersonalDetailsMTFormInterface } from "@/shared/interfaces/appointment";
+import { PersonalDetailsFormInterface } from "@/shared/interfaces/appointment.interface";
 import * as yup from "yup";
 import "yup-phone-lite";
 import { Button } from "../../shared/utilities/material-tailwind-export";
@@ -9,14 +9,14 @@ import { InformationCircleIcon } from "@heroicons/react/20/solid";
 import { isDate, differenceInYears } from "date-fns";
 
 interface PersonalDetailsForm {
-  handleFormSubmit: (personalDetails: PersonalDetailsMTFormInterface) => void;
+  handleFormSubmit: (personalDetails: PersonalDetailsFormInterface) => void;
   handleBack: () => void;
-  defaultPersonalDetails: PersonalDetailsMTFormInterface | undefined
+  defaultPersonalDetails: PersonalDetailsFormInterface | undefined
 }
 
 const genders = ['Female', 'Male', 'Others'];
 
-const personalDetailsFormSchema: yup.ObjectSchema<PersonalDetailsMTFormInterface> = yup.object().shape({
+const personalDetailsFormSchema: yup.ObjectSchema<PersonalDetailsFormInterface> = yup.object().shape({
   firstName: yup
     .string()
     .required("required")
@@ -109,12 +109,12 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack, defau
     handleSubmit: handleSubmitPersonalDetails,
     formState: { errors: errorsPersonalDetails},
     reset: resetPersonalDetails
-  } = useForm<PersonalDetailsMTFormInterface>({
+  } = useForm<PersonalDetailsFormInterface>({
     resolver: yupResolver(personalDetailsFormSchema),
     defaultValues: defaultPersonalDetails
   });
 
-  const submit: SubmitHandler<PersonalDetailsMTFormInterface> = async (personalDetails) => {
+  const submit: SubmitHandler<PersonalDetailsFormInterface> = async (personalDetails) => {
     const isValid = await personalDetailsFormSchema.isValid(personalDetails);
     if (isValid) {
       handleFormSubmit(personalDetails);
