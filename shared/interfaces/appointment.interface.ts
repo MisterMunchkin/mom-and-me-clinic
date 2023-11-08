@@ -20,6 +20,7 @@ export interface PersonalDetailsFormInterface {
   phoneNumber: string;
   sex: string;
   medicalConcern: string;
+  medicalConcernDocument?: File | null;
   honeyPotEmail?: string;
 }
 

@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Typography } from "@material-tailwind/react";
 import { InformationCircleIcon } from "@heroicons/react/20/solid";
 import { isDate, differenceInYears } from "date-fns";
+import { checkFileSize, checkFileType, maxFileSizeInMB, supportedFileTypeMessage } from "@/shared/utilities/yup-validators";
 
 interface PersonalDetailsForm {
   handleFormSubmit: (personalDetails: PersonalDetailsFormInterface) => void;
@@ -98,6 +99,19 @@ const personalDetailsFormSchema: yup.ObjectSchema<PersonalDetailsFormInterface> 
   medicalConcern: yup
     .string()
     .required("required"),
+  medicalConcernDocument: yup
+    .mixed<File>()
+    .nullable()
+    .test(
+      'check-file-size',
+      `File size cannot exceed ${maxFileSizeInMB}MB`,
+      checkFileSize
+    )
+    .test(
+      'check-file-type',
+      `File is unsupported, supported files: ${supportedFileTypeMessage}`,
+      checkFileType
+    ),
   honeyPotEmail: yup
     .string()
 });
@@ -319,6 +333,28 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack, defau
             {...registerPersonalDetails("medicalConcern")}
           ></textarea>
         </div>
+
+        <div>
+          <label className="block text-sm font-normal leading-6 text-gray-650" htmlFor="medicalConcernDocument">
+            <span className="inline-flex items-center">
+              Medical Document
+              {errorsPersonalDetails?.medicalConcernDocument?.message && (
+                <Typography variant="small" color="red" className="flex items-center gap-1 font-normal ml-2">
+                  <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                  {errorsPersonalDetails.medicalConcernDocument.message}
+                </Typography>
+              )}
+            </span>
+          </label>
+
+          <input
+            type="file"
+            className="mt-1 w-full max-w-[12rem] input-theme sm:text-sm"
+            id="medicalConcernDocument"
+            {...registerPersonalDetails("medicalConcernDocument")}
+          />
+        </div>
+        
         <div className="w-full grid grid-cols-4">
           <Button
             className="col-span-4 md:col-start-2 md:col-span-2 rounded-full bg-pastel-pink shadow-none hover:shadow-lg hover:shadow-pastel-pink/50"
