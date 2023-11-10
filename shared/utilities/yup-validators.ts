@@ -16,8 +16,8 @@ const supportedFileTypes = [
  * @returns validation if file size is supported
  * @remark returns true if null or undefined
  */
-export function checkFileSize(files: any | null | undefined): boolean {
-  const file = getFile(files as File[]);
+export function checkFileSize(file: File | null | undefined): boolean {
+  // const file = getFile(files as File[]);
   if (!file) {
     return true;
   }
@@ -35,8 +35,8 @@ export function checkFileSize(files: any | null | undefined): boolean {
  * @returns validation if file type is supported
  * @remark returns true if null or undefined
  */
-export function checkFileType(files: any | null | undefined): boolean {
-  const file = getFile(files as File[]);
+export function checkFileType(file: File | null | undefined): boolean {
+  // const file = getFile(files as File[]);
   if (!file) {
     return true;
   }

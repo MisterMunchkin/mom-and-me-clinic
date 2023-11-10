@@ -8,6 +8,7 @@ import { Typography } from "@material-tailwind/react";
 import { InformationCircleIcon } from "@heroicons/react/20/solid";
 import { isDate, differenceInYears } from "date-fns";
 import { checkFileSize, checkFileType, maxFileSizeInMB, supportedFileTypeMessage } from "@/shared/utilities/yup-validators";
+import { Input } from "@/components/ui/input";
 
 interface PersonalDetailsForm {
   handleFormSubmit: (personalDetails: PersonalDetailsFormInterface) => void;
@@ -101,6 +102,9 @@ const personalDetailsFormSchema: yup.ObjectSchema<PersonalDetailsFormInterface> 
     .required("required"),
   medicalConcernDocument: yup
     .mixed<File>()
+    .transform((value, originalValue: File[]) => {
+      return originalValue ? originalValue[0] : null;
+    })
     .nullable()
     .test(
       'check-file-size',
@@ -347,9 +351,9 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack, defau
             </span>
           </label>
 
-          <input
+          <Input
             type="file"
-            className="mt-1 w-full max-w-[12rem] input-theme sm:text-sm"
+            className="mt-1 w-full input-theme sm:text-sm file:text-gray-650 file:font-normal"
             id="medicalConcernDocument"
             {...registerPersonalDetails("medicalConcernDocument")}
           />
