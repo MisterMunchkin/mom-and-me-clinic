@@ -1,4 +1,4 @@
-import AppointmentForm from "@/components/AppointmentFormMT";
+import AppointmentForm from "@/components/AppointmentForm";
 import Link from "next/link";
 
 import { ToastContainer, toast } from 'react-toastify';

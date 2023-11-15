@@ -3,6 +3,7 @@ import { render } from "@react-email/render";
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from 'nodemailer';
 import { AppointmentSubmitRequest } from "@/shared/classes/appointment-submit-request";
+import Mail from "nodemailer/lib/mailer";
 
 // https://www.kirandev.com/next-js-react-email-sending
 // https://react.email/docs/getting-started/automatic-setup
@@ -35,10 +36,26 @@ export async function POST(request: NextRequest) {
     return invalidFormResponse;
   }
 
+  let attachments: Mail.Attachment[] | undefined = undefined;
+  if (requestForm.medicalFile) {
+    var fs = require('fs');
+    const content = await requestForm.medicalFile.stream().getReader().read()
+
+    attachments = [];
+    attachments.push({
+      filename: requestForm.medicalFile.name,
+      content: fs.createReadStream()
+
+    })
+  }
+
   //submit email
   await transporter.sendMail({
     to: requestForm.doctorEmail,
     subject: `Appointment Request for ${requestForm.patientFullName}`,
+    attachments: [{
+      filename: requestForm.medicalFile.
+    }],
     html: render(AppointmentRequestTemplate({
       patientFullName: requestForm.patientFullName,
       patientDateOfBirth: requestForm.patientDateOfBirth,

@@ -15,6 +15,7 @@ export class AppointmentSubmitRequest {
   selectedService: string;
   preferredSchedule: string;
   location: string;
+  medicalFile?: File;
 
   static readonly numOfRequiredProps: number = 10; 
 
@@ -36,5 +37,6 @@ export class AppointmentSubmitRequest {
     this.selectedService = selectedService.name;
     this.preferredSchedule = `${getFullDateString(visitSchedule.preferredDate)} ${visitSchedule.preferredTimeBlock}`;
     this.location = 'Mom & Me Clinic - Room 611, Velez Medical Arts Building, 8V4W+WXR, Cebu City, Cebu';
+    this.medicalFile = personalDetails.medicalConcernDocument ?? undefined;
   }
 }
