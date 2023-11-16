@@ -10,7 +10,7 @@ import { isDate, differenceInYears } from "date-fns";
 
 interface PersonalDetailsForm {
   handleFormSubmit: (personalDetails: PersonalDetailsFormInterface) => void;
-  handleBack: () => void;
+  handleBack: (personalDetails: PersonalDetailsFormInterface) => void;
   defaultPersonalDetails: PersonalDetailsFormInterface | undefined
 }
 
@@ -108,7 +108,7 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack, defau
     register: registerPersonalDetails,
     handleSubmit: handleSubmitPersonalDetails,
     formState: { errors: errorsPersonalDetails},
-    reset: resetPersonalDetails
+    getValues,
   } = useForm<PersonalDetailsFormInterface>({
     resolver: yupResolver(personalDetailsFormSchema),
     defaultValues: defaultPersonalDetails
@@ -124,7 +124,10 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack, defau
   return (
     <>
       <Typography variant="lead" className="font-light text-gray-650">Personal Details</Typography>
-      <form className="flex flex-col space-y-4" onSubmit={handleSubmitPersonalDetails(submit)}>
+      <form 
+        className="flex flex-col space-y-4" 
+        onSubmit={handleSubmitPersonalDetails(submit)}
+      >
         {/* This is for the bot */}
         <div className="hidden">
           <label htmlFor="honeyPotEmail">Email</label>
@@ -330,7 +333,7 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack, defau
             variant="text"
             className="col-span-4 md:col-start-2 md:col-span-2 text-gray-650 hover:bg-white-ivory"
             type="button"
-            onClick={() => handleBack()}
+            onClick={() => handleBack(getValues())}
           >
             <span className="button-text underline underline-offset-4">Back</span>
           </Button>

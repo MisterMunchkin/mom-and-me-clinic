@@ -164,8 +164,12 @@ export default function AppointmentForm({defaultServiceName, defaultDoctorName}:
                 }));
                 setActiveStep((cur) => cur + 1);
               }}
-              handleBack={() => {
-                setActiveStep((cur) => cur - 1)
+              handleBack={(snapshot) => {
+                setAppointmentForm(form => ({
+                  ...form,
+                  personalDetails: snapshot
+                }))
+                setActiveStep((cur) => cur - 1);
               }}
             />
           )}
