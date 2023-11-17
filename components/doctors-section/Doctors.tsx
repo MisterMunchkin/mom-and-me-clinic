@@ -20,12 +20,17 @@ export default async function Doctors() {
 }
 
 const getDoctors = async(): Promise<DoctorInterface[]> => {
-  const res = await fetch(`${process.env.URL}/api/doctors`);
-  
-  if (!res.ok) {
-    throw new Error ("failed to fetch doctors");
+  try {
+    const res = await fetch(`${process.env.URL}/api/doctors`);
+    
+    if (!res.ok) {
+      throw new Error ("failed to fetch doctors");
+    }
+    // await new Promise((resolve) => setTimeout(resolve, 10000)) //test skeleton
+    let data = await res.json() as DoctorInterface[];
+    return data;
+  } catch (e) {
+    console.error(e);
+    return [];
   }
-  // await new Promise((resolve) => setTimeout(resolve, 10000)) //test skeleton
-  let data = await res.json() as DoctorInterface[];
-  return data;
 }

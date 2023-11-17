@@ -6,22 +6,30 @@ import LoadingServices from '@/components/loading/loading-services';
 import OBGYNBanner from '@/components/services-section/ServiceBanner';
 import LoadingDoctors from '@/components/loading/loading-doctors';
 
-import dynamic from 'next/dynamic';
+import lazyLoad from 'next/dynamic';
 import Footer from '@/components/Footer';
 
-const Doctors = dynamic(() => 
+const Doctors = lazyLoad(() => 
   import ('@/components/doctors-section/Doctors'),
   {
     loading: () => <LoadingDoctors />
   }
 )
 
-const Services = dynamic(() => 
+const Services = lazyLoad(() => 
   import('@/components/services-section/Services'),
   {
     loading: () => <LoadingServices />
   }
 )
+
+/**
+ * https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamic
+ * Forces any fetch request to disable cache and always revalidate. Needed
+ * because the Doctors, Services and Locations are SSR'ed, and by default it tries to 
+ * fetch on build time. This prevents that.
+ */
+export const dynamic = 'force-dynamic'
 
 export default function Home() {
   return (

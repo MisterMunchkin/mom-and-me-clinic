@@ -19,12 +19,17 @@ export default async function Services() {
 }
 
 const getServices = async(): Promise<ServiceClass[]> => {
-  const res = await fetch(`${process.env.URL}${getServicesURL}`);
-  
-  if (!res.ok) {
-    throw new Error ("failed to fetch services");
+  try {
+    const res = await fetch(`${process.env.URL}${getServicesURL}`);
+    
+    if (!res.ok) {
+      throw new Error ("failed to fetch services");
+    }
+    // await new Promise((resolve) => setTimeout(resolve, 10000)) //test skeleton
+    const data = await res.json() as ServiceClass[];
+    return data;
+  } catch (e) {
+    console.error(e);
+    return [];
   }
-  // await new Promise((resolve) => setTimeout(resolve, 10000)) //test skeleton
-  const data = await res.json() as ServiceClass[];
-  return data;
 }

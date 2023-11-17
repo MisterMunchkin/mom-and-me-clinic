@@ -63,12 +63,17 @@ export default async function Locations() {
 }
 
 const getLocations = async(): Promise<LocationInterface[]> => {
-  const res = await fetch(`${process.env.URL}/api/locations?name=${defaultMapLocation}`);
+  try {
+    const res = await fetch(`${process.env.URL}/api/locations?name=${defaultMapLocation}`);
 
-  if (!res.ok) {
-    throw new Error("failed to fetch locations");
+    if (!res.ok) {
+      throw new Error("failed to fetch locations");
+    }
+
+    const data = await res.json() as LocationInterface[];
+    return data;
+  } catch (e) {
+    console.error(e);
+    return [];
   }
-
-  const data = await res.json() as LocationInterface[];
-  return data;
 }
