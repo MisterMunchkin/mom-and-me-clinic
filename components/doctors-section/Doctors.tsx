@@ -1,6 +1,7 @@
 import DesktopDoctors from './DesktopDoctors';
 import MobileDoctors from './MobileDoctors';
 import { DoctorInterface } from "@/shared/interfaces/doctor";
+import fetch from 'node-fetch';
 
 export default async function Doctors() {
   const doctors = await getDoctors();

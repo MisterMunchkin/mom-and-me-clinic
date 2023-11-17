@@ -2,7 +2,7 @@
 import { ServiceClass } from "@/shared/classes/service";
 import Service from "./Service";
 import { getServicesURL } from "@/shared/services/api-service.constants";
-
+import fetch from 'node-fetch';
 
 export default async function Services() {
   const services = await getServices();

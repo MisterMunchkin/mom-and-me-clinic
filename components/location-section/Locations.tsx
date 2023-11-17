@@ -4,6 +4,7 @@ import PlanIcon from '@/public/lifesavers_plant.png';
 import VelezGMap from '@/public/maps/velez_medical_arts-gmap.png';
 import MapDirectionsLink from "./MapDirectionsLink";
 import CopyButton from "../utilities/CopyButton";
+import fetch from 'node-fetch';
 
 const defaultMapLocation = encodeURIComponent('Mom & Me Clinic - Room 611');
 
