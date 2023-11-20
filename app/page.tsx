@@ -23,14 +23,6 @@ const Services = lazyLoad(() =>
   }
 )
 
-/**
- * https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamic
- * Forces any fetch request to disable cache and always revalidate. Needed
- * because the Doctors, Services and Locations are SSR'ed, and by default it tries to 
- * fetch on build time. This prevents that.
- */
-export const dynamic = 'force-dynamic'
-
 export default function Home() {
   return (
     <>
