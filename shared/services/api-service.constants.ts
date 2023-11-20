@@ -18,3 +18,14 @@ export const getDoctorsURL = (tags?: string) => {
   
   return url;
 }
+
+
+export const getLocationsURL = (name?: string) => {
+  let url = `/api/locations`;
+
+  if (name) {
+    url = `${url}?name=${name}`;
+  }
+
+  return url;
+}
