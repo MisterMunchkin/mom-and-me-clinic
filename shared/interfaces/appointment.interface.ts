@@ -1,14 +1,14 @@
 import { DoctorClass } from "@/shared/classes/doctor";
 import { ServiceClass } from "@/shared/classes/service";
 
-export interface AppointmentFormMTInterface {
-  personalDetails?: PersonalDetailsMTFormInterface;
+export interface AppointmentFormInterface {
+  personalDetails?: PersonalDetailsFormInterface;
   selectedService?: ServiceClass;
   selectedDoctor?: DoctorClass;
-  visitSchedule?: VisitScheduleMTInterface;
+  visitSchedule?: VisitScheduleInterface;
 }
 
-export interface PersonalDetailsMTFormInterface {
+export interface PersonalDetailsFormInterface {
   firstName: string;
   middleName?: string;
   lastName: string;
@@ -23,7 +23,7 @@ export interface PersonalDetailsMTFormInterface {
   honeyPotEmail?: string;
 }
 
-export interface VisitScheduleMTInterface {
+export interface VisitScheduleInterface {
   preferredDate?: Date;
   preferredTimeBlock?: string;
 }

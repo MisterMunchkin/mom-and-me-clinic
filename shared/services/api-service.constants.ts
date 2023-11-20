@@ -9,6 +9,23 @@ const availableServiceTags = 'OB-GYN'
  */
 export const getServicesURL = `/api/services?serviceTags=${availableServiceTags}`;
 
-export const getDoctorsURL = (tags: string) => {
-  return `/api/doctors?serviceTags=${tags}`
+export const getDoctorsURL = (tags?: string) => {
+  let url = `/api/doctors`;
+
+  if (tags) {
+    url = `${url}?serviceTags=${tags}`;
+  }
+  
+  return url;
+}
+
+
+export const getLocationsURL = (name?: string) => {
+  let url = `/api/locations`;
+
+  if (name) {
+    url = `${url}?name=${name}`;
+  }
+
+  return url;
 }

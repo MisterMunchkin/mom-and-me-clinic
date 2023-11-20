@@ -1,13 +1,17 @@
 import { Skeleton } from '@/components/ui/skeleton';
-export default function LoadingDoctor() {
+import { shadcn } from '@/shared/utilities/shadcn';
+
+interface LoadingDoctorProps extends React.ComponentProps<"div"> {}
+
+export default function LoadingDoctor({className}: LoadingDoctorProps) {
   return (
     <div
-      className="bg-white-coffee rounded-lg"
+      className={shadcn("bg-white-coffee rounded-lg", className)}
     >
       <div
         className="ml-4 mr-2 md:mr-4 flex items-center gap-2 md:gap-4 my-2 md:my-4"
       >
-         <Skeleton className="rounded-full w-[120px] h-[100px] bg-gray-100" />
+         <Skeleton className="rounded-full w-[140px] h-[100px] bg-gray-100" />
          <div
           className="flex w-full flex-col gap-2"
          >

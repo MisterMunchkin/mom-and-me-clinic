@@ -1,4 +1,4 @@
-import { PersonalDetailsMTFormInterface } from "@/shared/interfaces/appointment";
+import { PersonalDetailsFormInterface } from "@/shared/interfaces/appointment.interface";
 import * as yup from "yup";
 import "yup-phone-lite";
 import { Button } from "../../shared/utilities/material-tailwind-export";
@@ -9,14 +9,14 @@ import { InformationCircleIcon } from "@heroicons/react/20/solid";
 import { isDate, differenceInYears } from "date-fns";
 
 interface PersonalDetailsForm {
-  handleFormSubmit: (personalDetails: PersonalDetailsMTFormInterface) => void;
-  handleBack: () => void;
-  defaultPersonalDetails: PersonalDetailsMTFormInterface | undefined
+  handleFormSubmit: (personalDetails: PersonalDetailsFormInterface) => void;
+  handleBack: (personalDetails: PersonalDetailsFormInterface) => void;
+  defaultPersonalDetails: PersonalDetailsFormInterface | undefined
 }
 
 const genders = ['Female', 'Male', 'Others'];
 
-const personalDetailsFormSchema: yup.ObjectSchema<PersonalDetailsMTFormInterface> = yup.object().shape({
+const personalDetailsFormSchema: yup.ObjectSchema<PersonalDetailsFormInterface> = yup.object().shape({
   firstName: yup
     .string()
     .required("required")
@@ -108,13 +108,13 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack, defau
     register: registerPersonalDetails,
     handleSubmit: handleSubmitPersonalDetails,
     formState: { errors: errorsPersonalDetails},
-    reset: resetPersonalDetails
-  } = useForm<PersonalDetailsMTFormInterface>({
+    getValues,
+  } = useForm<PersonalDetailsFormInterface>({
     resolver: yupResolver(personalDetailsFormSchema),
     defaultValues: defaultPersonalDetails
   });
 
-  const submit: SubmitHandler<PersonalDetailsMTFormInterface> = async (personalDetails) => {
+  const submit: SubmitHandler<PersonalDetailsFormInterface> = async (personalDetails) => {
     const isValid = await personalDetailsFormSchema.isValid(personalDetails);
     if (isValid) {
       handleFormSubmit(personalDetails);
@@ -124,7 +124,10 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack, defau
   return (
     <>
       <Typography variant="lead" className="font-light text-gray-650">Personal Details</Typography>
-      <form className="flex flex-col space-y-4" onSubmit={handleSubmitPersonalDetails(submit)}>
+      <form 
+        className="flex flex-col space-y-4" 
+        onSubmit={handleSubmitPersonalDetails(submit)}
+      >
         {/* This is for the bot */}
         <div className="hidden">
           <label htmlFor="honeyPotEmail">Email</label>
@@ -330,7 +333,7 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack, defau
             variant="text"
             className="col-span-4 md:col-start-2 md:col-span-2 text-gray-650 hover:bg-white-ivory"
             type="button"
-            onClick={() => handleBack()}
+            onClick={() => handleBack(getValues())}
           >
             <span className="button-text underline underline-offset-4">Back</span>
           </Button>

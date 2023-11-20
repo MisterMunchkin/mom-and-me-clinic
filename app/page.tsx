@@ -6,17 +6,17 @@ import LoadingServices from '@/components/loading/loading-services';
 import OBGYNBanner from '@/components/services-section/ServiceBanner';
 import LoadingDoctors from '@/components/loading/loading-doctors';
 
-import dynamic from 'next/dynamic';
+import lazyLoad from 'next/dynamic';
 import Footer from '@/components/Footer';
 
-const Doctors = dynamic(() => 
+const Doctors = lazyLoad(() => 
   import ('@/components/doctors-section/Doctors'),
   {
     loading: () => <LoadingDoctors />
   }
 )
 
-const Services = dynamic(() => 
+const Services = lazyLoad(() => 
   import('@/components/services-section/Services'),
   {
     loading: () => <LoadingServices />

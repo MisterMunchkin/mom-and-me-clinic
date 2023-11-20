@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Step, Stepper } from "../shared/utilities/material-tailwind-export";
-import { AppointmentFormMTInterface, PersonalDetailsMTFormInterface, VisitScheduleMTInterface } from "@/shared/interfaces/appointment";
+import { AppointmentFormInterface, PersonalDetailsFormInterface, VisitScheduleInterface } from "@/shared/interfaces/appointment.interface";
 import PersonalDetailsForm from "./appointment-form-components/PersonalDetailsForm";
 import ServiceSelection from "./appointment-form-components/ServiceSelection";
 import { ServiceClass } from "@/shared/classes/service";
@@ -13,19 +13,19 @@ import { defaultLocation } from "@/shared/utilities/constants";
 import ConfirmationStep from "./appointment-form-components/ConfirmationStep";
 import { Typography } from "@material-tailwind/react";
 
-interface AppointmentFormMTProps {
+interface AppointmentFormProps {
   defaultServiceName?: string;
   defaultDoctorName?: string;
 }
 
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json());
 
-export default function AppointmentFormMT({defaultServiceName, defaultDoctorName}: AppointmentFormMTProps) {
+export default function AppointmentForm({defaultServiceName, defaultDoctorName}: AppointmentFormProps) {
   const [ activeStep, setActiveStep ] = useState(0);
   const [ isLastStep, setIsLastStep ] = useState(false);
   const [ isFirstStep, setIsFirstStep ] = useState(false);
   
-  const [ appointmentForm, setAppointmentForm] = useState<AppointmentFormMTInterface>({
+  const [ appointmentForm, setAppointmentForm] = useState<AppointmentFormInterface>({
     personalDetails: undefined,
     selectedService: undefined,
     selectedDoctor: undefined,
@@ -137,7 +137,7 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
               defaultAvailableTimeBlocks={getAvailableTimeBlocks(appointmentForm.visitSchedule?.preferredDate, appointmentForm.selectedDoctor)}
               defaultSelected={appointmentForm.visitSchedule}
               selectedDoctor={appointmentForm.selectedDoctor}
-              handleFormSubmit={(visitSchedule: VisitScheduleMTInterface) => {
+              handleFormSubmit={(visitSchedule: VisitScheduleInterface) => {
                 setAppointmentForm(form => ({
                   ...form,
                   visitSchedule: visitSchedule
@@ -157,15 +157,19 @@ export default function AppointmentFormMT({defaultServiceName, defaultDoctorName
           {activeStep === 3 && (
             <PersonalDetailsForm 
               defaultPersonalDetails={appointmentForm.personalDetails}
-              handleFormSubmit={(personalDetails: PersonalDetailsMTFormInterface) => {
+              handleFormSubmit={(personalDetails: PersonalDetailsFormInterface) => {
                 setAppointmentForm(form => ({
                   ...form,
                   personalDetails: personalDetails
                 }));
                 setActiveStep((cur) => cur + 1);
               }}
-              handleBack={() => {
-                setActiveStep((cur) => cur - 1)
+              handleBack={(snapshot) => {
+                setAppointmentForm(form => ({
+                  ...form,
+                  personalDetails: snapshot
+                }))
+                setActiveStep((cur) => cur - 1);
               }}
             />
           )}

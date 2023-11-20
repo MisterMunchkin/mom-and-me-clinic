@@ -1,4 +1,4 @@
-import { AppointmentFormMTInterface } from "@/shared/interfaces/appointment";
+import { AppointmentFormInterface } from "@/shared/interfaces/appointment.interface";
 import { Avatar, Button, Card, CardHeader, Typography } from "@material-tailwind/react";
 import { CheckBadgeIcon } from "@heroicons/react/20/solid";
 import Image from 'next/image';
@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 import DoctorCard from "@/components/doctors-section/DoctorCard";
 
 interface ConfirmationStepProps {
-  form: AppointmentFormMTInterface;
+  form: AppointmentFormInterface;
   handleBack: () => void;
 }
 

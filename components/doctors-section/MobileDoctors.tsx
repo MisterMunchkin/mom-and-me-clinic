@@ -1,24 +1,40 @@
 'use client'
 
-import { DoctorClass } from "@/shared/classes/doctor";
-import Image from 'next/image';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import { Card, CardHeader, Typography } from "@material-tailwind/react";
 import { DoctorInterface } from "@/shared/interfaces/doctor";
 import DoctorCard from "./DoctorCard";
+import { useEffect, useState } from "react";
+import { getDoctorsURL } from "@/shared/services/api-service.constants";
+import LoadingDoctor from '@/components/loading/loading-doctor';
 
 interface MobileDoctorsProps {
-  data: DoctorInterface[];
   className?: string;
 }
 
-export default function MobileDoctors({data, className}: MobileDoctorsProps) {
+export default function MobileDoctors({className}: MobileDoctorsProps) {
+  const [ doctors, setDoctors ] = useState<DoctorInterface[]>([]);
+  const [ isLoading, setIsLoading ] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(getDoctorsURL());
+      if (!res.ok) {
+        throw new Error ("failed to fetch doctors");
+      }
+
+      const datas = await res.json() as DoctorInterface[];
+      setDoctors(datas);
+      setIsLoading(false);
+    }
+
+    fetchData();
+  }, [])
+
   return (
     <div
       className={className || ''}
@@ -33,9 +49,15 @@ export default function MobileDoctors({data, className}: MobileDoctorsProps) {
           }}
           spaceBetween={10}
         >
-          {data.map((doctor) => (
+          {isLoading && Array.from({length: 1}, (_, i) => i + 1).map((id) => (
+            <LoadingDoctor
+              key={id}
+              className='mx-4 min-h-[5rem] min-w-[22rem]'
+            />
+          ))}
+          {!isLoading && doctors.map((doctor, index) => (
             <SwiperSlide
-              key={doctor.name}
+              key={index}
             >
               <DoctorCard 
                 data={doctor}
