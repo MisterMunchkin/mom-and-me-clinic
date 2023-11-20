@@ -1,4 +1,4 @@
-import { PersonalDetailsMTFormInterface } from "@/shared/interfaces/appointment";
+import { PersonalDetailsFormInterface } from "@/shared/interfaces/appointment.interface";
 import * as yup from "yup";
 import "yup-phone-lite";
 import { Button } from "../../shared/utilities/material-tailwind-export";
@@ -9,14 +9,14 @@ import { InformationCircleIcon } from "@heroicons/react/20/solid";
 import { isDate, differenceInYears } from "date-fns";
 
 interface PersonalDetailsForm {
-  handleFormSubmit: (personalDetails: PersonalDetailsMTFormInterface) => void;
-  handleBack: () => void;
-  defaultPersonalDetails: PersonalDetailsMTFormInterface | undefined
+  handleFormSubmit: (personalDetails: PersonalDetailsFormInterface) => void;
+  handleBack: (personalDetails: PersonalDetailsFormInterface) => void;
+  defaultPersonalDetails: PersonalDetailsFormInterface | undefined
 }
 
 const genders = ['Female', 'Male', 'Others'];
 
-const personalDetailsFormSchema: yup.ObjectSchema<PersonalDetailsMTFormInterface> = yup.object().shape({
+const personalDetailsFormSchema: yup.ObjectSchema<PersonalDetailsFormInterface> = yup.object().shape({
   firstName: yup
     .string()
     .required("required")
@@ -43,48 +43,48 @@ const personalDetailsFormSchema: yup.ObjectSchema<PersonalDetailsMTFormInterface
     name: 'validBirthdate',
     test: function (birthdate) {
       const { day, month, year } = birthdate;
-    if (!day || !month || !year) { //all 3 must not be null or empty
-      return this.createError({
-        path: 'dateOfBirth',
-        message: 'day, month, and year must be set'
-      });
-    }
-    
-    if (day < 1 || day > 31) { //day must be between 1 to 31
-      return this.createError({
-        path: 'dateOfBirth',
-        message: 'day must be between 1 to 31'
-      });
-    }
-    if (month < 1 || month > 12) { //month must be between 1 to 12
-      return this.createError({
-        path: 'dateOfBirth',
-        message: 'month must be between 1 to 12'
-      });
-    }
-    if (year < 1900) {//year must not be lesser than 1900
-      return this.createError({
-        path: 'dateOfBirth',
-        message: 'are you a vampire? Please double check the year'
-      });
-    }
+      if (!day || !month || !year) { //all 3 must not be null or empty
+        return this.createError({
+          path: 'dateOfBirth',
+          message: 'day, month, and year must be set'
+        });
+      }
+      
+      if (day < 1 || day > 31) { //day must be between 1 to 31
+        return this.createError({
+          path: 'dateOfBirth',
+          message: 'day must be between 1 to 31'
+        });
+      }
+      if (month < 1 || month > 12) { //month must be between 1 to 12
+        return this.createError({
+          path: 'dateOfBirth',
+          message: 'month must be between 1 to 12'
+        });
+      }
+      if (year < 1900) {//year must not be lesser than 1900
+        return this.createError({
+          path: 'dateOfBirth',
+          message: 'are you a vampire? Please double check the year'
+        });
+      }
 
-    //age must not be lesser than 1 year old
-    const dateValue = new Date(year, month - 1, day);
-    const currentDate = new Date();
-    const validMinimumAge = differenceInYears(currentDate, dateValue) >= 1;
-    if (!validMinimumAge) {
-      return this.createError({
-        path: 'dateOfBirth',
-        message: 'must be atleast 1 year old'
-      });
-    }
+      //age must not be lesser than 1 year old
+      const dateValue = new Date(year, month - 1, day);
+      const currentDate = new Date();
+      const validMinimumAge = differenceInYears(currentDate, dateValue) >= 1;
+      if (!validMinimumAge) {
+        return this.createError({
+          path: 'dateOfBirth',
+          message: 'must be atleast 1 year old'
+        });
+      }
 
-    //must be a valid date
-    return (isDate(dateValue)) ? true : this.createError({
-      path: 'dateOfBirth',
-      message: 'must be a valid date'
-    });
+      //must be a valid date
+      return (isDate(dateValue)) ? true : this.createError({
+        path: 'dateOfBirth',
+        message: 'must be a valid date'
+      });
     }
   }),
   phoneNumber: yup
@@ -108,13 +108,13 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack, defau
     register: registerPersonalDetails,
     handleSubmit: handleSubmitPersonalDetails,
     formState: { errors: errorsPersonalDetails},
-    reset: resetPersonalDetails
-  } = useForm<PersonalDetailsMTFormInterface>({
+    getValues,
+  } = useForm<PersonalDetailsFormInterface>({
     resolver: yupResolver(personalDetailsFormSchema),
     defaultValues: defaultPersonalDetails
   });
 
-  const submit: SubmitHandler<PersonalDetailsMTFormInterface> = async (personalDetails) => {
+  const submit: SubmitHandler<PersonalDetailsFormInterface> = async (personalDetails) => {
     const isValid = await personalDetailsFormSchema.isValid(personalDetails);
     if (isValid) {
       handleFormSubmit(personalDetails);
@@ -124,7 +124,10 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack, defau
   return (
     <>
       <Typography variant="lead" className="font-light text-gray-650">Personal Details</Typography>
-      <form className="flex flex-col space-y-4" onSubmit={handleSubmitPersonalDetails(submit)}>
+      <form 
+        className="flex flex-col space-y-4" 
+        onSubmit={handleSubmitPersonalDetails(submit)}
+      >
         {/* This is for the bot */}
         <div className="hidden">
           <label htmlFor="honeyPotEmail">Email</label>
@@ -330,7 +333,7 @@ export default function PersonalDetailsForm({handleFormSubmit, handleBack, defau
             variant="text"
             className="col-span-4 md:col-start-2 md:col-span-2 text-gray-650 hover:bg-white-ivory"
             type="button"
-            onClick={() => handleBack()}
+            onClick={() => handleBack(getValues())}
           >
             <span className="button-text underline underline-offset-4">Back</span>
           </Button>

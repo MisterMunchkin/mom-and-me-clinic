@@ -1,4 +1,4 @@
-import AppointmentFormMT from "@/components/AppointmentFormMT";
+import AppointmentForm from "@/components/AppointmentForm";
 import Link from "next/link";
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -34,12 +34,12 @@ export default function Page({
       <ToastContainer />
       <main className="h-screen">
         <div className="h-full w-full flex flex-row justify-center p-4">
-          <div className="pt-4 rounded-lg bg-white-ivory  w-full h-full xl:basis-1/2">
+          <div className="pt-4 rounded-lg bg-white-ivory  w-full h-full 2xl:basis-1/2">
             <Link className="px-0 sm:px-8 text-gray-650" href={backNavString} scroll={false}>
               <span aria-hidden="true">←</span> Cancel Booking
             </Link>
             <div className="py-8 px-0 sm:px-8">
-              <AppointmentFormMT
+              <AppointmentForm
                 defaultServiceName={searchParams.defaultService} 
                 defaultDoctorName={searchParams.defaultDoctor}
               />

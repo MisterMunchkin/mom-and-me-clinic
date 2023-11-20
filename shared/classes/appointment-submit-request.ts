@@ -1,4 +1,4 @@
-import { PersonalDetailsMTFormInterface, VisitScheduleMTInterface } from "@/shared/interfaces/appointment";
+import { PersonalDetailsFormInterface, VisitScheduleInterface } from "@/shared/interfaces/appointment.interface";
 import { ServiceClass } from "./service";
 import { DoctorClass } from "./doctor";
 import { getFullDateString, getMonthName } from "@/shared/utilities/helpers";
@@ -19,10 +19,10 @@ export class AppointmentSubmitRequest {
   static readonly numOfRequiredProps: number = 10; 
 
   constructor(
-    personalDetails: PersonalDetailsMTFormInterface,
+    personalDetails: PersonalDetailsFormInterface,
     selectedService: ServiceClass,
     selectedDoctor: DoctorClass,
-    visitSchedule: VisitScheduleMTInterface
+    visitSchedule: VisitScheduleInterface
   ) {
     this.patientFullName = `${personalDetails.firstName}${(personalDetails.middleName) ? ' ' + personalDetails.middleName : ''} ${personalDetails.lastName}`.trim();
     const { month, day, year } = personalDetails.dateOfBirth;

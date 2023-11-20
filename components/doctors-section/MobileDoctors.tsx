@@ -1,24 +1,39 @@
 'use client'
 
-import { DoctorClass } from "@/shared/classes/doctor";
-import Image from 'next/image';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import { Card, CardHeader, Typography } from "@material-tailwind/react";
 import { DoctorInterface } from "@/shared/interfaces/doctor";
+import DoctorCard from "./DoctorCard";
+import { useEffect, useState } from "react";
+import { getDoctorsURL } from "@/shared/services/api-service.constants";
+import LoadingDoctor from '@/components/loading/loading-doctor';
 
 interface MobileDoctorsProps {
-  data: DoctorInterface[];
   className?: string;
 }
 
-export default function MobileDoctors({data, className}: MobileDoctorsProps) {
-  const doctors = data.map(doctor => DoctorClass.fromInterface(doctor));
+export default function MobileDoctors({className}: MobileDoctorsProps) {
+  const [ doctors, setDoctors ] = useState<DoctorInterface[]>([]);
+  const [ isLoading, setIsLoading ] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(getDoctorsURL());
+      if (!res.ok) {
+        throw new Error ("failed to fetch doctors");
+      }
+
+      const datas = await res.json() as DoctorInterface[];
+      setDoctors(datas);
+      setIsLoading(false);
+    }
+
+    fetchData();
+  }, [])
 
   return (
     <div
@@ -34,49 +49,20 @@ export default function MobileDoctors({data, className}: MobileDoctorsProps) {
           }}
           spaceBetween={10}
         >
-          {doctors.map((doctor: DoctorClass) => (
-          <SwiperSlide
-            key={doctor.name}
-          >
-            <Card
-                shadow={false}
-                className="bg-white-coffee border-white-coffee hover:cursor-pointer min-w-[22rem] min-h-[5rem] mx-4"
-              >
-                <CardHeader
-                  color="transparent"
-                  floated={false}
-                  shadow={false}
-                  className="ml-4 mr-2 my-2 flex items-center gap-6"
-                >
-                  <Image 
-                    className='rounded-full'
-                    src={doctor.picture} 
-                    alt={doctor.name}
-                    width={60}
-                    height={60}                
-                  />
-                  <div
-                    className="flex w-full flex-col gap-0.5"
-                  >
-
-                    <Typography
-                      variant="h6"
-                      className="text-gray-650 break-words"
-                    >
-                      {doctor.fullTitle}
-                    </Typography>
-
-                    <Typography variant="small" className="text-gray-650">
-                      {doctor.serviceTagsForDisplay}
-                    </Typography>
-                  
-                  </div>
-                </CardHeader>
-                {/* <CardBody className="pt-0">
-                  <ClinicSchedules>
-                  </ClinicSchedules>
-                </CardBody> */}
-              </Card>
+          {isLoading && Array.from({length: 1}, (_, i) => i + 1).map((id) => (
+            <LoadingDoctor
+              key={id}
+              className='mx-4 min-h-[5rem] min-w-[22rem]'
+            />
+          ))}
+          {!isLoading && doctors.map((doctor, index) => (
+            <SwiperSlide
+              key={index}
+            >
+              <DoctorCard 
+                data={doctor}
+                className="mx-4 min-h-[5rem] min-w-[22rem]"
+              />
             </SwiperSlide>
           ))}
         </Swiper>
