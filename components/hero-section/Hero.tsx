@@ -8,6 +8,7 @@ import CraneIcon from '@/public/icons/crane.svg';
 import Link from 'next/link';
 
 export default function Hero() {
+  console.log(process.env.APPOINTMENT_FORM_ENABLED);
   return (
     <React.Fragment>
       <div className="relative isolate px-6 lg:px-8">
@@ -35,18 +36,45 @@ export default function Hero() {
             <div
               className="relative"
             >
-              <Link 
-                href={{
-                  pathname: `/appointment`
-                }} 
-                className="py-2 px-4 rounded-full bg-pastel-pink text-white-ivory hover:shadow-lg hover:shadow-pastel-pink/50">
-                <span
-                  className="button-text items-center"
-                > 
-                  <CalendarDaysIcon className="w-5 h-5 inline mr-3" />
-                  <span className="font-semibold tracking-wider text-sm">Book Appointment</span>
-                </span>
-              </Link>
+              {process.env.APPOINTMENT_FORM_ENABLED === 'true' &&
+                <Link 
+                  href={{
+                    pathname: `/appointment`
+                  }} 
+                  className="py-2 px-4 rounded-full bg-pastel-pink text-white-ivory hover:shadow-lg hover:shadow-pastel-pink/50">
+                  <span
+                    className="button-text items-center"
+                  > 
+                    <CalendarDaysIcon className="w-5 h-5 inline mr-3" />
+                    <span className="font-semibold tracking-wider text-sm">Book Appointment</span>
+                  </span>
+                </Link>
+              }
+              {process.env.APPOINTMENT_FORM_ENABLED === 'false' &&
+                <Popover>
+                  <PopoverTrigger
+                    className="py-2 px-4 rounded-full bg-pastel-pink text-white-ivory hover:shadow-lg hover:shadow-pastel-pink/50"
+                  >
+                    <CalendarDaysIcon className="w-5 h-5 inline mr-3" />
+                    <span className="font-semibold tracking-wider text-sm">Book Appointment</span>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    className="bg-white-coffee text-center py-2"
+                    side="top"
+                  >
+                    <div
+                      className="text-gray-650 text-lg tracking-wider font-bold"
+                    >
+                      🚧 Under Construction 🚧 👷🏽‍♀️ 
+                    </div>
+                    <div
+                      className="text-gray-650 text-base tracking-wider font-normal"
+                    >
+                      It&apos;ll be ready for you soon!
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              }
             </div>
             <a 
               href="#services" 

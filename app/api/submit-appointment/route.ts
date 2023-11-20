@@ -65,7 +65,11 @@ function isInvalidRequest(request: NextRequest): NextResponse | null {
   const allowedOriginArray = allowedOriginString.split(',');
 
   if (!allowedOriginArray.includes(origin)) { // request came from unknown origin
-    return NextResponse.json(null, {status: 403, statusText: 'Unauthorized Access'});
+    return NextResponse.json({errMessage: 'origin is not supported'}, {status: 403, statusText: 'Unauthorized Access'});
+  }
+
+  if (process.env.APPOINTMENT_FORM_ENABLED === 'false') {
+    return NextResponse.json({errMessage: 'appointment form is disabled in this environment'}, {status: 403, statusText: 'Unauthorized Access'});
   }
 
   return null;
