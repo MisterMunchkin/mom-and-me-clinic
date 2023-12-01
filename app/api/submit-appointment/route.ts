@@ -3,6 +3,7 @@ import { render } from "@react-email/render";
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from 'nodemailer';
 import { AppointmentSubmitRequest } from "@/shared/classes/appointment-submit-request";
+import SMTPTransport from "nodemailer/lib/smtp-transport";
 
 // https://www.kirandev.com/next-js-react-email-sending
 // https://react.email/docs/getting-started/automatic-setup
@@ -10,12 +11,13 @@ import { AppointmentSubmitRequest } from "@/shared/classes/appointment-submit-re
 // https://forwardemail.net/en
 
 // Replace with your SMTP credentials
-const smtpOptions = {
-  host: process.env.SMTP_HOST || "smtp.mailtrap.io",
-  port: parseInt(process.env.SMTP_PORT || "2525"),
+const smtpOptions: SMTPTransport.Options = {
+  host: process.env.SMTP_HOST || "",
+  port: parseInt(process.env.SMTP_PORT || ""),
+  secure: true,
   auth: {
-    user: process.env.SMTP_USER || "user",
-    pass: process.env.SMTP_PASS || "password",
+    user: process.env.SMTP_USER || "",
+    pass: process.env.SMTP_PASS || "",
   },
 }
 
@@ -38,6 +40,7 @@ export async function POST(request: NextRequest) {
   //submit email
   await transporter.sendMail({
     to: requestForm.doctorEmail,
+    from: process.env.FROM_ADDRESS || "",
     subject: `Appointment Request for ${requestForm.patientFullName}`,
     html: render(AppointmentRequestTemplate({
       patientFullName: requestForm.patientFullName,
@@ -58,7 +61,7 @@ export async function POST(request: NextRequest) {
 function isInvalidRequest(request: NextRequest): NextResponse | null {
   const allowedOriginString = process.env.ALLOWED_ORIGINS || '';
   if (!allowedOriginString) { // env variable not set
-    return NextResponse.json(null, {status: 500, statusText: 'Not able to handle submissions at this time, please refresh and try again.'});
+    return NextResponse.json({errMessage: 'Not able to handle submissions at this time, please refresh and try again.'}, {status: 500, statusText: 'Not able to handle submissions at this time, please refresh and try again.'});
   }
 
   const origin = request.headers.get('origin') || request.headers.get('referer') || '';

@@ -24,9 +24,9 @@ interface AppointmentRequestProps {
   location?: string;
 }
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : '';
+// const baseUrl = process.env.VERCEL_URL
+//   ? `https://${process.env.VERCEL_URL}`
+//   : '';
 
 export const AppointmentRequestTemplate = ({
   patientFullName = 'Robin Dalmy Tubungbanua',
@@ -46,8 +46,8 @@ export const AppointmentRequestTemplate = ({
       <Head />
       <Preview>{previewText}</Preview>
       <Tailwind>
-        <Body className="bg-white my-auto mx-auto font-sans">
-          <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] w-[465px]">
+        <Body className="bg-white my-auto mx-auto font-sans flex flex-col items-center">
+          <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] w-full">
             {/* <Section className="mt-[32px]">
               <Img
                 src={`${baseUrl}/static/logo.png`}
@@ -105,6 +105,7 @@ export const AppointmentRequestTemplate = ({
               </Text>
             </Section>
           </Container>
+          <i className='pb-6'>This is an auto-generated email, please do not reply.</i>
         </Body>
       </Tailwind>
     </Html>
