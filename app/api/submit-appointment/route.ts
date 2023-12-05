@@ -39,8 +39,7 @@ export async function POST(request: NextRequest) {
 
   //submit email
   await transporter.sendMail({
-    to: requestForm.doctorEmail,
-    from: process.env.FROM_ADDRESS || "",
+    to: process.env.FRONT_DESK_ADDRESS,
     subject: `Appointment Request for ${requestForm.patientFullName}`,
     html: render(AppointmentRequestTemplate({
       patientFullName: requestForm.patientFullName,
