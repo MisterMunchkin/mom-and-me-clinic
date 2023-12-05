@@ -60,11 +60,9 @@ export const AppointmentRequestTemplate = ({
             <Heading className="text-black text-[24px] font-normal text-center p-0 my-[30px] mx-0">
               {previewText}
             </Heading>
+ 
             <Text className="text-black text-[14px] leading-[24px]">
-              Hello {doctorFullName},
-            </Text>
-            <Text className="text-black text-[14px] leading-[24px]">
-              <strong>{patientFullName}</strong>  has requested an appointment with you. 
+              <strong>{patientFullName}</strong>  has requested an appointment with <strong>{doctorFullName}</strong>. 
             </Text>
             <Section>
               <Heading className="text-black text-[24px] font-normal text-center p-0 my-[30px] mx-0">
@@ -91,6 +89,10 @@ export const AppointmentRequestTemplate = ({
               <Heading className="text-black text-[24px] font-normal text-center p-0 my-[30px] mx-0">
                 Clinic Request
               </Heading>
+
+              <Text className="text-black text-[14px] leading-[24px]">
+                <strong>Doctor Requested</strong> {doctorFullName}
+              </Text>
 
               <Text className="text-black text-[14px] leading-[24px]">
                 <strong>Service Requested</strong> {selectedService}
