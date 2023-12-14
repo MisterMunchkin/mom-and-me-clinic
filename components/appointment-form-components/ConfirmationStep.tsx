@@ -9,6 +9,8 @@ import { toastNotifyService } from "@/shared/services/toast-notify-service";
 import { toastConstants } from "@/shared/utilities/toast-constants";
 import { useRouter } from 'next/navigation';
 import DoctorCard from "@/components/doctors-section/DoctorCard";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 interface ConfirmationStepProps {
   form: AppointmentFormInterface;
@@ -16,6 +18,7 @@ interface ConfirmationStepProps {
 }
 
 export default function ConfirmationStep({form, handleBack}: ConfirmationStepProps) {
+  const [ isSubmitting, setIsSubmitting ] = useState<boolean>(false);
   const {personalDetails, selectedDoctor, selectedService, visitSchedule} = form;
   const { 
     toastId,
@@ -31,6 +34,7 @@ export default function ConfirmationStep({form, handleBack}: ConfirmationStepPro
   const { preferredDate, preferredTimeBlock } = visitSchedule;
   const handleSubmit = async () => {
     try {
+      setIsSubmitting(true);
       const appointmentSubmitRequest = new AppointmentSubmitRequest(
         personalDetails,
         selectedService,
@@ -52,12 +56,14 @@ export default function ConfirmationStep({form, handleBack}: ConfirmationStepPro
         throw new Error(body);
       }
 
+      setIsSubmitting(false);
       // display success
       toastNotifyService.dismiss(toastId);
       setTimeout(() => {
         router.push(`appointment/booking-confirmed?patientFirstName=${personalDetails.firstName}`);
       }, 250);
     } catch (error: any) {
+      setIsSubmitting(false);
       // display failure
       toastNotifyService
         .notifyError(toastId, message);
@@ -114,11 +120,12 @@ export default function ConfirmationStep({form, handleBack}: ConfirmationStepPro
           className="py-3.5 mt-16 rounded-full text-gray-650 bg-pastel-green shadow-none hover:shadow-lg hover:shadow-pastel-green/50 min-w-[18rem]"
           type="button"
           onClick={() => handleSubmit()}
+          disabled={isSubmitting}
         >
           <span className="button-text inline-flex items-center">
             <CheckBadgeIcon className="w-5 h-5 display-inline mr-3" /> 
-
-            Confirm 
+            Confirm
+            { isSubmitting ? <Loader2 className="h-5 w-5 ml-3 animate-spin" /> : null}
           </span>
         </Button>
         <Button
@@ -126,6 +133,7 @@ export default function ConfirmationStep({form, handleBack}: ConfirmationStepPro
           className="text-gray-650 hover:bg-white-ivory underline underline-offset-4"
           type="button"
           onClick={() => handleBack()}
+          disabled={isSubmitting}
         >
           <span className="button-text underline underline-offset-4">Back</span>
         </Button>
